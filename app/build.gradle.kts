@@ -1,10 +1,12 @@
+import com.android.ide.common.repository.main
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "com.mobiledevpro.apptemplate.compose"
     compileSdk = libs.versions.sdk.compile.get().toInt()
@@ -62,9 +64,13 @@ dependencies {
     api(libs.coil)
     api(libs.navigation)
 
+    //Compose
+    implementation(platform(libs.compose.bom))
+    implementation(libs.bundles.compose)
+
     testImplementation(libs.bundles.test.common)
     androidTestImplementation(libs.bundles.test.android)
 
     //Core modules
-    api(project(":core:ui"))
+   // api(project(":core:ui"))
 }
