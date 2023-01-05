@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "App Template Compose"
 
 include(":app")
+include(":core:ui")

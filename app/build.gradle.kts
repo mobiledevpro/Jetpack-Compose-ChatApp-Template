@@ -57,15 +57,14 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
-    implementation(libs.bundles.lyfecycle)
-    implementation(libs.coil)
-    implementation(libs.navigation)
-
-    //Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
+    api(libs.core.ktx)
+    api(libs.bundles.lyfecycle)
+    api(libs.coil)
+    api(libs.navigation)
 
     testImplementation(libs.bundles.test.common)
     androidTestImplementation(libs.bundles.test.android)
+
+    //Core modules
+    api(project(":core:ui"))
 }
