@@ -1,4 +1,4 @@
-package com.mobiledevpro.apptemplate.compose
+package com.mobiledevpro.apptemplate
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.mobiledevpro.ui.theme.AppTemplateComposeTheme
+import com.mobiledevpro.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTemplateComposeTheme {
+            AppTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -40,7 +40,10 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun GreetingPreview() {
-    Text(
-        text = "Hello, mate"
-    )
+    AppTheme {
+        Text(
+            text = "Hello, mate"
+        )
+    }
+
 }

@@ -1,5 +1,3 @@
-import com.android.ide.common.repository.main
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
