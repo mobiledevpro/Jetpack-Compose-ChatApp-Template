@@ -54,6 +54,8 @@ compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = 
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 # test libraries
@@ -64,8 +66,6 @@ test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
 
 # Android test libraries
 test-android-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-test-android-compose-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
-test-android-compose-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 test-android-runner = { module = "androidx.test:runner", version.ref = "test-android-runner" }
 
 [bundles]
@@ -75,6 +75,11 @@ compose = [
     "compose-ui-preview",
     "compose-material3",
     "activity-compose"
+]
+
+compose-debug = [
+    "compose-ui-tooling",
+    "compose-ui-manifest"
 ]
 
 lyfecycle = [
@@ -91,7 +96,5 @@ test-common = [
 
 test-android = [
     "test-android-compose",
-    "test-android-compose-tooling",
-    "test-android-compose-manifest",
     "test-android-runner"
 ]

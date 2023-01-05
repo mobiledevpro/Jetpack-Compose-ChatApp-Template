@@ -1,4 +1,4 @@
-package com.mobiledevpro.apptemplate.compose.ui.theme
+package com.mobiledevpro.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme

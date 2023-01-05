@@ -34,5 +34,9 @@ android {
 dependencies {
     //Compose
     implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
+    api(libs.bundles.compose)
+    debugApi(libs.bundles.compose.debug)
+
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestApi(libs.bundles.test.android)
 }

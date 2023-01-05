@@ -64,13 +64,8 @@ dependencies {
     api(libs.coil)
     api(libs.navigation)
 
-    //Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
-
-    testImplementation(libs.bundles.test.common)
-    androidTestImplementation(libs.bundles.test.android)
-
     //Core modules
-   // api(project(":core:ui"))
+    api(project(":core:ui"))
+
+    testApi(libs.bundles.test.common)
 }
