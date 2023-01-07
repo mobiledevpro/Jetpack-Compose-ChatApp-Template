@@ -42,7 +42,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 fun GreetingPreview() {
     AppTheme {
         Text(
-            text = "Hello, mate"
+            text = "Congrats, mate"
         )
     }
 
