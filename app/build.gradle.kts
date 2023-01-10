@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.mobiledevpro.apptemplate.compose"
-        minSdk =  libs.versions.sdk.min.get().toInt()
+        minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = libs.versions.app.version.code.get().toInt()
         versionName = libs.versions.app.version.name.get()
@@ -57,13 +57,12 @@ android {
 
 dependencies {
 
-    api(libs.core.ktx)
-    api(libs.bundles.lyfecycle)
-    api(libs.coil)
-    api(libs.navigation)
-
-    //Core modules
-    api(project(":core:ui"))
+    implementation(libs.core.ktx)
+    implementation(libs.bundles.lyfecycle)
+    implementation(libs.coil)
 
     testApi(libs.bundles.test.common)
+
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
 }

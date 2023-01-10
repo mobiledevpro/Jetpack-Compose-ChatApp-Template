@@ -33,10 +33,10 @@ android {
 
 dependencies {
     //Compose
-    implementation(platform(libs.compose.bom))
+    api(platform(libs.compose.bom))
     api(libs.bundles.compose)
     debugApi(libs.bundles.compose.debug)
 
-    androidTestImplementation(platform(libs.compose.bom))
+    androidTestApi(platform(libs.compose.bom))
     androidTestApi(libs.bundles.test.android)
 }

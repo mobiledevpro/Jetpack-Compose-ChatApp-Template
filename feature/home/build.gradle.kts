@@ -1,12 +1,13 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.library)
+    //alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
 }
 
 android {
-    namespace = "com.mobiledevpro.navigation"
+    namespace = "com.mobiledevpro.home"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -32,12 +33,5 @@ android {
 }
 
 dependencies {
-    //Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
-    debugImplementation(libs.bundles.compose.debug)
-
-    api(libs.navigation)
-
-    implementation(project(":feature:home"))
+    implementation(project(":core:ui"))
 }
