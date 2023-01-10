@@ -31,19 +31,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mobiledevpro.ui.component.ScreenBackground
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen() {
 
     Scaffold { paddingValues ->
-        Surface(
+        ScreenBackground(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
-
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -62,6 +61,8 @@ fun HomeScreen() {
             }
         }
     }
+
+
 }
 
 @Preview
