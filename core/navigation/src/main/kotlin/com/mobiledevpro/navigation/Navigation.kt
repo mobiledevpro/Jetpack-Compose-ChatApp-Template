@@ -17,15 +17,40 @@
  */
 package com.mobiledevpro.navigation
 
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.mobiledevpro.home.HomeScreen
+import com.mobiledevpro.onboarding.OnBoardingScreen
 
 
-fun NavController.navigateTo(screen: Screen, navOptions: NavOptions? = null) {
-    navigate(screen.route, navOptions)
+fun NavController.navigateTo(
+    screen: Screen,
+    // navOptions: NavOptions? = null,
+    clearBackStack: Boolean? = false
+) {
+
+    val currentRoute: String? = this.currentBackStackEntry?.destination?.route
+
+    navigate(screen.route) {
+
+        //Clearing back stack if needed
+        if (clearBackStack == true && !currentRoute.isNullOrEmpty())
+            popUpTo(currentRoute) {
+                inclusive = true
+            }
+
+        //Animating transition between screens
+/*
+        anim {
+           // enter = android.R.anim.slide_in_left
+            enter = android.R.anim.slide_in_left
+        }
+
+ */
+    }
 }
 
 fun NavGraphBuilder.homeScreen() {
@@ -33,5 +58,13 @@ fun NavGraphBuilder.homeScreen() {
         route = Screen.Home.route
     ) {
         HomeScreen()
+    }
+}
+
+fun NavGraphBuilder.onBoardingScreen(onDone: () -> Unit) {
+    composable(
+        route = Screen.OnBoarding.route
+    ) {
+        OnBoardingScreen(onDone)
     }
 }

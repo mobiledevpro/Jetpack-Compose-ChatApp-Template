@@ -40,4 +40,5 @@ dependencies {
     api(libs.navigation)
 
     implementation(project(":feature:home"))
+    implementation(project(":feature:onboarding"))
 }

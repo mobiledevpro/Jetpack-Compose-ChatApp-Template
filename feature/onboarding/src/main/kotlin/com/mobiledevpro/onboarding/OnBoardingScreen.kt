@@ -18,8 +18,11 @@
 package com.mobiledevpro.onboarding
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -29,13 +32,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mobiledevpro.ui.component.ScreenBackground
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    onDone: () -> Unit
+) {
     Scaffold { paddingValues ->
         ScreenBackground(
             modifier = Modifier
@@ -52,13 +58,18 @@ fun OnBoardingScreen() {
                     textAlign = TextAlign.Center,
                     modifier = Modifier
                         .padding(16.dp)
-                        .align(Alignment.Center),
+                        .align(Alignment.Center)
+                        .fillMaxWidth(),
                     style = MaterialTheme.typography.bodyLarge
 
                 )
-                
+
                 Button(
-                    onClick = { /*TODO*/ }
+                    onClick = onDone,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
+
                 ) {
                     Text(text = "Next")
                 }
@@ -68,4 +79,12 @@ fun OnBoardingScreen() {
     }
 
 
+}
+
+@Preview
+@Composable
+fun OnBoardingPreview() {
+    OnBoardingScreen {
+
+    }
 }

@@ -20,6 +20,8 @@ package com.mobiledevpro.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
 import com.mobiledevpro.home.HomeScreen
 
@@ -34,15 +36,22 @@ import com.mobiledevpro.home.HomeScreen
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String = Screen.Home.route,
+    startDestination: String,
     onBackClick: () -> Unit = {}
 ) {
-
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
     ) {
+
+        onBoardingScreen {
+            navController.navigateTo(
+                Screen.Home,
+                clearBackStack = true
+            )
+        }
+
         homeScreen()
     }
 }

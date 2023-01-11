@@ -17,12 +17,14 @@
  */
 package com.mobiledevpro.navigation
 
+const val navigationRouteOnBoarding = "on_boarding"
 const val navigationRouteHome = "home"
 const val navigationRouteChatList = "chat_list"
 const val navigationRoutePeopleList = "people_list"
 const val navigationRouteProfile = "profile"
 
 sealed class Screen(val route: String) {
+    object OnBoarding : Screen(navigationRouteOnBoarding)
     object Home : Screen(navigationRouteHome)
     object ChatList : Screen(navigationRouteChatList)
     object PeopleList : Screen(navigationRoutePeopleList)
