@@ -32,8 +32,7 @@ fun MainApp() {
     AppNavHost(
         navController = navController,
         modifier = Modifier.safeContentPadding(),
-        startDestination = Screen.OnBoarding.route,
-        onBackClick = {}
+        startDestination = Screen.OnBoarding.route
     )
 
 }

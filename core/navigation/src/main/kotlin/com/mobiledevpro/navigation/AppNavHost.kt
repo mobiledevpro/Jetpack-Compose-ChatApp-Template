@@ -36,8 +36,7 @@ import com.mobiledevpro.home.HomeScreen
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String,
-    onBackClick: () -> Unit = {}
+    startDestination: String
 ) {
     NavHost(
         navController = navController,
@@ -45,13 +44,19 @@ fun AppNavHost(
         modifier = modifier,
     ) {
 
-        onBoardingScreen {
+        onBoardingScreen(onNavigateTo = { screen ->
             navController.navigateTo(
-                Screen.Home,
+                screen,
                 clearBackStack = true
             )
-        }
+        })
 
-        homeScreen()
+        homeScreen(onNavigateTo = { screen ->
+            navController.navigateTo(screen)
+        })
+
+        subscriptionScreen(onNavigateBack = {
+            navController.navigateUp()
+        })
     }
 }

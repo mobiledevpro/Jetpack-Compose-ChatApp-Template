@@ -41,4 +41,5 @@ dependencies {
 
     implementation(project(":feature:home"))
     implementation(project(":feature:onboarding"))
+    implementation(project(":feature:subscription"))
 }

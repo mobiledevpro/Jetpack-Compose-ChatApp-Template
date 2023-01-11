@@ -22,6 +22,7 @@ const val navigationRouteHome = "home"
 const val navigationRouteChatList = "chat_list"
 const val navigationRoutePeopleList = "people_list"
 const val navigationRouteProfile = "profile"
+const val navigationRouteSubscription = "subscription"
 
 sealed class Screen(val route: String) {
     object OnBoarding : Screen(navigationRouteOnBoarding)
@@ -29,4 +30,5 @@ sealed class Screen(val route: String) {
     object ChatList : Screen(navigationRouteChatList)
     object PeopleList : Screen(navigationRoutePeopleList)
     object Profile : Screen(navigationRouteProfile)
+    object Subscription : Screen(navigationRouteSubscription)
 }

@@ -18,8 +18,10 @@
 package com.mobiledevpro.home
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -35,7 +37,7 @@ import com.mobiledevpro.ui.component.ScreenBackground
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onOpenSubscriptionScreen: () -> Unit) {
 
     Scaffold { paddingValues ->
         ScreenBackground(
@@ -58,6 +60,17 @@ fun HomeScreen() {
 
                 )
 
+                Button(
+                    onClick = onOpenSubscriptionScreen,
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
+                ) {
+                    Text(
+                        text = "Paid subscription"
+                    )
+                }
+
             }
         }
     }
@@ -68,5 +81,7 @@ fun HomeScreen() {
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen {
+
+    }
 }

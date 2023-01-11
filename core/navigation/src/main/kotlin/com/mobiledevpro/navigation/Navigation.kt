@@ -24,6 +24,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.mobiledevpro.home.HomeScreen
 import com.mobiledevpro.onboarding.OnBoardingScreen
+import com.mobiledevpro.subscription.SubscriptionScreen
 
 
 fun NavController.navigateTo(
@@ -43,28 +44,40 @@ fun NavController.navigateTo(
             }
 
         //Animating transition between screens
-/*
-        anim {
-           // enter = android.R.anim.slide_in_left
-            enter = android.R.anim.slide_in_left
-        }
+        /*
+                anim {
+                   // enter = android.R.anim.slide_in_left
+                    enter = android.R.anim.slide_in_left
+                }
 
- */
+         */
     }
 }
 
-fun NavGraphBuilder.homeScreen() {
+fun NavGraphBuilder.homeScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.Home.route
     ) {
-        HomeScreen()
+        HomeScreen(
+            onOpenSubscriptionScreen = { onNavigateTo(Screen.Subscription) }
+        )
     }
 }
 
-fun NavGraphBuilder.onBoardingScreen(onDone: () -> Unit) {
+fun NavGraphBuilder.onBoardingScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.OnBoarding.route
     ) {
-        OnBoardingScreen(onDone)
+        OnBoardingScreen(
+            onNext = { onNavigateTo(Screen.Home) }
+        )
+    }
+}
+
+fun NavGraphBuilder.subscriptionScreen(onNavigateBack : () -> Unit) {
+    composable(
+        route = Screen.Subscription.route
+    ) {
+        SubscriptionScreen(onNavigateBack)
     }
 }

@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
 }
 android {
-    namespace = "com.mobiledevpro.onboarding"
+    namespace = "com.mobiledevpro.subscription"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
