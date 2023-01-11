@@ -25,6 +25,8 @@ const val navigationRouteProfile = "profile"
 const val navigationRouteSubscription = "subscription"
 
 sealed class Screen(val route: String) {
+    internal var clearBackStack : Boolean = false
+
     object OnBoarding : Screen(navigationRouteOnBoarding)
     object Home : Screen(navigationRouteHome)
     object ChatList : Screen(navigationRouteChatList)

@@ -44,19 +44,22 @@ fun AppNavHost(
         modifier = modifier,
     ) {
 
-        onBoardingScreen(onNavigateTo = { screen ->
-            navController.navigateTo(
-                screen,
-                clearBackStack = true
-            )
-        })
+        val navigateTo: (screen: Screen) -> Unit =
+            { screen ->
+                navController.navigateTo(
+                    screen,
+                    clearBackStack = screen.clearBackStack
+                )
+            }
 
-        homeScreen(onNavigateTo = { screen ->
-            navController.navigateTo(screen)
-        })
-
-        subscriptionScreen(onNavigateBack = {
+        val navigateBack: () -> Unit = {
             navController.navigateUp()
-        })
+        }
+
+        onBoardingScreen(onNavigateTo = navigateTo)
+
+        homeScreen(onNavigateTo = navigateTo)
+
+        subscriptionScreen(onNavigateBack = navigateBack)
     }
 }

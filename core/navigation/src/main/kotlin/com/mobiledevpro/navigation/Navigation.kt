@@ -69,12 +69,12 @@ fun NavGraphBuilder.onBoardingScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.OnBoarding.route
     ) {
         OnBoardingScreen(
-            onNext = { onNavigateTo(Screen.Home) }
+            onNext = { onNavigateTo(Screen.Home.apply { clearBackStack = true }) }
         )
     }
 }
 
-fun NavGraphBuilder.subscriptionScreen(onNavigateBack : () -> Unit) {
+fun NavGraphBuilder.subscriptionScreen(onNavigateBack: () -> Unit) {
     composable(
         route = Screen.Subscription.route
     ) {
