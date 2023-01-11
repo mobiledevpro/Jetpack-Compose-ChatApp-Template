@@ -1,10 +1,10 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
 }
 
-@Suppress("UnstableApiUsage")
 android {
     namespace = "com.mobiledevpro.apptemplate.compose"
     compileSdk = libs.versions.sdk.compile.get().toInt()
@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.mobiledevpro.apptemplate.compose"
-        minSdk =  libs.versions.sdk.min.get().toInt()
+        minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = libs.versions.app.version.code.get().toInt()
         versionName = libs.versions.app.version.name.get()
@@ -60,12 +60,9 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.bundles.lyfecycle)
     implementation(libs.coil)
-    implementation(libs.navigation)
 
-    //Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
+    testApi(libs.bundles.test.common)
 
-    testImplementation(libs.bundles.test.common)
-    androidTestImplementation(libs.bundles.test.android)
+    implementation(project(":core:ui"))
+    implementation(project(":core:navigation"))
 }
