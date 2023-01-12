@@ -16,6 +16,8 @@ Under development ...
 
 ## Modularization
 
+![modularization](doc/modularization.png)
+
 
 ### Created by:
 
