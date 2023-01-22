@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobiledevpro.home"
+    namespace = "com.mobiledevpro.chatlist"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
