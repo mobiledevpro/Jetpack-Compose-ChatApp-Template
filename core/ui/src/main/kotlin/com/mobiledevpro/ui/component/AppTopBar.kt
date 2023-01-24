@@ -33,7 +33,7 @@ import com.mobiledevpro.ui.theme.topAppBarColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBar(title: String, icon: ImageVector, iconClickAction: () -> Unit = {}) {
+fun AppTopBar(title: String, icon: ImageVector, iconClickAction: () -> Unit = {}) {
     TopAppBar(
         navigationIcon = {
             Icon(

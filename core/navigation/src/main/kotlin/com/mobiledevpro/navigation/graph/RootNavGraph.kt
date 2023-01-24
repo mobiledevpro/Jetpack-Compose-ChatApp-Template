@@ -15,15 +15,17 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.navigation
+package com.mobiledevpro.navigation.graph
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
-import com.mobiledevpro.home.HomeScreen
+import com.mobiledevpro.navigation.Screen
+import com.mobiledevpro.navigation.ext.navigateTo
+import com.mobiledevpro.navigation.homeNavGraph
+import com.mobiledevpro.navigation.onBoardingScreen
+import com.mobiledevpro.navigation.subscriptionScreen
 
 /**
  * Top-level navigation host in the app
@@ -33,33 +35,40 @@ import com.mobiledevpro.home.HomeScreen
  */
 
 @Composable
-fun AppNavHost(
+fun RootNavGraph(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    startDestination: String
+    startDestination: Screen
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        route = "root_host",
+        startDestination = startDestination.route,
         modifier = modifier,
     ) {
-
-        val navigateTo: (screen: Screen) -> Unit =
-            { screen ->
-                navController.navigateTo(
-                    screen,
-                    clearBackStack = screen.clearBackStack
-                )
-            }
 
         val navigateBack: () -> Unit = {
             navController.navigateUp()
         }
 
-        onBoardingScreen(onNavigateTo = navigateTo)
-
-        homeScreen(onNavigateTo = navigateTo)
-
+        onBoardingScreen(onNavigateTo = navController::navigateTo)
         subscriptionScreen(onNavigateBack = navigateBack)
+
+        //Nested navigation graph
+        homeNavGraph(onNavigateToRoot = navController::navigateTo)
+
+        //Nested Navigation Graph example
+        /*navigation(
+            route = Screen.Home.route,
+            startDestination = Screen.ChatList.route
+        ) {
+
+            chatListScreen()
+            peopleListScreen()
+            profileScreen()
+        }
+
+         */
+
     }
 }

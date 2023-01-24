@@ -17,51 +17,56 @@
  */
 package com.mobiledevpro.navigation
 
-import android.util.Log
-import androidx.navigation.NavController
+import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.mobiledevpro.home.HomeScreen
+import androidx.navigation.compose.rememberNavController
+import com.mobiledevpro.chatlist.view.ChatListScreen
+import com.mobiledevpro.home.view.HomeScreen
+import com.mobiledevpro.navigation.ext.navigateTo
+import com.mobiledevpro.navigation.graph.HomeNavGraph
 import com.mobiledevpro.onboarding.OnBoardingScreen
+import com.mobiledevpro.peoplelist.view.PeopleListScreen
+import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.subscription.SubscriptionScreen
 
 
-fun NavController.navigateTo(
-    screen: Screen,
-    // navOptions: NavOptions? = null,
-    clearBackStack: Boolean? = false
-) {
-
-    val currentRoute: String? = this.currentBackStackEntry?.destination?.route
-
-    navigate(screen.route) {
-
-        //Clearing back stack if needed
-        if (clearBackStack == true && !currentRoute.isNullOrEmpty())
-            popUpTo(currentRoute) {
-                inclusive = true
-            }
-
-        //Animating transition between screens
-        /*
-                anim {
-                   // enter = android.R.anim.slide_in_left
-                    enter = android.R.anim.slide_in_left
-                }
-
-         */
-    }
-}
-
-fun NavGraphBuilder.homeScreen(onNavigateTo: (Screen) -> Unit) {
+fun NavGraphBuilder.homeNavGraph(onNavigateToRoot : (Screen) -> Unit) {
     composable(
         route = Screen.Home.route
     ) {
+
+        //NavController for nested graph
+        //It doesn't work for root graph
+        val navController = rememberNavController()
+
+        val bottomBar: @Composable () -> Unit = {
+            HomeBottomNavigation(
+                screens = listOf(
+                    Screen.ChatList,
+                    Screen.PeopleList,
+                    Screen.Profile
+                ), onNavigateTo = navController::navigateTo,
+                currentDestination = null
+            )
+        }
+
+        val nestedNavGraph: @Composable () -> Unit = {
+            HomeNavGraph(
+                navController = navController,
+                modifier = Modifier.safeContentPadding(),
+                onNavigateToRoot = onNavigateToRoot
+            )
+        }
+
         HomeScreen(
-            onOpenSubscriptionScreen = { onNavigateTo(Screen.Subscription) }
+            bottomBar = bottomBar,
+            nestedNavGraph = nestedNavGraph
         )
     }
+
 }
 
 fun NavGraphBuilder.onBoardingScreen(onNavigateTo: (Screen) -> Unit) {
@@ -69,7 +74,7 @@ fun NavGraphBuilder.onBoardingScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.OnBoarding.route
     ) {
         OnBoardingScreen(
-            onNext = { onNavigateTo(Screen.Home.apply { clearBackStack = true }) }
+            onNext = { onNavigateTo(Screen.Home.withClearBackStack()) }
         )
     }
 }
@@ -81,3 +86,32 @@ fun NavGraphBuilder.subscriptionScreen(onNavigateBack: () -> Unit) {
         SubscriptionScreen(onNavigateBack)
     }
 }
+
+fun NavGraphBuilder.chatListScreen() {
+    composable(
+        route = Screen.ChatList.route
+    ) {
+        ChatListScreen()
+    }
+}
+
+fun NavGraphBuilder.peopleListScreen() {
+    composable(
+        route = Screen.PeopleList.route
+    ) {
+        PeopleListScreen()
+    }
+}
+
+fun NavGraphBuilder.profileScreen(onNavigateTo : (Screen) -> Unit) {
+    composable(
+        route = Screen.Profile.route
+    ) {
+        ProfileScreen(
+            onNavigateToSubscription = {
+                onNavigateTo(Screen.Subscription)
+            }
+        )
+    }
+}
+

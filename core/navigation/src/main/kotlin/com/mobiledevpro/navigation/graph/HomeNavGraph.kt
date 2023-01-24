@@ -15,24 +15,37 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.apptemplate.ui
+package com.mobiledevpro.navigation.graph
 
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
 import com.mobiledevpro.navigation.Screen
-import com.mobiledevpro.navigation.graph.RootNavGraph
+import com.mobiledevpro.navigation.chatListScreen
+import com.mobiledevpro.navigation.peopleListScreen
+import com.mobiledevpro.navigation.profileScreen
 
-
+/**
+ * Nested navigation graph for Home screen
+ *
+ * Created on Jan 24, 2023.
+ *
+ */
 @Composable
-fun MainApp() {
-    val navController = rememberNavController()
-
-    RootNavGraph(
+fun HomeNavGraph(
+    modifier: Modifier = Modifier,
+    navController: NavHostController,
+    onNavigateToRoot: (Screen) -> Unit
+) {
+    NavHost(
         navController = navController,
-        modifier = Modifier.safeContentPadding(),
-        startDestination = Screen.OnBoarding
-    )
+        startDestination = Screen.ChatList.route,
+        modifier = modifier,
+    ) {
 
+        chatListScreen()
+        peopleListScreen()
+        profileScreen(onNavigateTo = onNavigateToRoot)
+    }
 }

@@ -15,73 +15,57 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.home
+package com.mobiledevpro.peoplelist.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.ui.component.ScreenBackground
+import com.mobiledevpro.ui.theme.AppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun HomeScreen(onOpenSubscriptionScreen: () -> Unit) {
+fun PeopleListScreen() {
+    val viewModel : PeopleListViewModel = viewModel()
 
-    Scaffold { paddingValues ->
-        ScreenBackground(
+    ScreenBackground(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
+                .padding(16.dp)
+                .background(color = Color(0xFFef6c00))
         ) {
-            Box(
+            Text(
+                text = "People list",
+                textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .fillMaxSize()
                     .padding(16.dp)
-            ) {
-                Text(
-                    text = "Home Screen",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.Center),
-                    style = MaterialTheme.typography.bodyLarge
+                    .align(Alignment.Center),
+                style = MaterialTheme.typography.bodyLarge
 
-                )
-
-                Button(
-                    onClick = onOpenSubscriptionScreen,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
-                ) {
-                    Text(
-                        text = "Paid subscription"
-                    )
-                }
-
-            }
+            )
         }
     }
-
-
 }
 
 @Preview
 @Composable
-fun HomeScreenPreview() {
-    HomeScreen {
-
+fun PeopleListPreview() {
+    AppTheme {
+        PeopleListScreen()
     }
 }
