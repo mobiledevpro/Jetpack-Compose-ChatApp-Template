@@ -15,24 +15,10 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.apptemplate.ui
+package com.mobiledevpro.peoplelist.view
 
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
-import com.mobiledevpro.navigation.Screen
-import com.mobiledevpro.navigation.graph.RootNavGraph
+import androidx.lifecycle.ViewModel
 
 
-@Composable
-fun MainApp() {
-    val navController = rememberNavController()
-
-    RootNavGraph(
-        navController = navController,
-        modifier = Modifier.safeContentPadding(),
-        startDestination = Screen.OnBoarding
-    )
-
+class PeopleListViewModel : ViewModel() {
 }

@@ -15,51 +15,36 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.navigation
+package com.mobiledevpro.navigation.graph
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.NavHost
-import com.mobiledevpro.home.HomeScreen
+import com.mobiledevpro.navigation.Screen
+import com.mobiledevpro.navigation.chatListScreen
+import com.mobiledevpro.navigation.peopleListScreen
+import com.mobiledevpro.navigation.profileScreen
 
 /**
- * Top-level navigation host in the app
+ * Nested navigation graph for Home screen
  *
- * Created on Jan 07, 2023.
+ * Created on Jan 24, 2023.
  *
  */
-
 @Composable
-fun AppNavHost(
-    navController: NavHostController,
+fun HomeNavGraph(
     modifier: Modifier = Modifier,
-    startDestination: String
+    navController: NavHostController
 ) {
     NavHost(
         navController = navController,
-        startDestination = startDestination,
+        startDestination = Screen.ChatList.route,
         modifier = modifier,
     ) {
 
-        val navigateTo: (screen: Screen) -> Unit =
-            { screen ->
-                navController.navigateTo(
-                    screen,
-                    clearBackStack = screen.clearBackStack
-                )
-            }
-
-        val navigateBack: () -> Unit = {
-            navController.navigateUp()
-        }
-
-        onBoardingScreen(onNavigateTo = navigateTo)
-
-        homeScreen(onNavigateTo = navigateTo)
-
-        subscriptionScreen(onNavigateBack = navigateBack)
+        chatListScreen()
+        peopleListScreen()
+        profileScreen()
     }
 }

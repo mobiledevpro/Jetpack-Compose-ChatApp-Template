@@ -58,8 +58,6 @@ android {
 dependencies {
 
     implementation(libs.core.ktx)
-    implementation(libs.bundles.lyfecycle)
-    implementation(libs.coil)
 
     testApi(libs.bundles.test.common)
 

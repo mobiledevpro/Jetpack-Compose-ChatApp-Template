@@ -39,6 +39,7 @@ dependencies {
 
     api(libs.navigation)
 
+    implementation(project(":core:ui"))
     implementation(project(":feature:home"))
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:subscription"))
