@@ -20,12 +20,12 @@ package com.mobiledevpro.navigation
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
+import com.mobiledevpro.navigation.ext.navigateTo
 import com.mobiledevpro.navigation.graph.HomeNavGraph
 import com.mobiledevpro.onboarding.OnBoardingScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
@@ -33,27 +33,13 @@ import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.subscription.SubscriptionScreen
 
 
-fun NavController.navigateTo(
-    screen: Screen
-) {
-
-    val currentRoute: String? = this.currentBackStackEntry?.destination?.route
-
-    navigate(screen.route) {
-
-        //Clearing back stack if needed
-        if (screen.clearBackStack && !currentRoute.isNullOrEmpty())
-            popUpTo(currentRoute) {
-                inclusive = true
-            }
-    }
-}
-
-fun NavGraphBuilder.homeNavGraph() {
+fun NavGraphBuilder.homeNavGraph(onNavigateToRoot : (Screen) -> Unit) {
     composable(
         route = Screen.Home.route
     ) {
 
+        //NavController for nested graph
+        //It doesn't work for root graph
         val navController = rememberNavController()
 
         val bottomBar: @Composable () -> Unit = {
@@ -70,7 +56,8 @@ fun NavGraphBuilder.homeNavGraph() {
         val nestedNavGraph: @Composable () -> Unit = {
             HomeNavGraph(
                 navController = navController,
-                modifier = Modifier.safeContentPadding()
+                modifier = Modifier.safeContentPadding(),
+                onNavigateToRoot = onNavigateToRoot
             )
         }
 
@@ -116,11 +103,15 @@ fun NavGraphBuilder.peopleListScreen() {
     }
 }
 
-fun NavGraphBuilder.profileScreen() {
+fun NavGraphBuilder.profileScreen(onNavigateTo : (Screen) -> Unit) {
     composable(
         route = Screen.Profile.route
     ) {
-        ProfileScreen()
+        ProfileScreen(
+            onNavigateToSubscription = {
+                onNavigateTo(Screen.Subscription)
+            }
+        )
     }
 }
 

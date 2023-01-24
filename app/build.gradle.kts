@@ -57,7 +57,7 @@ android {
 
 dependencies {
 
-    implementation(libs.core.ktx)
+    implementation(libs.androidx.core.ktx)
 
     testApi(libs.bundles.test.common)
 

@@ -17,6 +17,9 @@
  */
 package com.mobiledevpro.navigation
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Icon
@@ -34,23 +37,32 @@ fun HomeBottomNavigation(
     onNavigateTo: (Screen) -> Unit,
     currentDestination: NavDestination?
 ) {
-    AppBottomBar {
 
-        screens.forEach { screen ->
-            val selected: Boolean =
-                currentDestination?.hierarchy?.any { it.route == screen.route } ?: false
+    AnimatedVisibility(
+        visible = true,
+        enter = slideInHorizontally(initialOffsetX = { it }),
+        exit = slideOutHorizontally(targetOffsetX = { it }),
+    ) {
 
-            AppBottomBarItem(
-                selected = selected,
-                onClick = { onNavigateTo(screen) },
-                icon = {
-                    Icon(
-                        imageVector = screen.icon ?: Icons.Default.Warning,
-                        contentDescription = null
-                    )
-                },
-                label = { Text(text = screen.title ?: "") }
-            )
+
+        AppBottomBar {
+
+            screens.forEach { screen ->
+                val selected: Boolean =
+                    currentDestination?.hierarchy?.any { it.route == screen.route } ?: false
+
+                AppBottomBarItem(
+                    selected = selected,
+                    onClick = { onNavigateTo(screen) },
+                    icon = {
+                        Icon(
+                            imageVector = screen.icon ?: Icons.Default.Warning,
+                            contentDescription = null
+                        )
+                    },
+                    label = { Text(text = screen.title ?: "") }
+                )
+            }
         }
     }
 }

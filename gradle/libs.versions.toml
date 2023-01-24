@@ -13,7 +13,7 @@ kotlin-coroutines = "1.6.4"
 kotlin-serialization = "1.4.1"
 
 # Libs
-core-ktx = "1.9.0"
+android-core-ktx = "1.9.0"
 activity = "1.6.1"
 navigation = "2.5.3"
 retrofit = "2.9.0"
@@ -41,7 +41,7 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref =
 [libraries]
 
 
-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "android-core-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 lyfecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lyfecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
@@ -57,6 +57,7 @@ compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
 
 # test libraries
 test-junit = { module = "junit:junit", version.ref = "test-junit" }
@@ -74,7 +75,8 @@ compose = [
     "compose-ui-graphics",
     "compose-ui-preview",
     "compose-material3",
-    "activity-compose"
+    "activity-compose",
+    "compose-ui-util"
 ]
 
 compose-debug = [

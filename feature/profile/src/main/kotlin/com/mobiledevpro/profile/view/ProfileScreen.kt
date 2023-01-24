@@ -17,14 +17,18 @@
  */
 package com.mobiledevpro.profile.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,8 +37,10 @@ import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
 @Composable
-fun ProfileScreen() {
-    val viewModel : ProfileViewModel = viewModel()
+fun ProfileScreen(
+    onNavigateToSubscription: () -> Unit
+) {
+    val viewModel: ProfileViewModel = viewModel()
 
     ScreenBackground(
         modifier = Modifier
@@ -44,6 +50,7 @@ fun ProfileScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
+                .background(color = Color(0xFFad1457))
         ) {
             Text(
                 text = "Profile",
@@ -54,6 +61,17 @@ fun ProfileScreen() {
                 style = MaterialTheme.typography.bodyLarge
 
             )
+
+            Button(
+                onClick = onNavigateToSubscription,
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
+            ) {
+                Text(
+                    text = "Paid subscription"
+                )
+            }
         }
     }
 }
@@ -62,6 +80,6 @@ fun ProfileScreen() {
 @Composable
 fun ProfileScreenPreview() {
     AppTheme {
-        ProfileScreen()
+        ProfileScreen({})
     }
 }

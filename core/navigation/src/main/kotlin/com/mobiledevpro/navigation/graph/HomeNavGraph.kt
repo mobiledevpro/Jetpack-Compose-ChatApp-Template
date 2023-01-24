@@ -35,7 +35,8 @@ import com.mobiledevpro.navigation.profileScreen
 @Composable
 fun HomeNavGraph(
     modifier: Modifier = Modifier,
-    navController: NavHostController
+    navController: NavHostController,
+    onNavigateToRoot: (Screen) -> Unit
 ) {
     NavHost(
         navController = navController,
@@ -45,6 +46,6 @@ fun HomeNavGraph(
 
         chatListScreen()
         peopleListScreen()
-        profileScreen()
+        profileScreen(onNavigateTo = onNavigateToRoot)
     }
 }

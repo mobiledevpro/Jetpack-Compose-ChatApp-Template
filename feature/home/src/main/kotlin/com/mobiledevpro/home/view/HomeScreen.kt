@@ -23,7 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.util.trace
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.ui.component.ScreenBackground
 
@@ -32,7 +32,7 @@ import com.mobiledevpro.ui.component.ScreenBackground
 fun HomeScreen(
     nestedNavGraph: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit
-) {
+) = trace("HomeScreen")  {
 
     val viewModel: HomeViewModel = viewModel()
 
@@ -45,62 +45,4 @@ fun HomeScreen(
             nestedNavGraph.invoke()
         }
     }
-
-    /*
-
-    Scaffold(
-        bottomBar = bottomBar
-    ) { paddingValues ->
-        ScreenBackground(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = "Home Screen",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.Center),
-                    style = MaterialTheme.typography.bodyLarge
-
-                )
-
-                Button(
-                    onClick = onOpenSubscriptionScreen,
-                    modifier = Modifier
-                        .align(Alignment.BottomCenter)
-                        .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
-                ) {
-                    Text(
-                        text = "Be like a Pro"
-                    )
-                }
-
-            }
-        }
-
-
-    }
-*/
-
-}
-
-@Preview
-@Composable
-fun HomeScreenPreview() {
-    /* AppTheme {
-         HomeScreen(
-             bottomBar = {}
-         ) {
-
-         }
-     }
-
-     */
 }
