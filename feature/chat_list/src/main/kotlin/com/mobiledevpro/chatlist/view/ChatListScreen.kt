@@ -47,7 +47,7 @@ fun ChatListScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .background(color = Color(0xFF00838f))
+                .background(color = Color(0x8000838F))
         ) {
             Text(
                 text = "Chat list",

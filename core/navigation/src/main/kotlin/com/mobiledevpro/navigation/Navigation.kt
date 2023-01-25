@@ -27,13 +27,17 @@ import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.navigation.ext.navigateTo
 import com.mobiledevpro.navigation.graph.HomeNavGraph
-import com.mobiledevpro.onboarding.OnBoardingScreen
+import com.mobiledevpro.navigation.graph.OnBoardingNavGraph
+import com.mobiledevpro.onboarding.view.OnBoardingFirstScreen
+import com.mobiledevpro.onboarding.view.OnBoardingScreen
+import com.mobiledevpro.onboarding.view.OnBoardingSecondScreen
+import com.mobiledevpro.onboarding.view.OnBoardingThirdScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.subscription.SubscriptionScreen
 
 
-fun NavGraphBuilder.homeNavGraph(onNavigateToRoot : (Screen) -> Unit) {
+fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     composable(
         route = Screen.Home.route
     ) {
@@ -69,13 +73,57 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot : (Screen) -> Unit) {
 
 }
 
-fun NavGraphBuilder.onBoardingScreen(onNavigateTo: (Screen) -> Unit) {
+fun NavGraphBuilder.onBoardingNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     composable(
         route = Screen.OnBoarding.route
     ) {
+
+        val navController = rememberNavController()
+
+        val nestedNavGraph: @Composable () -> Unit = {
+            OnBoardingNavGraph(
+                navController = navController,
+                modifier = Modifier.safeContentPadding()
+            )
+        }
+
         OnBoardingScreen(
-            onNext = { onNavigateTo(Screen.Home.withClearBackStack()) }
+            nestedNavGraph,
+            onNext = {
+                when (navController.currentDestination?.route) {
+                    Screen.OnBoardingFirst.route -> navController.navigateTo(Screen.OnBoardingSecond)
+                    Screen.OnBoardingSecond.route -> navController.navigateTo(Screen.OnBoardingThird)
+                    Screen.OnBoardingThird.route -> Screen.Home.withClearBackStack()
+                        .also(onNavigateToRoot)
+
+                    else -> {}
+                }
+            }
         )
+    }
+}
+
+fun NavGraphBuilder.onBoardingFirstScreen() {
+    composable(
+        route = Screen.OnBoardingFirst.route
+    ) {
+        OnBoardingFirstScreen()
+    }
+}
+
+fun NavGraphBuilder.onBoardingSecondScreen() {
+    composable(
+        route = Screen.OnBoardingSecond.route
+    ) {
+        OnBoardingSecondScreen()
+    }
+}
+
+fun NavGraphBuilder.onBoardingThirdScreen() {
+    composable(
+        route = Screen.OnBoardingThird.route
+    ) {
+        OnBoardingThirdScreen()
     }
 }
 
@@ -103,7 +151,7 @@ fun NavGraphBuilder.peopleListScreen() {
     }
 }
 
-fun NavGraphBuilder.profileScreen(onNavigateTo : (Screen) -> Unit) {
+fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.Profile.route
     ) {

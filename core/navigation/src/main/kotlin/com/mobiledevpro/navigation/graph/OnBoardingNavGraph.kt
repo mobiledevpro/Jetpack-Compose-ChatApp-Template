@@ -22,40 +22,29 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.mobiledevpro.navigation.Screen
-import com.mobiledevpro.navigation.ext.navigateTo
-import com.mobiledevpro.navigation.homeNavGraph
-import com.mobiledevpro.navigation.onBoardingNavGraph
-import com.mobiledevpro.navigation.subscriptionScreen
+import com.mobiledevpro.navigation.onBoardingFirstScreen
+import com.mobiledevpro.navigation.onBoardingSecondScreen
+import com.mobiledevpro.navigation.onBoardingThirdScreen
 
 /**
- * Top-level navigation host in the app
+ * Nested navigation graph for OnBoarding screen
  *
- * Created on Jan 07, 2023.
+ * Created on Jan 24, 2023.
  *
  */
-
 @Composable
-fun RootNavGraph(
-    navController: NavHostController,
+fun OnBoardingNavGraph(
     modifier: Modifier = Modifier,
-    startDestination: Screen
+    navController: NavHostController
 ) {
     NavHost(
         navController = navController,
-        route = "root_host",
-        startDestination = startDestination.route,
+        startDestination = Screen.OnBoardingFirst.route,
         modifier = modifier,
     ) {
 
-        val navigateBack: () -> Unit = {
-            navController.navigateUp()
-        }
-
-        //Nested Navigation Graphs
-        onBoardingNavGraph(onNavigateToRoot = navController::navigateTo)
-        homeNavGraph(onNavigateToRoot = navController::navigateTo)
-
-        //Root screens
-        subscriptionScreen(onNavigateBack = navigateBack)
+        onBoardingFirstScreen()
+        onBoardingSecondScreen()
+        onBoardingThirdScreen()
     }
 }

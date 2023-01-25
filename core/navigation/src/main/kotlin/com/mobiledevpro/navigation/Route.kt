@@ -24,6 +24,9 @@ import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
 
 const val navigationRouteOnBoarding = "on_boarding"
+const val navigationRouteOnBoardingFirst = "on_boarding_first"
+const val navigationRouteOnBoardingSecond = "on_boarding_second"
+const val navigationRouteOnBoardingThird = "on_boarding_third"
 const val navigationRouteHome = "home"
 const val navigationRouteChatList = "chat_list"
 const val navigationRoutePeopleList = "people_list"
@@ -40,7 +43,12 @@ sealed class Screen(
     fun withClearBackStack() = apply { clearBackStack = true }
 
     object OnBoarding : Screen(navigationRouteOnBoarding)
+    object OnBoardingFirst : Screen(navigationRouteOnBoardingFirst)
+    object OnBoardingSecond : Screen(navigationRouteOnBoardingSecond)
+    object OnBoardingThird : Screen(navigationRouteOnBoardingThird)
+
     object Home : Screen(navigationRouteHome)
+
     object ChatList :
         Screen(route = navigationRouteChatList, title = "Chats", icon = Icons.Rounded.Home)
 

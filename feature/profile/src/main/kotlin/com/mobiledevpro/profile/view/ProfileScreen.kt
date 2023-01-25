@@ -50,7 +50,7 @@ fun ProfileScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .background(color = Color(0xFFad1457))
+                .background(color = Color(0x80AD1457))
         ) {
             Text(
                 text = "Profile",

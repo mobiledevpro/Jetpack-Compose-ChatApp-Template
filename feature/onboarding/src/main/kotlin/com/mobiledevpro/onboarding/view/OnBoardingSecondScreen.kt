@@ -15,12 +15,14 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.peoplelist.view
+package com.mobiledevpro.onboarding.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,42 +32,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PeopleListScreen() {
-    val viewModel : PeopleListViewModel = viewModel()
-
-    ScreenBackground(
+fun OnBoardingSecondScreen() {
+    Box(
         modifier = Modifier
             .fillMaxSize()
+            .padding(16.dp)
+            .background(color = Color(0x80FFFF99))
     ) {
-        Box(
+        Text(
+            text = "2nd OnBoarding",
+            textAlign = TextAlign.Center,
             modifier = Modifier
-                .fillMaxSize()
                 .padding(16.dp)
-                .background(color = Color(0x80EF6C00))
-        ) {
-            Text(
-                text = "People list",
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.Center),
-                style = MaterialTheme.typography.bodyLarge
+                .align(Alignment.Center)
+                .fillMaxWidth(),
+            style = MaterialTheme.typography.bodyLarge
 
-            )
-        }
+        )
     }
 }
 
 @Preview
 @Composable
-fun PeopleListPreview() {
+fun OnBoardingSecondPreview() {
     AppTheme {
-        PeopleListScreen()
+        OnBoardingSecondScreen()
     }
 }
