@@ -7,7 +7,7 @@
 [![Target SDK](https://img.shields.io/badge/Target%20API%20Level-33%20[Android%2013]-blue.svg?style=for-the-badge)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
-🔴 Under development
+🔴 **Under development.** Watch the progress on my [Instagram Stories](https://instagr.am/mobiledevpro/)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Android-Jetpack-Compose-MVI-Template?color=red&style=for-the-badge)
 
