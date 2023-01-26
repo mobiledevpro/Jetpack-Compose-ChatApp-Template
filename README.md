@@ -60,7 +60,7 @@ limitations under the License.
 ## Thanks for support !
 **Stargazers**
 
-[![Stargazers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/stars/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Kotlin-MVVM-Template/stargazers)
+[![Stargazers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/stars/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Jetpack-Compose-MVI-Template/stargazers)
 
 **Forkers**
 
