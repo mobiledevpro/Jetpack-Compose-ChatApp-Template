@@ -1,6 +1,16 @@
 # Android App Template entirely built on Jetpack Compose
 
-Under development ... 
+
+[![Kotlin Version](https://img.shields.io/badge/kotlin-1.7.21-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
+[![Gradle](https://img.shields.io/badge/gradle-8.0-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
+[![API](https://img.shields.io/badge/support%20min%20API-24%20[Android%207.0]-blue.svg?style=for-the-badge)](https://github.com/AndroidSDKSources/android-sdk-sources-list)
+[![Target SDK](https://img.shields.io/badge/Target%20API%20Level-33%20[Android%2013]-blue.svg?style=for-the-badge)](https://developer.android.com/about/versions/13)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
+
+🔴 **Under development.** Watch the progress on my [Instagram Stories](https://instagr.am/mobiledevpro/)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Android-Jetpack-Compose-MVI-Template?color=red&style=for-the-badge)
+
 
 ### Tech. stack
 
@@ -60,7 +70,7 @@ limitations under the License.
 ## Thanks for support !
 **Stargazers**
 
-[![Stargazers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/stars/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Kotlin-MVVM-Template/stargazers)
+[![Stargazers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/stars/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Jetpack-Compose-MVI-Template/stargazers)
 
 **Forkers**
 
