@@ -71,3 +71,11 @@ val seed = Color(0xFF06283D)
 @get:Composable
 val ColorScheme.topAppBarColor: Color
     get() = seed
+
+@get:Composable
+val ColorScheme.lightGreen: Color
+    get() = Color(0x9932CD32)
+
+@get:Composable
+val ColorScheme.red: Color
+    get() = Color(0x99F44336)
