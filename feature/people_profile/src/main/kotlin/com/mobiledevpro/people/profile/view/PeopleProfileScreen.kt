@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,6 +47,8 @@ import com.mobiledevpro.ui.theme.AppTheme
 fun PeopleProfileScreen(){
     val viewModel: PeopleProfileViewModel = viewModel()
 
+    val profile = remember { viewModel.getProfile() }
+
     Log.d("navigation", "PeopleProfileScreen")
 
     ScreenBackground(
@@ -59,7 +62,7 @@ fun PeopleProfileScreen(){
                 .background(color = Color(0x803F51B5))
         ) {
             Text(
-                text = "Person profile [${viewModel.getProfileId()}]",
+                text = profile?.name ?: "",
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(16.dp)
