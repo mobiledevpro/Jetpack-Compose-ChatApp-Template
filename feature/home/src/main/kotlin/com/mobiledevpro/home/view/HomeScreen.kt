@@ -17,13 +17,13 @@
  */
 package com.mobiledevpro.home.view
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.util.trace
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.ui.component.ScreenBackground
 
@@ -32,7 +32,9 @@ import com.mobiledevpro.ui.component.ScreenBackground
 fun HomeScreen(
     nestedNavGraph: @Composable () -> Unit,
     bottomBar: @Composable () -> Unit
-) = trace("HomeScreen")  {
+) {
+
+    Log.d("navigation", "HomeScreen: ")
 
     val viewModel: HomeViewModel = viewModel()
 

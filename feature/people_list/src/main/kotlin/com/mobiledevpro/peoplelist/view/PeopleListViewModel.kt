@@ -18,7 +18,42 @@
 package com.mobiledevpro.peoplelist.view
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 
 class PeopleListViewModel : ViewModel() {
+
+    private val _uiState: MutableStateFlow<PeopleProfileUIState> =
+        MutableStateFlow(PeopleProfileUIState.Empty)
+    val uiState: StateFlow<PeopleProfileUIState> = _uiState.asStateFlow()
+
+    init {
+        observePeopleList()
+    }
+
+    private fun observePeopleList() {
+        viewModelScope.launch {
+
+            _uiState.update { PeopleProfileUIState.Loading }
+
+            delay(1000)
+
+            /*
+           _uiState.update { PeopleProfileUIState.Empty }
+            _uiState.update { PeopleProfileUIState.Fail(Throwable("Test error")) }
+
+             */
+            _uiState.update {
+                PeopleProfileUIState.Success(fakPeopleProfileList)
+            }
+        }
+    }
+
 }

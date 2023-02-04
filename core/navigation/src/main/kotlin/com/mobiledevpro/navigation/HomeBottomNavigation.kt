@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.navigation
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -38,6 +39,8 @@ fun HomeBottomNavigation(
     currentDestination: NavDestination?
 ) {
 
+    Log.d("navigation", "HomeBottomNavigation")
+
     AnimatedVisibility(
         visible = true,
         enter = slideInHorizontally(initialOffsetX = { it }),
@@ -48,6 +51,8 @@ fun HomeBottomNavigation(
         AppBottomBar {
 
             screens.forEach { screen ->
+                Log.d("navigation", "HomeBottomNavigation: hierarchy = $currentDestination")
+
                 val selected: Boolean =
                     currentDestination?.hierarchy?.any { it.route == screen.route } ?: false
 

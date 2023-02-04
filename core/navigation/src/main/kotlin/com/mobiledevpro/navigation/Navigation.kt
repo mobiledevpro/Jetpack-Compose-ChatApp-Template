@@ -19,19 +19,27 @@ package com.mobiledevpro.navigation
 
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.navigation.ext.navigateTo
 import com.mobiledevpro.navigation.graph.HomeNavGraph
 import com.mobiledevpro.navigation.graph.OnBoardingNavGraph
+import com.mobiledevpro.navigation.graph.PeopleNavGraph
 import com.mobiledevpro.onboarding.view.OnBoardingFirstScreen
 import com.mobiledevpro.onboarding.view.OnBoardingScreen
 import com.mobiledevpro.onboarding.view.OnBoardingSecondScreen
 import com.mobiledevpro.onboarding.view.OnBoardingThirdScreen
+import com.mobiledevpro.people.profile.view.PeopleProfileScreen
+import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
+import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.subscription.SubscriptionScreen
@@ -43,17 +51,18 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     ) {
 
         //NavController for nested graph
-        //It doesn't work for root graph
+        //It will not work for root graph
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
 
         val bottomBar: @Composable () -> Unit = {
             HomeBottomNavigation(
                 screens = listOf(
                     Screen.ChatList,
-                    Screen.PeopleList,
+                    Screen.People,
                     Screen.Profile
                 ), onNavigateTo = navController::navigateTo,
-                currentDestination = null
+                currentDestination = navBackStackEntry?.destination
             )
         }
 
@@ -103,6 +112,23 @@ fun NavGraphBuilder.onBoardingNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     }
 }
 
+fun NavGraphBuilder.peopleNavGraph() {
+    composable(
+        route = Screen.People.route
+    ) {
+        val navController = rememberNavController()
+
+        val nestedNavGraph: @Composable () -> Unit = {
+            PeopleNavGraph(
+                navController = navController,
+                modifier = Modifier.safeContentPadding()
+            )
+        }
+
+        PeopleScreen(nestedNavGraph)
+    }
+}
+
 fun NavGraphBuilder.onBoardingFirstScreen() {
     composable(
         route = Screen.OnBoardingFirst.route
@@ -143,13 +169,31 @@ fun NavGraphBuilder.chatListScreen() {
     }
 }
 
-fun NavGraphBuilder.peopleListScreen() {
+fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.PeopleList.route
     ) {
-        PeopleListScreen()
+
+        PeopleListScreen(
+            onNavigateToProfile = { profileId: Int ->
+                Screen.PeopleProfile.routeWith(profileId.toString())
+                    .also(onNavigateTo)
+            }
+        )
     }
 }
+
+fun NavGraphBuilder.peopleProfileScreen() {
+    composable(
+        route = Screen.PeopleProfile.route,
+        arguments = listOf(
+            navArgument(PeopleProfileArgs.PEOPLE_PROFILE_ID_ARG) { type = NavType.IntType }
+        )
+    ) {
+        PeopleProfileScreen()
+    }
+}
+
 
 fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
     composable(

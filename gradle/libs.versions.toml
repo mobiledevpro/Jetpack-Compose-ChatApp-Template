@@ -18,7 +18,7 @@ activity = "1.6.1"
 navigation = "2.5.3"
 retrofit = "2.9.0"
 room = "2.4.3"
-lifecycle = "2.5.1"
+lifecycle = "2.6.0-alpha03"
 compose-bom = "2022.12.00"
 compose-compiler = "1.4.0"
 coil = "2.2.2"
@@ -45,6 +45,7 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 lyfecycle-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 lyfecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+lyfecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
@@ -86,7 +87,8 @@ compose-debug = [
 
 lyfecycle = [
     "lyfecycle-compose",
-    "lyfecycle-runtime"
+    "lyfecycle-runtime",
+    "lyfecycle-runtime-compose"
 ]
 
 test-common = [

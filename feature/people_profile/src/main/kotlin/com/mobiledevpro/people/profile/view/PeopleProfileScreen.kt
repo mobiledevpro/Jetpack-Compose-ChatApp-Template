@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.chatlist.view
+package com.mobiledevpro.people.profile.view
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,12 +36,20 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
+/**
+ * Profile screen for selected person from People list
+ *
+ * Created on Feb 03, 2023.
+ *
+ */
 
 @Composable
-fun ChatListScreen() {
-    val viewModel : ChatListViewModel = viewModel()
+fun PeopleProfileScreen(){
+    val viewModel: PeopleProfileViewModel = viewModel()
 
-    Log.d("navigation", "ChatListScreen: ")
+    val profile = remember { viewModel.getProfile() }
+
+    Log.d("navigation", "PeopleProfileScreen")
 
     ScreenBackground(
         modifier = Modifier
@@ -50,10 +59,10 @@ fun ChatListScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .background(color = Color(0x8000838F))
+                .background(color = Color(0x803F51B5))
         ) {
             Text(
-                text = "Chat list",
+                text = profile?.name ?: "",
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(16.dp)
@@ -65,10 +74,10 @@ fun ChatListScreen() {
     }
 }
 
-@Composable
 @Preview
-fun ChatListScreenPreview() {
-    AppTheme {
-        ChatListScreen()
-    }
+@Composable
+fun PeopleProfilePreview() {
+  AppTheme {
+      PeopleProfileScreen()
+  }
 }

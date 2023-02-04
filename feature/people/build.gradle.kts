@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobiledevpro.navigation"
+    namespace = "com.mobiledevpro.people"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -32,18 +32,8 @@ android {
 }
 
 dependencies {
-    //Compose
-    implementation(platform(libs.compose.bom))
-    implementation(libs.bundles.compose)
-    debugImplementation(libs.bundles.compose.debug)
-
-    api(libs.navigation)
-
     implementation(project(":core:ui"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:onboarding"))
-    implementation(project(":feature:subscription"))
-    implementation(project(":feature:chat_list"))
-    implementation(project(":feature:people"))
-    implementation(project(":feature:profile"))
+
+    api(project(":feature:people_list"))
+    api(project(":feature:people_profile"))
 }

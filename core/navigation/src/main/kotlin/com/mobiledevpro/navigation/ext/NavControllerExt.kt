@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.navigation.ext
 
+import android.util.Log
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import com.mobiledevpro.navigation.Screen
@@ -28,7 +29,15 @@ fun NavController.navigateTo(
 
     val currentRoute: String? = this.currentBackStackEntry?.destination?.route
 
-    navigate(screen.route) {
+    val route = screen.routePath?.let { routePath ->
+        screen.route.replaceAfter("/", routePath)
+    } ?: screen.route
+
+    Log.d("navigation", "navigateTo: ${screen.route}")
+
+    navigate(route) {
+
+        Log.d("navigation", "findStartDestination: ${graph.findStartDestination()}")
 
         // Pop up to the start destination of the graph to
         // avoid building up a large stack of destinations
@@ -40,7 +49,7 @@ fun NavController.navigateTo(
         // reselecting the same item
         launchSingleTop = true
         // Restore state when reselecting a previously selected item
-        restoreState = true
+        restoreState = screen.restoreState
 
         //Clearing back stack up to certain screen if required
         if (screen.clearBackStack && !currentRoute.isNullOrEmpty())
