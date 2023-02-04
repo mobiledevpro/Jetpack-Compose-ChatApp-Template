@@ -18,15 +18,7 @@
 package com.mobiledevpro.people.view
 
 import android.util.Log
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import com.mobiledevpro.ui.component.ScreenBackground
 
 /**
  * Host for People list and People profile
@@ -34,7 +26,6 @@ import com.mobiledevpro.ui.component.ScreenBackground
  * Created on Feb 04, 2023.
  *
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PeopleScreen(
     nestedNavGraph: @Composable () -> Unit
@@ -42,22 +33,5 @@ fun PeopleScreen(
 
     Log.d("navigation", "PeopleScreen: ")
 
-    Scaffold { paddingValues ->
-        ScreenBackground(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp)
-            ) {
-
-                nestedNavGraph.invoke()
-
-            }
-        }
-    }
-
+    nestedNavGraph.invoke()
 }

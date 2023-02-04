@@ -33,6 +33,9 @@ fun NavController.navigateTo(
 
     navigate(screen.route) {
 
+
+        Log.d("navigation", "findStartDestination: ${graph.findStartDestination()}")
+
         // Pop up to the start destination of the graph to
         // avoid building up a large stack of destinations
         // on the back stack as users select items

@@ -19,9 +19,11 @@ package com.mobiledevpro.navigation
 
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
@@ -46,8 +48,9 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     ) {
 
         //NavController for nested graph
-        //It doesn't work for root graph
+        //It will not work for root graph
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
 
         val bottomBar: @Composable () -> Unit = {
             HomeBottomNavigation(
@@ -56,7 +59,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
                     Screen.People,
                     Screen.Profile
                 ), onNavigateTo = navController::navigateTo,
-                currentDestination = null
+                currentDestination = navBackStackEntry?.destination
             )
         }
 
