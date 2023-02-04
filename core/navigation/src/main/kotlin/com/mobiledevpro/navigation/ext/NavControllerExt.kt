@@ -29,10 +29,13 @@ fun NavController.navigateTo(
 
     val currentRoute: String? = this.currentBackStackEntry?.destination?.route
 
-    Log.d("navigation", "navigateTo: $screen")
+    val route = screen.routePath?.let { routePath ->
+        screen.route.replaceAfter("/", routePath)
+    } ?: screen.route
 
-    navigate(screen.route) {
+    Log.d("navigation", "navigateTo: ${screen.route}")
 
+    navigate(route) {
 
         Log.d("navigation", "findStartDestination: ${graph.findStartDestination()}")
 

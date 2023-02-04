@@ -22,9 +22,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.navigation.ext.navigateTo
@@ -36,6 +38,7 @@ import com.mobiledevpro.onboarding.view.OnBoardingScreen
 import com.mobiledevpro.onboarding.view.OnBoardingSecondScreen
 import com.mobiledevpro.onboarding.view.OnBoardingThirdScreen
 import com.mobiledevpro.people.profile.view.PeopleProfileScreen
+import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.profile.view.ProfileScreen
@@ -172,14 +175,20 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     ) {
 
         PeopleListScreen(
-            onNavigateToProfile = { onNavigateTo(Screen.PeopleProfile) }
+            onNavigateToProfile = { profileId: Int ->
+                Screen.PeopleProfile.routeWith(profileId.toString())
+                    .also(onNavigateTo)
+            }
         )
     }
 }
 
 fun NavGraphBuilder.peopleProfileScreen() {
     composable(
-        route = Screen.PeopleProfile.route
+        route = Screen.PeopleProfile.route,
+        arguments = listOf(
+            navArgument(PeopleProfileArgs.PEOPLE_PROFILE_ID_ARG) { type = NavType.IntType }
+        )
     ) {
         PeopleProfileScreen()
     }

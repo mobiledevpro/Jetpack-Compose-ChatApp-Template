@@ -33,4 +33,7 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
+
+    api(project(":feature:people_list"))
+    api(project(":feature:people_profile"))
 }

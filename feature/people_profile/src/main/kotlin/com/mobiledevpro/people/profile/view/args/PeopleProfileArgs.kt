@@ -15,28 +15,20 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.people.profile.view
+package com.mobiledevpro.people.profile.view.args
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 
 /**
- * Profile screen for selected person from People list
  *
  * Created on Feb 04, 2023.
  *
  */
-class PeopleProfileViewModel(
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
+class PeopleProfileArgs(val peopleProfileId: Int) {
+    constructor(savedStateHandle: SavedStateHandle) :
+            this(checkNotNull(savedStateHandle[PEOPLE_PROFILE_ID_ARG]) as Int)
 
-    private val profileId : Int =  PeopleProfileArgs(savedStateHandle).peopleProfileId
-
-    init {
-        Log.d("navigation", "PeopleProfileViewModel: args = $profileId")
+    companion object {
+        const val PEOPLE_PROFILE_ID_ARG = "peopleProfileId"
     }
-
-    fun getProfileId() : Int = profileId
 }

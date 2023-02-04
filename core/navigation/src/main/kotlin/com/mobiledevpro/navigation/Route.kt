@@ -22,6 +22,7 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 
 const val navigationRouteOnBoarding = "on_boarding"
 const val navigationRouteOnBoardingFirst = "on_boarding_first"
@@ -34,20 +35,25 @@ const val navigationRouteProfile = "profile"
 
 const val navigationRoutePeople = "people"
 const val navigationRoutePeopleList = "people_list"
-const val navigationRoutePeopleProfile = "people_profile"
+const val navigationRoutePeopleProfile =
+    "people_profile/{${PeopleProfileArgs.PEOPLE_PROFILE_ID_ARG}}"
 
 const val navigationRouteSubscription = "subscription"
 
 sealed class Screen(
     val route: String,
+    var routePath: String? = null,
     var clearBackStack: Boolean = false,
     val restoreState: Boolean = true,
     val title: String? = null,
-    val icon: ImageVector? = null,
-
+    val icon: ImageVector? = null
 ) {
 
     fun withClearBackStack() = apply { clearBackStack = true }
+
+    fun routeWith(path: String) = apply {
+        routePath = path
+    }
 
     object OnBoarding : Screen(navigationRouteOnBoarding)
     object OnBoardingFirst : Screen(navigationRouteOnBoardingFirst)

@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.people.profile.view
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,8 +43,11 @@ import com.mobiledevpro.ui.theme.AppTheme
  */
 
 @Composable
-fun PeopleProfileScreen() {
+fun PeopleProfileScreen(){
     val viewModel: PeopleProfileViewModel = viewModel()
+
+    Log.d("navigation", "PeopleProfileScreen")
+
     ScreenBackground(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +59,7 @@ fun PeopleProfileScreen() {
                 .background(color = Color(0x803F51B5))
         ) {
             Text(
-                text = "Person profile",
+                text = "Person profile [${viewModel.getProfileId()}]",
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(16.dp)

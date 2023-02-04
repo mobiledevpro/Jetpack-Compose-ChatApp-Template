@@ -38,7 +38,7 @@ import com.mobiledevpro.ui.theme.AppTheme
 
 
 @Composable
-fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
+fun PeopleListScreen(onNavigateToProfile: (profileId: Int) -> Unit) {
     val viewModel: PeopleListViewModel = viewModel()
 
     ScreenBackground(
@@ -62,7 +62,7 @@ fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
             )
 
             Button(
-                onClick = onNavigateToProfile,
+                onClick = { onNavigateToProfile(2) },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
@@ -79,6 +79,8 @@ fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
 @Composable
 fun PeopleListPreview() {
     AppTheme {
-        PeopleListScreen({})
+        PeopleListScreen(
+            onNavigateToProfile = { }
+        )
     }
 }

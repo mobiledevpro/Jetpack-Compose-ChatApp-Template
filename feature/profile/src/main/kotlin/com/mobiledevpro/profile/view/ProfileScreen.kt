@@ -43,7 +43,7 @@ fun ProfileScreen(
 ) {
     val viewModel: ProfileViewModel = viewModel()
 
-    Log.d("navigation", "ProfileScreen: ")
+    Log.d("navigation", "ProfileScreen:")
 
     ScreenBackground(
         modifier = Modifier

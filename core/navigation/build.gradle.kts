@@ -45,7 +45,5 @@ dependencies {
     implementation(project(":feature:subscription"))
     implementation(project(":feature:chat_list"))
     implementation(project(":feature:people"))
-    implementation(project(":feature:people_list"))
-    implementation(project(":feature:people_profile"))
     implementation(project(":feature:profile"))
 }
