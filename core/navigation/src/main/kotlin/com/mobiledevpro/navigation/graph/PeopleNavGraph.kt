@@ -22,31 +22,29 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.mobiledevpro.navigation.Screen
-import com.mobiledevpro.navigation.chatListScreen
-import com.mobiledevpro.navigation.peopleNavGraph
-import com.mobiledevpro.navigation.profileScreen
+import com.mobiledevpro.navigation.ext.navigateTo
+import com.mobiledevpro.navigation.peopleListScreen
+import com.mobiledevpro.navigation.peopleProfileScreen
 
 /**
- * Nested navigation graph for Home screen
+ *  Nested navigation graph for People screen
  *
- * Created on Jan 24, 2023.
+ * Created on Feb 04, 2023.
  *
  */
+
 @Composable
-fun HomeNavGraph(
+fun PeopleNavGraph(
     modifier: Modifier = Modifier,
-    navController: NavHostController,
-    onNavigateToRoot: (Screen) -> Unit
+    navController: NavHostController
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.ChatList.route,
+        startDestination = Screen.PeopleList.route,
         modifier = modifier,
     ) {
 
-        chatListScreen()
-        peopleNavGraph()
-        profileScreen(onNavigateTo = onNavigateToRoot)
-
+        peopleListScreen(onNavigateTo = navController::navigateTo)
+        peopleProfileScreen()
     }
 }

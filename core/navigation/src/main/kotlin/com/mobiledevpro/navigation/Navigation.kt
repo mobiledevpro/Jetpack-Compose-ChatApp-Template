@@ -28,10 +28,13 @@ import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.navigation.ext.navigateTo
 import com.mobiledevpro.navigation.graph.HomeNavGraph
 import com.mobiledevpro.navigation.graph.OnBoardingNavGraph
+import com.mobiledevpro.navigation.graph.PeopleNavGraph
 import com.mobiledevpro.onboarding.view.OnBoardingFirstScreen
 import com.mobiledevpro.onboarding.view.OnBoardingScreen
 import com.mobiledevpro.onboarding.view.OnBoardingSecondScreen
 import com.mobiledevpro.onboarding.view.OnBoardingThirdScreen
+import com.mobiledevpro.people.profile.view.PeopleProfileScreen
+import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.subscription.SubscriptionScreen
@@ -50,7 +53,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
             HomeBottomNavigation(
                 screens = listOf(
                     Screen.ChatList,
-                    Screen.PeopleList,
+                    Screen.People,
                     Screen.Profile
                 ), onNavigateTo = navController::navigateTo,
                 currentDestination = null
@@ -103,6 +106,23 @@ fun NavGraphBuilder.onBoardingNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     }
 }
 
+fun NavGraphBuilder.peopleNavGraph() {
+    composable(
+        route = Screen.People.route
+    ) {
+        val navController = rememberNavController()
+
+        val nestedNavGraph: @Composable () -> Unit = {
+            PeopleNavGraph(
+                navController = navController,
+                modifier = Modifier.safeContentPadding()
+            )
+        }
+
+        PeopleScreen(nestedNavGraph)
+    }
+}
+
 fun NavGraphBuilder.onBoardingFirstScreen() {
     composable(
         route = Screen.OnBoardingFirst.route
@@ -143,13 +163,25 @@ fun NavGraphBuilder.chatListScreen() {
     }
 }
 
-fun NavGraphBuilder.peopleListScreen() {
+fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.PeopleList.route
     ) {
-        PeopleListScreen()
+
+        PeopleListScreen(
+            onNavigateToProfile = { onNavigateTo(Screen.PeopleProfile) }
+        )
     }
 }
+
+fun NavGraphBuilder.peopleProfileScreen() {
+    composable(
+        route = Screen.PeopleProfile.route
+    ) {
+        PeopleProfileScreen()
+    }
+}
+
 
 fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
     composable(

@@ -15,14 +15,12 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.peoplelist.view
+package com.mobiledevpro.people.profile.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,11 +34,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
+/**
+ * Profile screen for selected person from People list
+ *
+ * Created on Feb 03, 2023.
+ *
+ */
 
 @Composable
-fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
-    val viewModel: PeopleListViewModel = viewModel()
-
+fun PeopleProfileScreen() {
+    val viewModel: PeopleProfileViewModel = viewModel()
     ScreenBackground(
         modifier = Modifier
             .fillMaxSize()
@@ -49,10 +52,10 @@ fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-                .background(color = Color(0x80EF6C00))
+                .background(color = Color(0x803F51B5))
         ) {
             Text(
-                text = "People list",
+                text = "Person profile",
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(16.dp)
@@ -60,25 +63,14 @@ fun PeopleListScreen(onNavigateToProfile: () -> Unit) {
                 style = MaterialTheme.typography.bodyLarge
 
             )
-
-            Button(
-                onClick = onNavigateToProfile,
-                modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
-            ) {
-                Text(
-                    text = "Person profile"
-                )
-            }
         }
     }
 }
 
 @Preview
 @Composable
-fun PeopleListPreview() {
-    AppTheme {
-        PeopleListScreen({})
-    }
+fun PeopleProfilePreview() {
+  AppTheme {
+      PeopleProfileScreen()
+  }
 }
