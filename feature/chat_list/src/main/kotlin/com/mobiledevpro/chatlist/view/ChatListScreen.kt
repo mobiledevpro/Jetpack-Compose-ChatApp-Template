@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.chatlist.view
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,6 +39,8 @@ import com.mobiledevpro.ui.theme.AppTheme
 @Composable
 fun ChatListScreen() {
     val viewModel : ChatListViewModel = viewModel()
+
+    Log.d("navigation", "ChatListScreen: ")
 
     ScreenBackground(
         modifier = Modifier

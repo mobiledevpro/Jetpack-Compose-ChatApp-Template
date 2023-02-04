@@ -41,8 +41,10 @@ const val navigationRouteSubscription = "subscription"
 sealed class Screen(
     val route: String,
     var clearBackStack: Boolean = false,
+    val restoreState: Boolean = true,
     val title: String? = null,
-    val icon: ImageVector? = null
+    val icon: ImageVector? = null,
+
 ) {
 
     fun withClearBackStack() = apply { clearBackStack = true }
@@ -58,7 +60,12 @@ sealed class Screen(
     object ChatList :
         Screen(route = navigationRouteChatList, title = "Chats", icon = Icons.Rounded.Home)
 
-    object People : Screen(route = navigationRoutePeople,  title = "People", icon = Icons.Rounded.Person)
+    object People : Screen(
+        route = navigationRoutePeople,
+        restoreState = false,
+        title = "People",
+        icon = Icons.Rounded.Person,
+    )
 
     object Profile :
         Screen(route = navigationRouteProfile, title = "Profile", icon = Icons.Rounded.Settings)

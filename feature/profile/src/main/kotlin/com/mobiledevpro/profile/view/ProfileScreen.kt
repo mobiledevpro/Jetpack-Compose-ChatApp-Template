@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.profile.view
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
@@ -41,6 +42,8 @@ fun ProfileScreen(
     onNavigateToSubscription: () -> Unit
 ) {
     val viewModel: ProfileViewModel = viewModel()
+
+    Log.d("navigation", "ProfileScreen: ")
 
     ScreenBackground(
         modifier = Modifier
