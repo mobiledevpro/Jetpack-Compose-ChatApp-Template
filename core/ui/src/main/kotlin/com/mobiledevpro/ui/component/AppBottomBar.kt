@@ -42,7 +42,7 @@ fun AppBottomBar(
     NavigationBar(
         modifier = modifier,
         contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
-        tonalElevation = 0.dp,
+        tonalElevation = 4.dp,
         content = content
     )
 }
