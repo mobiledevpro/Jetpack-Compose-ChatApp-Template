@@ -31,6 +31,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mobiledevpro.people.profile.domain.model.PeopleProfile
+import com.mobiledevpro.people.profile.view.components.ProfileContent
+import com.mobiledevpro.people.profile.view.components.ProfilePicture
 
 /**
  * For People list
@@ -57,8 +59,8 @@ internal fun ProfileCard(item: PeopleProfile, onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            ProfilePicture(item.photoUrl, item.status, 72.dp)
-            ProfileContent(item.name, item.status, Alignment.Start)
+            ProfilePicture(item.photoUrl, item.status, 72.dp, modifier = Modifier.padding(16.dp))
+            ProfileContent(item.name, item.status, Alignment.Start, modifier = Modifier.padding(8.dp))
         }
     }
 }

@@ -183,14 +183,17 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     }
 }
 
-fun NavGraphBuilder.peopleProfileScreen() {
+fun NavGraphBuilder.peopleProfileScreen(onNavigateBack: () -> Unit, onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.PeopleProfile.route,
         arguments = listOf(
             navArgument(PeopleProfileArgs.PEOPLE_PROFILE_ID_ARG) { type = NavType.IntType }
         )
     ) {
-        PeopleProfileScreen()
+        PeopleProfileScreen(
+            onBackPressed = onNavigateBack,
+            onOpenChatWith = {}
+        )
     }
 }
 

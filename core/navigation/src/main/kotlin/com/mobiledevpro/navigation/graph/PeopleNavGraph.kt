@@ -45,6 +45,9 @@ fun PeopleNavGraph(
     ) {
 
         peopleListScreen(onNavigateTo = navController::navigateTo)
-        peopleProfileScreen()
+        peopleProfileScreen(
+            onNavigateTo = navController::navigateTo,
+            onNavigateBack = navController::navigateUp
+        )
     }
 }

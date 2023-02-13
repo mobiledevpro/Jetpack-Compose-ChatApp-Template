@@ -15,10 +15,9 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.peoplelist.view.component
+package com.mobiledevpro.people.profile.view.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,7 +25,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 
 /**
  * For People list
@@ -35,10 +33,9 @@ import androidx.compose.ui.unit.dp
  *
  */
 @Composable
-internal fun ProfileContent(userName: String, onlineStatus: Boolean, alignment: Alignment.Horizontal) {
+fun ProfileContent(userName: String, onlineStatus: Boolean, alignment: Alignment.Horizontal, modifier : Modifier = Modifier) {
     Column(
-        modifier = Modifier
-            .padding(8.dp),
+        modifier = modifier,
         horizontalAlignment = alignment
     ) {
         CompositionLocalProvider(

@@ -33,7 +33,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.people.profile.domain.model.PeopleProfile
@@ -42,7 +41,6 @@ import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun PeopleListScreen(onNavigateToProfile: (profileId: Int) -> Unit) {
     val viewModel: PeopleListViewModel = viewModel()

@@ -15,11 +15,10 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.peoplelist.view.component
+package com.mobiledevpro.people.profile.view.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Card
@@ -46,14 +45,14 @@ import com.mobiledevpro.ui.theme.red
  */
 
 @Composable
-internal fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, imageSize: Dp) {
+fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, imageSize: Dp, modifier: Modifier = Modifier) {
     Card(
         shape = CircleShape,
         border = BorderStroke(
             width = 2.dp,
             color = if (onlineStatus) MaterialTheme.colorScheme.lightGreen else MaterialTheme.colorScheme.red
         ),
-        modifier = Modifier.padding(16.dp),
+        modifier = modifier,
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
 

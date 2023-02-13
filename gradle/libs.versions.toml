@@ -7,7 +7,7 @@ sdk-target = "33"
 sdk-compile = "33"
 
 # Plugins
-android-gradle = "8.1.0-alpha02"
+android-gradle = "8.1.0-alpha04"
 kotlin = "1.7.21"
 kotlin-coroutines = "1.6.4"
 kotlin-serialization = "1.4.1"
@@ -22,6 +22,7 @@ lifecycle = "2.6.0-alpha03"
 compose-bom = "2022.12.00"
 compose-compiler = "1.4.0"
 coil = "2.2.2"
+constraintlayout = "1.1.0-alpha07"
 
 # test libraries
 test-junit = "4.13.2"
@@ -59,6 +60,7 @@ compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+compose-constraintlayout = {group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "constraintlayout" }
 
 # test libraries
 test-junit = { module = "junit:junit", version.ref = "test-junit" }
@@ -77,7 +79,8 @@ compose = [
     "compose-ui-preview",
     "compose-material3",
     "activity-compose",
-    "compose-ui-util"
+    "compose-ui-util",
+    "compose-constraintlayout"
 ]
 
 compose-debug = [
