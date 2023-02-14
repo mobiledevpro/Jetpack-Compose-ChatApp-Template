@@ -76,21 +76,26 @@ fun PeopleProfileScreen(
         ConstraintLayout {
             val (profilePicture, profileContent, boxTopBorder, contentBox, socialIcons, buttonHi) = createRefs()
 
-            IconButton(onClick = { onBackPressed() }, modifier = Modifier.padding(16.dp)) {
+            IconButton(
+                onClick = { onBackPressed() },
+                modifier = Modifier.padding(16.dp)) {
                 Icon(
                     painter = painterResource(id = RApp.drawable.ic_arrow_back_white_24dp),
                     contentDescription = ""
                 )
             }
+
+            //Line to link the top side of the Box to
             Divider(
                 thickness = 1.dp,
                 color = Color.Transparent,
                 modifier = Modifier.constrainAs(boxTopBorder) {
-                    top.linkTo(profilePicture.top)
+                    top.linkTo(profilePicture.top, margin = 48.dp)
                     bottom.linkTo(profilePicture.bottom)
                 }
             )
 
+            //Background with rounded top-corners
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -101,7 +106,6 @@ fun PeopleProfileScreen(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     }
-
             )
 
             ProfilePicture(
@@ -109,12 +113,11 @@ fun PeopleProfileScreen(
                 onlineStatus = profile.status,
                 imageSize = 144.dp,
                 modifier = Modifier
-                    .padding(paddingValues = PaddingValues(16.dp, 64.dp, 16.dp, 16.dp))
                     .constrainAs(profilePicture) {
                         top.linkTo(parent.top)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
-                    }
+                    }.padding(paddingValues = PaddingValues(16.dp, 64.dp, 16.dp, 16.dp))
             )
 
             ProfileContent(
