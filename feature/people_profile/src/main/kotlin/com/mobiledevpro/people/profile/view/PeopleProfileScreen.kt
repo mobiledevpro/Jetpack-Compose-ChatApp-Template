@@ -34,7 +34,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -43,9 +42,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.people.profile.R
 import com.mobiledevpro.people.profile.domain.model.PeopleProfile
+import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
 import com.mobiledevpro.people.profile.view.components.ProfileContent
 import com.mobiledevpro.people.profile.view.components.ProfilePicture
 import com.mobiledevpro.ui.component.ScreenBackground
@@ -61,12 +60,10 @@ import com.mobiledevpro.ui.R as RApp
 
 @Composable
 fun PeopleProfileScreen(
+    profile : PeopleProfile,
     onBackPressed: () -> Unit,
     onOpenChatWith: (profile: PeopleProfile) -> Unit
 ) {
-    val viewModel: PeopleProfileViewModel = viewModel()
-
-    val profile = remember { viewModel.getProfile() } ?: return
 
     ScreenBackground(
         modifier = Modifier
@@ -152,7 +149,7 @@ fun PeopleProfileScreen(
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
                     },
-                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary)
+                colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary),
             ) {
                 Text(text = "Say Hi \uD83D\uDC4B")
             }
@@ -211,9 +208,12 @@ fun ProfileSocialIcons(modifier: Modifier) {
 @Composable
 fun PeopleProfilePreview() {
     AppTheme(darkTheme = true) {
-        PeopleProfileScreen(
-            onBackPressed = {},
-            onOpenChatWith = {}
-        )
+        fakPeopleProfileList.find { it.id == 2 }?.let {
+            PeopleProfileScreen(
+                it,
+                onBackPressed = {},
+                onOpenChatWith = {}
+            )
+        }
     }
 }

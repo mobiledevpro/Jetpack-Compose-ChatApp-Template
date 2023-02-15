@@ -20,7 +20,9 @@ package com.mobiledevpro.navigation
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
@@ -38,6 +40,7 @@ import com.mobiledevpro.onboarding.view.OnBoardingScreen
 import com.mobiledevpro.onboarding.view.OnBoardingSecondScreen
 import com.mobiledevpro.onboarding.view.OnBoardingThirdScreen
 import com.mobiledevpro.people.profile.view.PeopleProfileScreen
+import com.mobiledevpro.people.profile.view.PeopleProfileViewModel
 import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
@@ -183,14 +186,24 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     }
 }
 
-fun NavGraphBuilder.peopleProfileScreen(onNavigateBack: () -> Unit, onNavigateTo: (Screen) -> Unit) {
+fun NavGraphBuilder.peopleProfileScreen(
+    onNavigateBack: () -> Unit,
+    onNavigateTo: (Screen) -> Unit
+) {
     composable(
         route = Screen.PeopleProfile.route,
         arguments = listOf(
             navArgument(PeopleProfileArgs.PEOPLE_PROFILE_ID_ARG) { type = NavType.IntType }
         )
     ) {
+
+        val viewModel: PeopleProfileViewModel = viewModel()
+        val peopleProfile = remember { viewModel.getProfile() }
+
+        peopleProfile ?: return@composable
+
         PeopleProfileScreen(
+            peopleProfile,
             onBackPressed = onNavigateBack,
             onOpenChatWith = {}
         )
