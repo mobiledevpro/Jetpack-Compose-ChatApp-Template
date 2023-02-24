@@ -8,9 +8,9 @@
 [![Target SDK](https://img.shields.io/badge/Target%20API%20Level-33%20[Android%2013]-blue.svg?style=for-the-badge)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
 
-🔴 **Under development.** Watch the progress on my [Instagram Stories](https://instagr.am/mobiledevpro/)
+🔴 **Under development.** Watch the progress on [Instagram Stories](https://instagr.am/mobiledevpro/)
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Android-Jetpack-Compose-MVI-Template?color=red&style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=for-the-badge)
 
 
 ### Tech. stack
@@ -29,11 +29,12 @@
 
 ![modularization](doc/modularization.png)
 
-## UI testing with ![Maestro](https://maestro.mobile.dev/):
+## UI testing with [Maestro](https://maestro.mobile.dev/):
 
-* Install Maestro: Terminal -> curl -Ls "https://get.maestro.mobile.dev" | bash
+* Install Maestro: run in terminal ```curl -Ls "https://get.maestro.mobile.dev" | bash```
 * Install the app on emulator (doesn't work with physical device)
-* Run the flow: Terminal ->  maestro test -c maestro/people-profile-flow.yaml
+* Run the flow: run in terminal ```maestro test -c maestro/people-profile-flow.yaml```
+* [Sample config](maestro/people-profile-flow.yaml)
 
 
 ### Created by:
@@ -79,8 +80,8 @@ limitations under the License.
 ## Thanks for support !
 **Stargazers**
 
-[![Stargazers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/stars/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Jetpack-Compose-MVI-Template/stargazers)
+[![Stargazers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](https://reporoster.com/stars/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/stargazers)
 
 **Forkers**
 
-[![Forkers repo roster for @mobiledevpro/Android-Jetpack-Compose-MVI-Template](https://reporoster.com/forks/dark/mobiledevpro/Android-Jetpack-Compose-MVI-Template)](https://github.com/mobiledevpro/Android-Jetpack-Compose-MVI-Template/network/members)
+[![Forkers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](https://reporoster.com/forks/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/network/members)
