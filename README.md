@@ -1,5 +1,6 @@
 # Android App Template entirely built on Jetpack Compose
 
+[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Canary%206-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.0-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
 [![Gradle](https://img.shields.io/badge/gradle-8.0-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
@@ -27,6 +28,12 @@
 ## Modularization
 
 ![modularization](doc/modularization.png)
+
+## UI testing with ![Maestro](https://maestro.mobile.dev/):
+
+* Install Maestro: Terminal -> curl -Ls "https://get.maestro.mobile.dev" | bash
+* Install the app on emulator (doesn't work with physical device)
+* Run the flow: Terminal ->  maestro test -c maestro/people-profile-flow.yaml
 
 
 ### Created by:
