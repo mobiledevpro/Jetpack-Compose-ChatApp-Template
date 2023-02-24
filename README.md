@@ -25,9 +25,6 @@
 * MVI + modularization with a clean architecture
 * [Circle CI](https://circleci.com/) for continuous integration and delivery
 
-## Modularization
-
-![modularization](doc/modularization.png)
 
 ## UI testing with [Maestro](https://maestro.mobile.dev/):
 
@@ -36,6 +33,10 @@
 * Run the flow: run in terminal ```maestro test -c maestro/people-profile-flow.yaml```
 * [Sample config](maestro/people-profile-flow.yaml)
 
+
+## Modularization
+
+![modularization](doc/modularization.png)
 
 ### Created by:
 
