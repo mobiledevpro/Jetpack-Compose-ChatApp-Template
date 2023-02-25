@@ -1,5 +1,11 @@
 # Android Chat App entirely built with Jetpack Compose
 
+
+
+🔴 **Under development.** Sharing progress on [Instagram Stories](https://instagr.am/mobiledevpro/)
+
+
+
 [![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Canary%206-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.0-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
@@ -7,8 +13,6 @@
 [![API](https://img.shields.io/badge/support%20min%20API-24%20[Android%207.0]-blue.svg?style=for-the-badge)](https://github.com/AndroidSDKSources/android-sdk-sources-list)
 [![Target SDK](https://img.shields.io/badge/Target%20API%20Level-33%20[Android%2013]-blue.svg?style=for-the-badge)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
-
-🔴 **Under development.** Watch the progress on [Instagram Stories](https://instagr.am/mobiledevpro/)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=for-the-badge)
 
