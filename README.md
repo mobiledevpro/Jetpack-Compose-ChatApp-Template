@@ -1,4 +1,4 @@
-# Android App Template entirely built on Jetpack Compose
+# Android Chat App entirely built with Jetpack Compose
 
 [![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Canary%206-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
 
