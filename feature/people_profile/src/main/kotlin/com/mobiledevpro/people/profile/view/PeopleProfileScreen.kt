@@ -51,8 +51,9 @@ import androidx.compose.ui.unit.dp
 import com.mobiledevpro.people.profile.R
 import com.mobiledevpro.people.profile.domain.model.PeopleProfile
 import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
-import com.mobiledevpro.people.profile.view.components.ProfileContent
-import com.mobiledevpro.people.profile.view.components.ProfilePicture
+import com.mobiledevpro.ui.component.ProfileContent
+import com.mobiledevpro.ui.component.ProfilePicture
+import com.mobiledevpro.ui.component.ProfilePictureSize
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 import com.mobiledevpro.ui.R as RApp
@@ -103,7 +104,7 @@ fun PeopleProfileScreen(
             ProfilePicture(
                 photoUrl = profile.photoUrl,
                 onlineStatus = profile.status,
-                imageSize = 144.dp,
+                size = ProfilePictureSize.LARGE,
                 modifier = Modifier
                     .padding(paddingValues = PaddingValues(16.dp, 16.dp, 16.dp, 16.dp))
                     .align(Alignment.CenterHorizontally)

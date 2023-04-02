@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.people.profile.view.components
+package com.mobiledevpro.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -28,7 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -38,14 +37,20 @@ import com.mobiledevpro.ui.theme.lightGreen
 import com.mobiledevpro.ui.theme.red
 
 /**
- * For People list
+ * For Profile screen
  *
  * Created on Feb 05, 2023.
  *
  */
 
 @Composable
-fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, imageSize: Dp, modifier: Modifier = Modifier) {
+fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, size : ProfilePictureSize, modifier: Modifier = Modifier) {
+    val pictureSizeDp = when(size) {
+        ProfilePictureSize.SMALL -> 36.dp
+        ProfilePictureSize.MEDIUM -> 72.dp
+        ProfilePictureSize.LARGE -> 144.dp
+    }
+
     Card(
         shape = CircleShape,
         border = BorderStroke(
@@ -65,9 +70,15 @@ fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, imageSize: Dp, modif
                     .build()
             ),
             contentDescription = "Profile image",
-            modifier = Modifier.size(imageSize),
+            modifier = Modifier.size(pictureSizeDp),
             contentScale = ContentScale.Crop
         )
     }
 
+}
+
+enum class ProfilePictureSize {
+    SMALL,
+    MEDIUM,
+    LARGE
 }

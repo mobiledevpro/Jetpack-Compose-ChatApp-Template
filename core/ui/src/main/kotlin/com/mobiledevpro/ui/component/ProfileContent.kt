@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.people.profile.view.components
+package com.mobiledevpro.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.LocalContentColor

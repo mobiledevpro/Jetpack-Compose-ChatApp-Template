@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,6 +32,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.home.view.HomeScreen
+import com.mobiledevpro.home.view.HomeViewModel
 import com.mobiledevpro.navigation.ext.navigateTo
 import com.mobiledevpro.navigation.graph.HomeNavGraph
 import com.mobiledevpro.navigation.graph.OnBoardingNavGraph
@@ -45,6 +47,7 @@ import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.profile.view.ProfileScreen
+import com.mobiledevpro.profile.view.ProfileViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
 
 
@@ -52,6 +55,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
     composable(
         route = Screen.Home.route
     ) {
+        Log.d("navigation", "------homeNavGraph:START------------")
 
         //NavController for nested graph
         //It will not work for root graph
@@ -59,6 +63,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
 
         val bottomBar: @Composable () -> Unit = {
+            Log.d("navigation", "homeNavGraph:bottomBar")
             HomeBottomNavigation(
                 screens = listOf(
                     Screen.ChatList,
@@ -70,6 +75,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
         }
 
         val nestedNavGraph: @Composable () -> Unit = {
+            Log.d("navigation", "homeNavGraph:nestedNavGraph")
             HomeNavGraph(
                 navController = navController,
                 modifier = Modifier.safeContentPadding(),
@@ -77,10 +83,14 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
             )
         }
 
+        val viewModel : HomeViewModel = viewModel()
+
         HomeScreen(
             bottomBar = bottomBar,
             nestedNavGraph = nestedNavGraph
         )
+
+        Log.d("navigation", "------homeNavGraph:END------------")
     }
 
 }
@@ -215,6 +225,9 @@ fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
     composable(
         route = Screen.Profile.route
     ) {
+
+        val viewModel: ProfileViewModel = viewModel()
+
         ProfileScreen(
             onNavigateToSubscription = {
                 onNavigateTo(Screen.Subscription)
