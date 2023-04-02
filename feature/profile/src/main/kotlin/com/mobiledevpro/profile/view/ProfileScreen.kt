@@ -23,17 +23,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -46,11 +44,16 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.mobiledevpro.ui.component.LabeledDarkModeSwitch
 import com.mobiledevpro.ui.component.ProfileContent
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
 import com.mobiledevpro.ui.component.ScreenBackground
+import com.mobiledevpro.ui.component.SettingsButton
 import com.mobiledevpro.ui.theme.AppTheme
+import com.mobiledevpro.ui.theme._darkModeState
+import com.mobiledevpro.ui.theme.darkModeState
+import kotlinx.coroutines.flow.update
 
 @Composable
 fun ProfileScreen(
@@ -59,6 +62,7 @@ fun ProfileScreen(
     Log.d("navigation", "ProfileScreen:")
 
     val backgroundBoxTopOffset = remember { mutableStateOf(0) }
+    val darkModeOn = remember { mutableStateOf(darkModeState.value) }
 
 
     ScreenBackground(
@@ -75,7 +79,9 @@ fun ProfileScreen(
         )
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
             verticalArrangement = Arrangement.Top
         ) {
 
@@ -95,7 +101,8 @@ fun ProfileScreen(
 
             ProfileContent(
                 userName = "Your Name",
-                onlineStatus = true,
+                subName = "@nickname",
+                isOnline = true,
                 alignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(8.dp)
@@ -103,21 +110,36 @@ fun ProfileScreen(
             )
 
 
-            Row(
+
+
+
+            Column(
                 modifier = Modifier
                     .fillMaxHeight()
                     .align(Alignment.CenterHorizontally),
-                verticalAlignment = Alignment.Bottom
+                verticalArrangement = Arrangement.Bottom
             ) {
-                Button(
-                    onClick = { /*TODO: not implemented yet*/},
-                    modifier = Modifier
-                        .padding(bottom = 48.dp, top = 16.dp, start = 16.dp, end = 16.dp)
-                        .defaultMinSize(minHeight = 48.dp, minWidth = 144.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.tertiary),
-                ) {
-                    Text(text = "Logout")
-                }
+
+                LabeledDarkModeSwitch(
+                    label = "Dark mode",
+                    checked = darkModeOn.value,
+                    onCheckedChanged = { isDark ->
+                        Log.d("main", "ProfileScreen: dark $isDark")
+                        darkModeOn.value = isDark
+                        _darkModeState.update {
+                            isDark
+                        }
+                    })
+
+                Divider()
+
+                SettingsButton(
+                    label = "Log Out",
+                    icon = Icons.Rounded.ExitToApp,
+                    onClick = {
+
+                    }
+                )
             }
         }
 

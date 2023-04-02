@@ -60,8 +60,19 @@ internal fun ProfileCard(item: PeopleProfile, onClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            ProfilePicture(item.photoUrl, item.status, size = ProfilePictureSize.MEDIUM, modifier = Modifier.padding(16.dp))
-            ProfileContent(item.name, item.status, Alignment.Start, modifier = Modifier.padding(8.dp))
+            ProfilePicture(
+                item.photoUrl,
+                item.status,
+                size = ProfilePictureSize.MEDIUM,
+                modifier = Modifier.padding(16.dp)
+            )
+            ProfileContent(
+                userName = item.name,
+                subName = null,
+                isOnline = item.status,
+                alignment = Alignment.Start,
+                modifier = Modifier.padding(8.dp)
+            )
         }
     }
 }

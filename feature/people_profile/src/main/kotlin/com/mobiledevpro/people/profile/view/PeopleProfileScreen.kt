@@ -117,7 +117,7 @@ fun PeopleProfileScreen(
 
             ProfileContent(
                 userName = profile.name,
-                onlineStatus = profile.status,
+                isOnline = profile.status,
                 alignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(8.dp)

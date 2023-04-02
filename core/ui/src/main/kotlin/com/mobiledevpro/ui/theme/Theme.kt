@@ -2,7 +2,6 @@ package com.mobiledevpro.ui.theme
 
 import android.app.Activity
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +15,9 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
@@ -84,7 +86,7 @@ private val DarkColorScheme = darkColorScheme(
 
 @Composable
 fun AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
@@ -120,3 +122,7 @@ fun AppTheme(
         }
     }
 }
+
+//TODO: it's temporary implementation. Dark mode value should be saved into preferences.
+val _darkModeState = MutableStateFlow(true)
+val darkModeState: StateFlow<Boolean> = _darkModeState.asStateFlow()
