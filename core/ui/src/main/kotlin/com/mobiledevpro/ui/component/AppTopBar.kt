@@ -47,7 +47,7 @@ fun AppTopBar(title: String, icon: ImageVector, iconClickAction: () -> Unit = {}
             )
         },
         title = { Text(title) },
-        colors = TopAppBarDefaults.smallTopAppBarColors(
+        colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.topAppBarColor
         )
 

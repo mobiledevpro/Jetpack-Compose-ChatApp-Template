@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.people.profile.view.components
+package com.mobiledevpro.ui.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.LocalContentColor
@@ -33,13 +33,19 @@ import androidx.compose.ui.Modifier
  *
  */
 @Composable
-fun ProfileContent(userName: String, onlineStatus: Boolean, alignment: Alignment.Horizontal, modifier : Modifier = Modifier) {
+fun ProfileContent(
+    userName: String,
+    subName: String? = null,
+    isOnline: Boolean,
+    alignment: Alignment.Horizontal,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier,
         horizontalAlignment = alignment
     ) {
         CompositionLocalProvider(
-            LocalContentColor provides LocalContentColor.current.copy(alpha = if (onlineStatus) 1f else 0.4f)
+            LocalContentColor provides LocalContentColor.current.copy(alpha = if (isOnline) 1f else 0.4f)
         ) {
 
             Text(
@@ -50,7 +56,7 @@ fun ProfileContent(userName: String, onlineStatus: Boolean, alignment: Alignment
 
         CompositionLocalProvider(LocalContentColor provides LocalContentColor.current.copy(alpha = 0.4F)) {
             Text(
-                text = if (onlineStatus) "Active now" else "Offline",
+                text = subName ?: if (isOnline) "Active now" else "Offline",
                 style = MaterialTheme.typography.bodyMedium
             )
         }

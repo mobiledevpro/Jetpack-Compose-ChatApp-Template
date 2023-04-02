@@ -19,70 +19,138 @@ package com.mobiledevpro.profile.view
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import com.mobiledevpro.ui.component.LabeledDarkModeSwitch
+import com.mobiledevpro.ui.component.ProfileContent
+import com.mobiledevpro.ui.component.ProfilePicture
+import com.mobiledevpro.ui.component.ProfilePictureSize
 import com.mobiledevpro.ui.component.ScreenBackground
+import com.mobiledevpro.ui.component.SettingsButton
 import com.mobiledevpro.ui.theme.AppTheme
+import com.mobiledevpro.ui.theme._darkModeState
+import com.mobiledevpro.ui.theme.darkModeState
+import kotlinx.coroutines.flow.update
 
 @Composable
 fun ProfileScreen(
     onNavigateToSubscription: () -> Unit
 ) {
-    val viewModel: ProfileViewModel = viewModel()
-
     Log.d("navigation", "ProfileScreen:")
+
+    val backgroundBoxTopOffset = remember { mutableStateOf(0) }
+    val darkModeOn = remember { mutableStateOf(darkModeState.value) }
+
 
     ScreenBackground(
         modifier = Modifier
             .fillMaxSize()
     ) {
+
+        //Background with rounded top-corners
         Box(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-                .background(color = Color(0x80AD1457))
-        ) {
-            Text(
-                text = "Profile",
-                textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .padding(16.dp)
-                    .align(Alignment.Center),
-                style = MaterialTheme.typography.bodyLarge
+                .offset { IntOffset(0, backgroundBoxTopOffset.value) }
+                .clip(RoundedCornerShape(topStart = 48.dp, topEnd = 48.dp))
+                .background(color = MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp))
+        )
 
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(start = 16.dp, end = 16.dp, bottom = 32.dp),
+            verticalArrangement = Arrangement.Top
+        ) {
+
+            ProfilePicture(
+                photoUrl = "",
+                onlineStatus = true,
+                size = ProfilePictureSize.LARGE,
+                modifier = Modifier
+                    .padding(paddingValues = PaddingValues(16.dp, 16.dp, 16.dp, 16.dp))
+                    .align(Alignment.CenterHorizontally)
+                    .onGloballyPositioned {
+                        val rect = it.boundsInRoot()
+                        backgroundBoxTopOffset.value =
+                            rect.topCenter.y.toInt() + (rect.bottomCenter.y - rect.topCenter.y).toInt() / 2
+                    }
             )
 
-            Button(
-                onClick = onNavigateToSubscription,
+            ProfileContent(
+                userName = "Your Name",
+                subName = "@nickname",
+                isOnline = true,
+                alignment = Alignment.CenterHorizontally,
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .defaultMinSize(minWidth = 144.dp, minHeight = 48.dp)
+                    .padding(8.dp)
+                    .align(Alignment.CenterHorizontally)
+            )
+
+
+
+
+
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .align(Alignment.CenterHorizontally),
+                verticalArrangement = Arrangement.Bottom
             ) {
-                Text(
-                    text = "Paid subscription"
+
+                LabeledDarkModeSwitch(
+                    label = "Dark mode",
+                    checked = darkModeOn.value,
+                    onCheckedChanged = { isDark ->
+                        Log.d("main", "ProfileScreen: dark $isDark")
+                        darkModeOn.value = isDark
+                        _darkModeState.update {
+                            isDark
+                        }
+                    })
+
+                Divider()
+
+                SettingsButton(
+                    label = "Log Out",
+                    icon = Icons.Rounded.ExitToApp,
+                    onClick = {
+
+                    }
                 )
             }
         }
+
+
     }
 }
 
 @Preview
 @Composable
 fun ProfileScreenPreview() {
-    AppTheme {
+    AppTheme(darkTheme = true) {
         ProfileScreen({})
     }
 }
