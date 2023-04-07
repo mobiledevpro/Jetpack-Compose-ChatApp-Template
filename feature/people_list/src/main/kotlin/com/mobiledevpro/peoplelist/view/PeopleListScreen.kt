@@ -34,18 +34,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mobiledevpro.people.profile.domain.model.PeopleProfile
 import com.mobiledevpro.peoplelist.view.component.ProfileCard
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
-fun PeopleListScreen(onNavigateToProfile: (profileId: Int) -> Unit) {
-    val viewModel: PeopleListViewModel = viewModel()
+fun PeopleListScreen(
+    stateFlow: StateFlow<PeopleProfileUIState>,
+    onNavigateToProfile: (profileId: Int) -> Unit
+) {
 
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val uiState by stateFlow.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     ScreenBackground(
@@ -112,7 +115,7 @@ private fun Loading() {
 }
 
 @Composable
-private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId : Int) -> Unit) {
+private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId: Int) -> Unit) {
     LazyColumn {
         items(list) { profile ->
             ProfileCard(item = profile, onClick = { onProfileClick(profile.id) })
@@ -126,6 +129,7 @@ private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId : I
 fun PeopleListPreview() {
     AppTheme {
         PeopleListScreen(
+            stateFlow = MutableStateFlow(PeopleProfileUIState.Empty),
             onNavigateToProfile = { }
         )
     }

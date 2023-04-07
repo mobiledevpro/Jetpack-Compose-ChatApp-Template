@@ -46,6 +46,7 @@ import com.mobiledevpro.people.profile.view.PeopleProfileViewModel
 import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
+import com.mobiledevpro.peoplelist.view.PeopleListViewModel
 import com.mobiledevpro.profile.view.ProfileScreen
 import com.mobiledevpro.profile.view.ProfileViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
@@ -187,7 +188,10 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.PeopleList.route
     ) {
 
+        val viewModel: PeopleListViewModel = viewModel()
+
         PeopleListScreen(
+            viewModel.uiState,
             onNavigateToProfile = { profileId: Int ->
                 Screen.PeopleProfile.routeWith(profileId.toString())
                     .also(onNavigateTo)
