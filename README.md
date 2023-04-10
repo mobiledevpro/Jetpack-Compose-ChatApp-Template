@@ -6,7 +6,7 @@
 
 
 
-[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Canary%206-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Canary%2011-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.0-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
 [![Gradle](https://img.shields.io/badge/gradle-8.0-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
