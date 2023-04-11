@@ -60,7 +60,7 @@
 
 [![Twitter](https://img.shields.io/badge/-twitter-1DA1F2?logo=twitter&style=for-the-badge&message=tweeting+about+android+dev&label=tweeting+about+android+dev&logoColor=white)](https://twitter.com/mobiledev_pro)
 
-[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&label=Shorts&style=for-the-badge)](https://www.youtube.com/@mobiledevpro/shorts)
+[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&label=Shorts&style=for-the-badge)](https://www.youtube.com/@mobiledevpro)
 
 [![Linkedin](https://img.shields.io/badge/-linkedin-0A66C2?logo=linkedin&style=for-the-badge&logoColor=white&label=connect+on)](https://www.linkedin.com/in/dmitriychernysh/)
 
