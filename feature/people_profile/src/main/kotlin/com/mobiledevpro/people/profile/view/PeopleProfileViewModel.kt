@@ -20,8 +20,8 @@ package com.mobiledevpro.people.profile.view
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.mobiledevpro.people.profile.domain.model.PeopleProfile
-import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
+import com.mobiledevpro.domain.model.PeopleProfile
+import com.mobiledevpro.domain.model.fakePeopleProfileList
 import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 
 /**
@@ -42,5 +42,5 @@ class PeopleProfileViewModel(
         Log.d("navigation", "PeopleProfileViewModel: args = $profileId")
     }
 
-    fun getProfile() : PeopleProfile? = fakPeopleProfileList.find { it.id == profileId }
+    fun getProfile() : PeopleProfile? = fakePeopleProfileList.find { it.id == profileId }
 }

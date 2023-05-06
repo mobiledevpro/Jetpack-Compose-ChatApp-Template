@@ -50,7 +50,7 @@ fun ProfileContent(
 
             Text(
                 text = userName,
-                style = MaterialTheme.typography.headlineSmall
+                style = MaterialTheme.typography.bodyLarge
             )
         }
 

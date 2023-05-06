@@ -15,24 +15,17 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.apptemplate.ui
+package com.mobiledevpro.domain.model
 
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.rememberNavController
-import com.mobiledevpro.navigation.Screen
-import com.mobiledevpro.navigation.graph.RootNavGraph
+/**
+ * App User Profile
+ *
+ * Created on Feb 04, 2023.
+ *
+ */
 
-
-@Composable
-fun MainApp() {
-    val navController = rememberNavController()
-
-    RootNavGraph(
-        navController = navController,
-        modifier = Modifier.safeContentPadding(),
-        startDestination = Screen.Home
-    )
-
-}
+data class UserProfile(
+    val name : String,
+    val status: Boolean,
+    val photoUrl : String
+)

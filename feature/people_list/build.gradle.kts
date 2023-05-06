@@ -33,5 +33,5 @@ android {
 
 dependencies {
     implementation(project(":core:ui"))
-    implementation(project(":feature:people_profile"))
+    implementation(project(":core:domain"))
 }

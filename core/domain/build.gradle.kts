@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.mobiledevpro.chatlist"
+    namespace = "com.mobiledevpro.domain"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -21,17 +21,4 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-}
-
-dependencies {
-    api(project(":core:ui"))
-    api(project(":core:domain"))
 }

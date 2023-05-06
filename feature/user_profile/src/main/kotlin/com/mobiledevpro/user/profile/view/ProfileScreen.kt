@@ -15,8 +15,9 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.profile.view
+package com.mobiledevpro.user.profile.view
 
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -86,7 +87,7 @@ fun ProfileScreen(
         ) {
 
             ProfilePicture(
-                photoUrl = "",
+                photoUri = Uri.EMPTY,
                 onlineStatus = true,
                 size = ProfilePictureSize.LARGE,
                 modifier = Modifier

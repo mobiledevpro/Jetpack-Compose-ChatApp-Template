@@ -31,6 +31,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mobiledevpro.chatlist.view.ChatListScreen
+import com.mobiledevpro.chatlist.view.ChatListViewModel
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.home.view.HomeViewModel
 import com.mobiledevpro.navigation.ext.navigateTo
@@ -47,9 +48,9 @@ import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.peoplelist.view.PeopleListViewModel
-import com.mobiledevpro.profile.view.ProfileScreen
-import com.mobiledevpro.profile.view.ProfileViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
+import com.mobiledevpro.user.profile.view.ProfileScreen
+import com.mobiledevpro.user.profile.view.ProfileViewModel
 
 
 fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
@@ -179,6 +180,9 @@ fun NavGraphBuilder.chatListScreen() {
     composable(
         route = Screen.ChatList.route
     ) {
+
+        val viewModel : ChatListViewModel = viewModel()
+
         ChatListScreen()
     }
 }

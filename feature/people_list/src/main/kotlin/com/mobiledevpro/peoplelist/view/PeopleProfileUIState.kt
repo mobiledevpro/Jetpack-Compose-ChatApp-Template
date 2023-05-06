@@ -17,7 +17,7 @@
  */
 package com.mobiledevpro.peoplelist.view
 
-import com.mobiledevpro.people.profile.domain.model.PeopleProfile
+import com.mobiledevpro.domain.model.PeopleProfile
 
 /**
  * UI state for [com.mobiledevpro.peoplelist.view.PeopleListScreen]
