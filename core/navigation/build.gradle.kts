@@ -39,11 +39,10 @@ dependencies {
 
     api(libs.navigation)
 
-    implementation(project(":core:ui"))
     implementation(project(":feature:home"))
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:subscription"))
     implementation(project(":feature:chat_list"))
     implementation(project(":feature:people"))
-    implementation(project(":feature:profile"))
+    implementation(project(":feature:user_profile"))
 }

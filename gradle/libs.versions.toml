@@ -7,7 +7,7 @@ sdk-target = "33"
 sdk-compile = "33"
 
 # Plugins
-android-gradle = "8.2.0-alpha02"
+android-gradle = "8.1.0-beta01"
 kotlin = "1.8.0"
 kotlin-coroutines = "1.6.4"
 kotlin-serialization = "1.4.1"
@@ -30,6 +30,8 @@ test-mockk = "1.13.3"
 
 # android test libraries
 test-android-runner = "1.5.1"
+junit = "1.1.5"
+espresso-core = "3.5.1"
 
 [plugins]
 
@@ -71,6 +73,8 @@ test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
 # Android test libraries
 test-android-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 test-android-runner = { module = "androidx.test:runner", version.ref = "test-android-runner" }
+junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 
 [bundles]
 compose = [

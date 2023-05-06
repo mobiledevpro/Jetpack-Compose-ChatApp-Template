@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.people.profile.domain.model
+package com.mobiledevpro.domain.model
 
 /**
  * Profile
@@ -32,7 +32,7 @@ data class PeopleProfile(
 )
 
 
-val fakPeopleProfileList = arrayListOf(
+val fakePeopleProfileList = arrayListOf(
     PeopleProfile(
         id = 0,
         name = "Michaela Runnings",

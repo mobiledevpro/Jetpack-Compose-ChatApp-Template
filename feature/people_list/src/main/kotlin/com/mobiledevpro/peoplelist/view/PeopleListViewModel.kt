@@ -19,7 +19,7 @@ package com.mobiledevpro.peoplelist.view
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
+import com.mobiledevpro.domain.model.fakePeopleProfileList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -51,7 +51,7 @@ class PeopleListViewModel : ViewModel() {
 
              */
             _uiState.update {
-                PeopleProfileUIState.Success(fakPeopleProfileList)
+                PeopleProfileUIState.Success(fakePeopleProfileList)
             }
         }
     }

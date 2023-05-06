@@ -15,23 +15,17 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.peoplelist.view
-
-import com.mobiledevpro.domain.model.PeopleProfile
+package com.mobiledevpro.domain.model
 
 /**
- * UI state for [com.mobiledevpro.peoplelist.view.PeopleListScreen]
+ * App User Profile
  *
  * Created on Feb 04, 2023.
  *
  */
-sealed interface PeopleProfileUIState {
 
-    object Empty : PeopleProfileUIState
-
-    object Loading : PeopleProfileUIState
-
-    class Success(val profileList : List<PeopleProfile>) : PeopleProfileUIState
-
-    class Fail(val throwable: Throwable) : PeopleProfileUIState
-}
+data class UserProfile(
+    val name : String,
+    val status: Boolean,
+    val photoUrl : String
+)

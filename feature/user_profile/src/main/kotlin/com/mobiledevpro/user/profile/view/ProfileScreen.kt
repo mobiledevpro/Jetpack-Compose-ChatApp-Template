@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.profile.view
+package com.mobiledevpro.user.profile.view
 
 import android.util.Log
 import androidx.compose.foundation.background

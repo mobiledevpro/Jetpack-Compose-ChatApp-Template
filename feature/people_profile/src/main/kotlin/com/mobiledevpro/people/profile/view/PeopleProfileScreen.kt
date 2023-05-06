@@ -48,9 +48,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.mobiledevpro.domain.model.PeopleProfile
+import com.mobiledevpro.domain.model.fakePeopleProfileList
 import com.mobiledevpro.people.profile.R
-import com.mobiledevpro.people.profile.domain.model.PeopleProfile
-import com.mobiledevpro.people.profile.domain.model.fakPeopleProfileList
 import com.mobiledevpro.ui.component.ProfileContent
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
@@ -197,7 +197,7 @@ fun ProfileSocialIcons(modifier: Modifier) {
 @Composable
 fun PeopleProfilePreview() {
     AppTheme(darkTheme = true) {
-        fakPeopleProfileList.find { it.id == 2 }?.let {
+        fakePeopleProfileList.find { it.id == 2 }?.let {
             PeopleProfileScreen(
                 it,
                 onBackPressed = {},
