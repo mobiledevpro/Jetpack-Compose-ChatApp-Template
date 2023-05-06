@@ -17,14 +17,14 @@
  */
 package com.mobiledevpro.chatlist.view.component
 
+import android.util.Log
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -32,6 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mobiledevpro.domain.model.PeopleProfile
 import com.mobiledevpro.domain.model.fakePeopleProfileList
+import com.mobiledevpro.domain.model.toChatName
 import com.mobiledevpro.ui.component.CardItem
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
@@ -44,84 +45,59 @@ import com.mobiledevpro.ui.theme.AppTheme
  *
  */
 @Composable
-internal fun ChatCard(items: List<PeopleProfile>, onClick: () -> Unit) {
-
-    val nextProfilePictureOffset = remember { mutableStateOf(0.dp) }
-
-    val chatName: String =
-        items.mapTo(ArrayList<String>()) { profile -> profile.name }.let { names ->
-            val stringBuilder = StringBuilder()
-            names.onEachIndexed { index, s ->
-                if (index > 0)
-                    stringBuilder.append(", ")
-                stringBuilder.append(s)
-            }
-            stringBuilder.toString()
-        }
-
+internal fun ChatCard(chatName : String, peopleList: List<PeopleProfile>, onClick: () -> Unit) {
 
     CardItem(
         modifier = Modifier
             .clickable { onClick.invoke() }
     ) {
 
-        Row(modifier = Modifier.padding(16.dp)) {
+        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
 
-            ProfilePicture(
-                items[0].photoUrl,
-                items[0].status,
-                size = ProfilePictureSize.SMALL
+            ChatPicture(
+                profileList = peopleList
             )
-            /*
-                        Box {
-
-                            items.forEachIndexed { index, item ->
-
-
-                                ProfilePicture(
-                                    item.photoUrl,
-                                    item.status,
-                                    size = ProfilePictureSize.SMALL,
-                                    modifier = Modifier.offset(x = nextProfilePictureOffset.value)
-                                )
-
-
-                                nextProfilePictureOffset.value += 16.dp
-                            }
-                        }
-
-             */
 
             Text(
                 text = chatName,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodyMedium,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.align(Alignment.CenterVertically).padding(horizontal = 8.dp)
+                modifier = Modifier.padding(horizontal = 8.dp)
             )
         }
+    }
+}
 
+@Composable
+fun ChatPicture(profileList: List<PeopleProfile>, modifier: Modifier = Modifier) {
 
-        /*ProfilePicture(
-            item.photoUrl,
-            item.status,
-            size = ProfilePictureSize.MEDIUM,
-            modifier = Modifier.padding(16.dp)
-        )
-        ProfileContent(
-            userName = item.name,
-            subName = null,
-            isOnline = item.status,
-            alignment = Alignment.Start,
-            modifier = Modifier.padding(8.dp)
-        )*/
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Box(modifier = modifier) {
+            profileList.take(VISIBLE_PROFILES_COUNT).forEachIndexed { index, profile ->
+
+                Log.d("ChatPicture", "ChatPicture: ${profile.name}")
+                ProfilePicture(
+                    profile.photo,
+                    profile.status,
+                    size = ProfilePictureSize.SMALL,
+                    modifier = Modifier.padding(start = 16.dp * index)
+                )
+
+            }
+        }
+        if (profileList.size > VISIBLE_PROFILES_COUNT)
+            Text(text = "+${profileList.size - 3}", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(4.dp))
     }
 }
 
 @Composable
 @Preview
 fun ChatCardPreview() {
+    val peopleList = fakePeopleProfileList.take(5).sortedByDescending { it.status }
     AppTheme {
-        ChatCard(items = fakePeopleProfileList.take(3), onClick = {})
+        ChatCard(chatName = peopleList.toChatName(), peopleList = peopleList, onClick = {})
     }
 }
+
+const val VISIBLE_PROFILES_COUNT = 3

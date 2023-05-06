@@ -102,7 +102,7 @@ fun PeopleProfileScreen(
             }
 
             ProfilePicture(
-                photoUrl = profile.photoUrl,
+                photoUri = profile.photo,
                 onlineStatus = profile.status,
                 size = ProfilePictureSize.LARGE,
                 modifier = Modifier

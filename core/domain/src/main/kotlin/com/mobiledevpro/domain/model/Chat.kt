@@ -19,9 +19,19 @@ val fakeUser = UserProfile(
 
 val fakeChatList = arrayListOf(
     Chat(
-        fakeUser,
-        fakePeopleProfileList.take(4)
+        user = fakeUser,
+        peopleList = fakePeopleProfileList.take(5).sortedByDescending { it.status }
+    ),
+    Chat(
+        user = fakeUser,
+        peopleList = fakePeopleProfileList.takeLast(3).sortedByDescending { it.status }
+    ),
+
+    Chat(
+        user = fakeUser,
+        peopleList = listOf(fakePeopleProfileList[6]).sortedByDescending { it.status }
     )
 )
 
-
+fun Chat.name() : String =
+    this.peopleList.toChatName()

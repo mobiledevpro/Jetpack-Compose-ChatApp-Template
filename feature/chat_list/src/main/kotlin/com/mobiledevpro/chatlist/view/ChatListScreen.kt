@@ -26,12 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.mobiledevpro.chatlist.view.component.ChatCard
 import com.mobiledevpro.domain.model.fakeChatList
+import com.mobiledevpro.domain.model.name
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
 
 @Composable
-fun ChatListScreen() {
+fun ChatListScreen(
+) {
 
     Log.d("navigation", "ChatListScreen: ")
 
@@ -40,9 +42,9 @@ fun ChatListScreen() {
             .fillMaxSize()
     ) {
 
-        LazyColumn{
-            items(fakeChatList) {chat->
-               ChatCard(items = chat.peopleList, onClick = { /*TODO: open chat screen*/})
+        LazyColumn {
+            items(fakeChatList) { chat ->
+                ChatCard(chatName = chat.name(), peopleList = chat.peopleList, onClick = { /*TODO: open chat screen*/ })
             }
         }
     }

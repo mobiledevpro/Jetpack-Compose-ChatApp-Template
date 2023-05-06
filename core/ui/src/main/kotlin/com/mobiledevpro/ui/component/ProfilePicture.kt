@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.ui.component
 
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.size
@@ -44,7 +45,7 @@ import com.mobiledevpro.ui.theme.red
  */
 
 @Composable
-fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, size : ProfilePictureSize, modifier: Modifier = Modifier) {
+fun ProfilePicture(photoUri: Uri, onlineStatus: Boolean, size : ProfilePictureSize, modifier: Modifier = Modifier) {
     val pictureSizeDp = when(size) {
         ProfilePictureSize.SMALL -> 36.dp
         ProfilePictureSize.MEDIUM -> 72.dp
@@ -64,7 +65,7 @@ fun ProfilePicture(photoUrl: String, onlineStatus: Boolean, size : ProfilePictur
         Image(
             painter = rememberAsyncImagePainter(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(photoUrl)
+                    .data(photoUri)
                     .size(Size.ORIGINAL) // Set the target size to load the image at.
                     .transformations(CircleCropTransformation())
                     .build()

@@ -51,7 +51,7 @@ internal fun ProfileCard(item: PeopleProfile, onClick: () -> Unit) {
             horizontalArrangement = Arrangement.Start
         ) {
             ProfilePicture(
-                item.photoUrl,
+                item.photo,
                 item.status,
                 size = ProfilePictureSize.MEDIUM,
                 modifier = Modifier.padding(16.dp)
