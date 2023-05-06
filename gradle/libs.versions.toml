@@ -7,7 +7,7 @@ sdk-target = "33"
 sdk-compile = "33"
 
 # Plugins
-android-gradle = "8.1.0-alpha11"
+android-gradle = "8.2.0-alpha02"
 kotlin = "1.8.0"
 kotlin-coroutines = "1.6.4"
 kotlin-serialization = "1.4.1"
