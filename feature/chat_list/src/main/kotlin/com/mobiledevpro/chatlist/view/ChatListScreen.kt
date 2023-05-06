@@ -44,7 +44,7 @@ fun ChatListScreen(
 
         LazyColumn {
             items(fakeChatList) { chat ->
-                ChatCard(chatName = chat.name(), peopleList = chat.peopleList, onClick = { /*TODO: open chat screen*/ })
+                ChatCard(chatName = chat.name(), peopleList = chat.peopleList, unreadMessageCount = chat.unreadMsgCount, onClick = { /*TODO: open chat screen*/ })
             }
         }
     }

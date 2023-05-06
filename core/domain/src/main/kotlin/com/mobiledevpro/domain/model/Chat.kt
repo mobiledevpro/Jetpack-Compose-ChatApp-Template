@@ -8,7 +8,8 @@ package com.mobiledevpro.domain.model
  */
 data class Chat(
     val user: UserProfile,
-    val peopleList: List<PeopleProfile>
+    val peopleList: List<PeopleProfile>,
+    val unreadMsgCount : Int = 0
 )
 
 val fakeUser = UserProfile(
@@ -20,16 +21,19 @@ val fakeUser = UserProfile(
 val fakeChatList = arrayListOf(
     Chat(
         user = fakeUser,
-        peopleList = fakePeopleProfileList.take(5).sortedByDescending { it.status }
+        peopleList = fakePeopleProfileList.take(5).sortedByDescending { !it.status },
+        unreadMsgCount = 100
     ),
     Chat(
         user = fakeUser,
-        peopleList = fakePeopleProfileList.takeLast(3).sortedByDescending { it.status }
+        peopleList = fakePeopleProfileList.takeLast(3).sortedByDescending { !it.status },
+        unreadMsgCount = 0
     ),
 
     Chat(
         user = fakeUser,
-        peopleList = listOf(fakePeopleProfileList[6]).sortedByDescending { it.status }
+        peopleList = listOf(fakePeopleProfileList[6]),
+        unreadMsgCount = 3
     )
 )
 

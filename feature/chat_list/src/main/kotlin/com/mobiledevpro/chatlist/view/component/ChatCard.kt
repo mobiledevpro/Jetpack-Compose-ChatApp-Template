@@ -21,7 +21,10 @@ import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Badge
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,28 +47,57 @@ import com.mobiledevpro.ui.theme.AppTheme
  * Created on May 06, 2023.
  *
  */
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ChatCard(chatName : String, peopleList: List<PeopleProfile>, onClick: () -> Unit) {
+internal fun ChatCard(
+    chatName: String,
+    peopleList: List<PeopleProfile>,
+    unreadMessageCount: Int,
+    onClick: () -> Unit
+) {
 
     CardItem(
         modifier = Modifier
             .clickable { onClick.invoke() }
     ) {
 
-        Row(modifier = Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
+        Box {
+            Row(
+                modifier = Modifier
+                    .padding(horizontal = 16.dp, vertical = 24.dp)
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-            ChatPicture(
-                profileList = peopleList
-            )
+                ChatPicture(
+                    profileList = peopleList
+                )
 
-            Text(
-                text = chatName,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
+                Text(
+                    text = chatName,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp)
+                )
+
+            }
+
+            if (unreadMessageCount > 0)
+                Badge(
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(8.dp)
+                ) {
+                    Text(
+                        text = if (unreadMessageCount > 99) "99+" else unreadMessageCount.toString(),
+                        style = MaterialTheme.typography.labelSmall
+                    )
+                }
         }
+
     }
 }
 
@@ -87,16 +119,24 @@ fun ChatPicture(profileList: List<PeopleProfile>, modifier: Modifier = Modifier)
             }
         }
         if (profileList.size > VISIBLE_PROFILES_COUNT)
-            Text(text = "+${profileList.size - 3}", style = MaterialTheme.typography.bodySmall, modifier = Modifier.padding(4.dp))
+            Text(
+                text = "+${profileList.size - 3}",
+                style = MaterialTheme.typography.bodySmall,
+                modifier = Modifier.padding(4.dp)
+            )
     }
 }
 
 @Composable
 @Preview
 fun ChatCardPreview() {
-    val peopleList = fakePeopleProfileList.take(5).sortedByDescending { it.status }
+    val peopleList = fakePeopleProfileList.take(2).sortedByDescending { !it.status }
     AppTheme {
-        ChatCard(chatName = peopleList.toChatName(), peopleList = peopleList, onClick = {})
+        ChatCard(
+            chatName = peopleList.toChatName(),
+            peopleList = peopleList,
+            unreadMessageCount = 3,
+            onClick = {})
     }
 }
 

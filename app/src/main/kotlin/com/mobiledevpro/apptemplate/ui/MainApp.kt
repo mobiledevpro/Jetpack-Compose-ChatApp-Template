@@ -32,7 +32,7 @@ fun MainApp() {
     RootNavGraph(
         navController = navController,
         modifier = Modifier.safeContentPadding(),
-        startDestination = Screen.OnBoarding
+        startDestination = Screen.Home
     )
 
 }
