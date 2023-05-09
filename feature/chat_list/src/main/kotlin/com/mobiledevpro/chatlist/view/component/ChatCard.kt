@@ -17,7 +17,6 @@
  */
 package com.mobiledevpro.chatlist.view.component
 
-import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -108,7 +107,6 @@ fun ChatPicture(profileList: List<PeopleProfile>, modifier: Modifier = Modifier)
         Box(modifier = modifier) {
             profileList.take(VISIBLE_PROFILES_COUNT).forEachIndexed { index, profile ->
 
-                Log.d("ChatPicture", "ChatPicture: ${profile.name}")
                 ProfilePicture(
                     profile.photo,
                     profile.status,
