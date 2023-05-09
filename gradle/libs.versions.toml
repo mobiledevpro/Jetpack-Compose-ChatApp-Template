@@ -33,6 +33,9 @@ test-android-runner = "1.5.1"
 junit = "1.1.5"
 espresso-core = "3.5.1"
 
+# 3rd party libs
+lottie = "6.0.0"
+
 [plugins]
 
 android-application = { id = "com.android.application", version.ref = "android-gradle" }
@@ -75,6 +78,9 @@ test-android-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" 
 test-android-runner = { module = "androidx.test:runner", version.ref = "test-android-runner" }
 junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+
+#3rd party libs
+lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie"}
 
 [bundles]
 compose = [

@@ -39,6 +39,7 @@ dependencies {
 
     api(libs.bundles.lyfecycle)
     api(libs.coil)
+    api(libs.lottie)
 
     androidTestApi(platform(libs.compose.bom))
     androidTestApi(libs.bundles.test.android)
