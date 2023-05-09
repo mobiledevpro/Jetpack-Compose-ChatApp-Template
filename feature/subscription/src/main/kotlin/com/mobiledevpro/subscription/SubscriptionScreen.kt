@@ -17,10 +17,7 @@
  */
 package com.mobiledevpro.subscription
 
-import android.app.Activity
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,7 +26,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -43,7 +39,6 @@ import androidx.compose.ui.unit.dp
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SubscriptionScreen(onNavigateBack: () -> Unit) {
     val context = LocalContext.current
@@ -59,45 +54,62 @@ fun SubscriptionScreen(onNavigateBack: () -> Unit) {
                 .padding(paddingValues)
         ) {
 
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.Center
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Text(
-                    text = "Subscribe on",
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .align(Alignment.CenterHorizontally)
-                        .fillMaxWidth(),
-                    style = MaterialTheme.typography.bodyLarge
 
+                Text(
+                    text = "Be like a Pro",
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(16.dp)
                 )
 
-                SubsButton(
-                    text = "1 Month - 0.9\$",
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.Center),
+                    verticalArrangement = Arrangement.Center
                 ) {
-                    showToast("Subscribing to 1 month...")
-                    onNavigateBack()
-                }
+                    Text(
+                        text = "Subscribe on",
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .align(Alignment.CenterHorizontally)
+                            .fillMaxWidth(),
+                        style = MaterialTheme.typography.bodyLarge
 
-                SubsButton(
-                    text = "6 Months - 3.99\$",
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    showToast("Subscribing to 6 months...")
-                    onNavigateBack()
-                }
+                    )
 
-                SubsButton(
-                    text = "1 Year - 6.99\$",
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                ) {
-                    showToast("Subscribing to 1 year...")
-                    onNavigateBack()
-                }
+                    SubsButton(
+                        text = "1 Month - 0.9\$",
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    ) {
+                        showToast("Subscribing to 1 month...")
+                        onNavigateBack()
+                    }
 
+                    SubsButton(
+                        text = "6 Months - 3.99\$",
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    ) {
+                        showToast("Subscribing to 6 months...")
+                        onNavigateBack()
+                    }
+
+                    SubsButton(
+                        text = "1 Year - 6.99\$",
+                        modifier = Modifier.align(Alignment.CenterHorizontally)
+                    ) {
+                        showToast("Subscribing to 1 year...")
+                        onNavigateBack()
+                    }
+
+                }
             }
         }
     }
@@ -127,6 +139,6 @@ fun SubsButton(
 @Composable
 fun SubscriptionScreenPreview() {
     AppTheme {
-        SubscriptionScreen{}
+        SubscriptionScreen {}
     }
 }

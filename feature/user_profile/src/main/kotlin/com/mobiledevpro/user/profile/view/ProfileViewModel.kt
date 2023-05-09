@@ -18,6 +18,33 @@
 package com.mobiledevpro.user.profile.view
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.mobiledevpro.domain.model.fakeUser
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
 class ProfileViewModel : ViewModel() {
+
+    private val _uiState: MutableStateFlow<UserProfileUIState> =
+        MutableStateFlow(UserProfileUIState.Empty)
+    val uiState: StateFlow<UserProfileUIState> = _uiState.asStateFlow()
+
+    init {
+        observeUserProfile()
+    }
+
+    private fun observeUserProfile() {
+        viewModelScope.launch {
+
+            //TODO: call repository here
+
+
+            _uiState.update {
+                UserProfileUIState.Success(fakeUser)
+            }
+        }
+    }
 }

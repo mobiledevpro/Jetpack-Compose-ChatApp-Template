@@ -85,7 +85,7 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
             )
         }
 
-        val viewModel : HomeViewModel = viewModel()
+        val viewModel: HomeViewModel = viewModel()
 
         HomeScreen(
             bottomBar = bottomBar,
@@ -181,7 +181,7 @@ fun NavGraphBuilder.chatListScreen() {
         route = Screen.ChatList.route
     ) {
 
-        val viewModel : ChatListViewModel = viewModel()
+        val viewModel: ChatListViewModel = viewModel()
 
         ChatListScreen()
     }
@@ -237,6 +237,7 @@ fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
         val viewModel: ProfileViewModel = viewModel()
 
         ProfileScreen(
+            state = viewModel.uiState,
             onNavigateToSubscription = {
                 onNavigateTo(Screen.Subscription)
             }
