@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 | Dmitri Chernysh | https://mobile-dev.pro
+ * Copyright 2023 | Dmitri Chernysh | https://mobile-dev.pro
  *
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,20 +15,21 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.domain.model
+package com.mobiledevpro.user.profile.view
 
-import android.net.Uri
+import com.mobiledevpro.domain.model.UserProfile
 
 /**
- * App User Profile
+ * UI state for [com.mobiledevpro.user.profile.view.ProfileScreen]
  *
- * Created on Feb 04, 2023.
+ * Created on May 09, 2023.
  *
  */
+sealed interface UserProfileUIState {
 
-data class UserProfile(
-    val name : String,
-    val nickname: String,
-    val status: Boolean = false,
-    val photo : Uri = Uri.EMPTY
-)
+    object Empty : UserProfileUIState
+
+    class Success(val userProfile: UserProfile) : UserProfileUIState
+
+    class Fail(val throwable: Throwable) : UserProfileUIState
+}
