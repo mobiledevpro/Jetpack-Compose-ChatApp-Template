@@ -17,36 +17,112 @@
  */
 package com.mobiledevpro.chatlist.view
 
-import android.util.Log
+import android.widget.Toast
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mobiledevpro.chatlist.view.component.ChatCard
+import com.mobiledevpro.domain.model.Chat
 import com.mobiledevpro.domain.model.fakeChatList
-import com.mobiledevpro.domain.model.name
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.theme.AppTheme
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 
 @Composable
 fun ChatListScreen(
+    state: StateFlow<ChatListUIState>,
+    onClick: (Chat) -> Unit
 ) {
 
-    Log.d("navigation", "ChatListScreen: ")
+    val uiState by state.collectAsStateWithLifecycle()
+    val context = LocalContext.current
 
     ScreenBackground(
         modifier = Modifier
             .fillMaxSize()
     ) {
 
-        LazyColumn {
-            items(fakeChatList) { chat ->
-                ChatCard(chatName = chat.name(), peopleList = chat.peopleList, unreadMessageCount = chat.unreadMsgCount, onClick = { /*TODO: open chat screen*/ })
+        when (uiState) {
+            is ChatListUIState.Loading -> Loading()
+            is ChatListUIState.Empty -> NoChatFound()
+            is ChatListUIState.Success ->
+                ChatList(
+                    chatList = (uiState as ChatListUIState.Success).profileList,
+                    onClick = onClick
+                )
+
+            is ChatListUIState.Fail -> {
+                NoChatFound()
+                LaunchedEffect(Unit) {
+                    Toast.makeText(
+                        context,
+                        (uiState as ChatListUIState.Fail).throwable.localizedMessage,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }
+
         }
+
+
+    }
+}
+
+@Composable
+private fun ChatList(chatList: List<Chat>, onClick: (Chat) -> Unit) {
+
+    LazyColumn {
+        items(chatList) { chat ->
+            ChatCard(chat = chat, onClick = { onClick(chat) })
+        }
+    }
+}
+
+@Composable
+private fun NoChatFound() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "No chat found",
+            modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.Center),
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+@Composable
+private fun Loading() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "Loading...", modifier = Modifier
+                .padding(16.dp)
+                .align(Alignment.Center),
+            style = MaterialTheme.typography.bodyLarge
+        )
     }
 }
 
@@ -54,6 +130,9 @@ fun ChatListScreen(
 @Preview
 fun ChatListScreenPreview() {
     AppTheme {
-        ChatListScreen()
+        ChatListScreen(
+            state = MutableStateFlow(ChatListUIState.Success(fakeChatList)),
+            onClick = {}
+        )
     }
 }

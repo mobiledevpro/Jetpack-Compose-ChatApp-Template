@@ -32,9 +32,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mobiledevpro.domain.model.Chat
 import com.mobiledevpro.domain.model.PeopleProfile
 import com.mobiledevpro.domain.model.fakePeopleProfileList
-import com.mobiledevpro.domain.model.toChatName
+import com.mobiledevpro.domain.model.fakeUser
+import com.mobiledevpro.domain.model.name
 import com.mobiledevpro.ui.component.CardItem
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
@@ -49,9 +51,7 @@ import com.mobiledevpro.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ChatCard(
-    chatName: String,
-    peopleList: List<PeopleProfile>,
-    unreadMessageCount: Int,
+    chat: Chat,
     onClick: () -> Unit
 ) {
 
@@ -69,11 +69,11 @@ internal fun ChatCard(
             ) {
 
                 ChatPicture(
-                    profileList = peopleList
+                    profileList = chat.peopleList
                 )
 
                 Text(
-                    text = chatName,
+                    text = chat.name(),
                     style = MaterialTheme.typography.bodyMedium,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
@@ -83,7 +83,7 @@ internal fun ChatCard(
 
             }
 
-            if (unreadMessageCount > 0)
+            if (chat.unreadMsgCount > 0)
                 Badge(
                     containerColor = MaterialTheme.colorScheme.tertiary,
                     modifier = Modifier
@@ -91,7 +91,7 @@ internal fun ChatCard(
                         .padding(8.dp)
                 ) {
                     Text(
-                        text = if (unreadMessageCount > 99) "99+" else unreadMessageCount.toString(),
+                        text = if (chat.unreadMsgCount > 99) "99+" else chat.unreadMsgCount.toString(),
                         style = MaterialTheme.typography.labelSmall
                     )
                 }
@@ -129,11 +129,10 @@ fun ChatPicture(profileList: List<PeopleProfile>, modifier: Modifier = Modifier)
 @Preview
 fun ChatCardPreview() {
     val peopleList = fakePeopleProfileList.take(2).sortedByDescending { !it.status }
+    val chat = Chat(fakeUser, peopleList)
     AppTheme {
         ChatCard(
-            chatName = peopleList.toChatName(),
-            peopleList = peopleList,
-            unreadMessageCount = 3,
+            chat = chat,
             onClick = {})
     }
 }

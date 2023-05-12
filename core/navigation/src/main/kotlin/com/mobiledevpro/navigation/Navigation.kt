@@ -183,7 +183,12 @@ fun NavGraphBuilder.chatListScreen() {
 
         val viewModel: ChatListViewModel = viewModel()
 
-        ChatListScreen()
+        ChatListScreen(
+            state = viewModel.uiState,
+            onClick = { chat ->
+                //TODO: open chat screen
+            }
+        )
     }
 }
 
