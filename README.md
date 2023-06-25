@@ -6,10 +6,10 @@
 
 
 
-[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20Beta%202-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
+[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1%20RC%201-orange.svg?style=for-the-badge)](https://developer.android.com/studio/preview)
 
 [![Kotlin Version](https://img.shields.io/badge/kotlin-1.8.0-blue.svg?style=for-the-badge)](http://kotlinlang.org/)
-[![Gradle](https://img.shields.io/badge/gradle-8.1.0-blue.svg?style=for-the-badge)](https://lv.binarybabel.org/catalog/gradle/latest)
+[![Gradle](https://img.shields.io/badge/gradle-8.1.0-blue.svg?style=for-the-badge)](https://developer.android.com/build/releases/gradle-plugin)
 [![API](https://img.shields.io/badge/support%20min%20API-24%20[Android%207.0]-blue.svg?style=for-the-badge)](https://github.com/AndroidSDKSources/android-sdk-sources-list)
 [![Target SDK](https://img.shields.io/badge/Target%20API%20Level-33%20[Android%2013]-blue.svg?style=for-the-badge)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=for-the-badge)](http://www.apache.org/licenses/LICENSE-2.0)
@@ -80,12 +80,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Thanks for support !
+## Thanks for your support !
 **Stargazers**
 
 [![Stargazers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](https://reporoster.com/stars/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/stargazers)
-
-**Forkers**
-
-[![Forkers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](https://reporoster.com/forks/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/network/members)
-
