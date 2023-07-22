@@ -15,22 +15,21 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.view
+package com.mobiledevpro.user.profile.view.vm
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobiledevpro.domain.model.fakeUser
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import com.mobiledevpro.ui.vm.BaseViewModel
+import com.mobiledevpro.user.profile.domain.interactor.UserProfileInteractor
+import com.mobiledevpro.user.profile.view.state.UserProfileUIState
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class ProfileViewModel : ViewModel() {
+class ProfileViewModel(
+    private val interactor: UserProfileInteractor
+) : BaseViewModel<UserProfileUIState>() {
 
-    private val _uiState: MutableStateFlow<UserProfileUIState> =
-        MutableStateFlow(UserProfileUIState.Empty)
-    val uiState: StateFlow<UserProfileUIState> = _uiState.asStateFlow()
+    override fun initUIState(): UserProfileUIState = UserProfileUIState.Empty
 
     init {
         observeUserProfile()

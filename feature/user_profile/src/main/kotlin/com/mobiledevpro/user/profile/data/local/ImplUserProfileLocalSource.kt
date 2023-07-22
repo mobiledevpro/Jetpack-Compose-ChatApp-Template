@@ -15,21 +15,16 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.view
-
-import com.mobiledevpro.domain.model.UserProfile
+package com.mobiledevpro.user.profile.data.local
 
 /**
- * UI state for [com.mobiledevpro.user.profile.view.ProfileScreen]
+ * For User Profile screen
  *
- * Created on May 09, 2023.
+ * Created on Jul 22, 2023.
  *
  */
-sealed interface UserProfileUIState {
+class ImplUserProfileLocalSource(
 
-    object Empty : UserProfileUIState
+) : UserProfileLocalSource {
 
-    class Success(val userProfile: UserProfile) : UserProfileUIState
-
-    class Fail(val throwable: Throwable) : UserProfileUIState
 }

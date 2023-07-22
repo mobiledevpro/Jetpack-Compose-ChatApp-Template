@@ -23,6 +23,8 @@ compose-bom = "2023.01.00"
 compose-compiler = "1.4.0"
 coil = "2.2.2"
 material3 = "1.1.0-alpha08"
+koin = "3.4.2"
+koin-compose = "3.4.5"
 
 # test libraries
 test-junit = "4.13.2"
@@ -45,7 +47,6 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
 [libraries]
-
 
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "android-core-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
@@ -80,7 +81,13 @@ junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
 
 #3rd party libs
-lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie"}
+lottie = { module = "com.airbnb.android:lottie-compose", version.ref = "lottie" }
+
+# Koin for dependency injection
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin-compose" }
+koin-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation", version.ref = "koin-compose" }
 
 [bundles]
 compose = [
@@ -90,7 +97,7 @@ compose = [
     "compose-material3",
     "activity-compose",
     "compose-ui-util"
-   # "compose-constraintlayout"
+    # "compose-constraintlayout"
 ]
 
 compose-debug = [
@@ -114,4 +121,11 @@ test-common = [
 test-android = [
     "test-android-compose",
     "test-android-runner"
+]
+
+koin = [
+    "koin-core",
+    "koin-android",
+    "koin-compose",
+    "koin-compose-navigation"
 ]

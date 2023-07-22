@@ -49,8 +49,11 @@ import com.mobiledevpro.people.view.PeopleScreen
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.peoplelist.view.PeopleListViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
+import com.mobiledevpro.user.profile.di.featureUserProfileModule
+import com.mobiledevpro.user.profile.di.koinScope
 import com.mobiledevpro.user.profile.view.ProfileScreen
-import com.mobiledevpro.user.profile.view.ProfileViewModel
+import com.mobiledevpro.user.profile.view.vm.ProfileViewModel
+import org.koin.core.context.loadKoinModules
 
 
 fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
@@ -239,7 +242,8 @@ fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.Profile.route
     ) {
 
-        val viewModel: ProfileViewModel = viewModel()
+        loadKoinModules(featureUserProfileModule)
+        val viewModel: ProfileViewModel by koinScope<ProfileViewModel>().inject()
 
         ProfileScreen(
             state = viewModel.uiState,
