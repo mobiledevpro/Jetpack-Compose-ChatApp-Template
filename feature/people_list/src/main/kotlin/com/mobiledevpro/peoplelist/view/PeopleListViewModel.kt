@@ -43,13 +43,11 @@ class PeopleListViewModel : ViewModel() {
 
             _uiState.update { PeopleProfileUIState.Loading }
 
-            delay(1000)
+             delay(2000)
 
-            /*
-           _uiState.update { PeopleProfileUIState.Empty }
-            _uiState.update { PeopleProfileUIState.Fail(Throwable("Test error")) }
+            // _uiState.update { PeopleProfileUIState.Empty }
+            //   _uiState.update { PeopleProfileUIState.Fail(Throwable("Test error")) }
 
-             */
             _uiState.update {
                 PeopleProfileUIState.Success(fakePeopleProfileList)
             }

@@ -30,7 +30,7 @@ data class PeopleProfile(
     val id : Int,
     val name : String,
     val status: Boolean,
-    val photo : Uri
+    val photo : Uri? = null
 )
 
 

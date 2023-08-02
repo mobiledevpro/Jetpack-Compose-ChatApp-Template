@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.peoplelist.view.component
 
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -51,7 +52,7 @@ internal fun ProfileCard(item: PeopleProfile, onClick: () -> Unit) {
             horizontalArrangement = Arrangement.Start
         ) {
             ProfilePicture(
-                item.photo,
+                item.photo ?: Uri.EMPTY,
                 item.status,
                 size = ProfilePictureSize.MEDIUM,
                 modifier = Modifier.padding(16.dp)

@@ -29,6 +29,7 @@ koin-compose = "3.4.5"
 # test libraries
 test-junit = "4.13.2"
 test-mockk = "1.13.3"
+test-coroutines-flow = "1.0.0"
 
 # android test libraries
 test-android-runner = "1.5.1"
@@ -73,6 +74,7 @@ test-junit = { module = "junit:junit", version.ref = "test-junit" }
 test-kotlin = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
+test-coroutines-flow = { module = "app.cash.turbine:turbine", version.ref = "test-coroutines-flow"}
 
 # Android test libraries
 test-android-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" }
@@ -115,7 +117,8 @@ test-common = [
     "test-junit",
     "test-kotlin",
     "test-kotlin-coroutines",
-    "test-mockk"
+    "test-mockk",
+    "test-coroutines-flow"
 ]
 
 test-android = [
