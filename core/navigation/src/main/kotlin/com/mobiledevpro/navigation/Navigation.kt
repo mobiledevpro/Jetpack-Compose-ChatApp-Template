@@ -18,11 +18,9 @@
 package com.mobiledevpro.navigation
 
 import android.util.Log
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -83,7 +81,6 @@ fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
             Log.d("navigation", "homeNavGraph:nestedNavGraph")
             HomeNavGraph(
                 navController = navController,
-                modifier = Modifier.safeContentPadding(),
                 onNavigateToRoot = onNavigateToRoot
             )
         }
@@ -109,8 +106,7 @@ fun NavGraphBuilder.onBoardingNavGraph(onNavigateToRoot: (Screen) -> Unit) {
 
         val nestedNavGraph: @Composable () -> Unit = {
             OnBoardingNavGraph(
-                navController = navController,
-                modifier = Modifier.safeContentPadding()
+                navController = navController
             )
         }
 
@@ -138,8 +134,7 @@ fun NavGraphBuilder.peopleNavGraph() {
 
         val nestedNavGraph: @Composable () -> Unit = {
             PeopleNavGraph(
-                navController = navController,
-                modifier = Modifier.safeContentPadding()
+                navController = navController
             )
         }
 

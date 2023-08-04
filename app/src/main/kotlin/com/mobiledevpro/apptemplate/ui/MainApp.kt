@@ -17,9 +17,7 @@
  */
 package com.mobiledevpro.apptemplate.ui
 
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.mobiledevpro.navigation.Screen
 import com.mobiledevpro.navigation.graph.RootNavGraph
@@ -31,7 +29,6 @@ fun MainApp() {
 
     RootNavGraph(
         navController = navController,
-        modifier = Modifier.safeContentPadding(),
         startDestination = Screen.Home
     )
 

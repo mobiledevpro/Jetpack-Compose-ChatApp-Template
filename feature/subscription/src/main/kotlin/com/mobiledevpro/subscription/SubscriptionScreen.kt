@@ -21,10 +21,12 @@ import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -47,7 +49,9 @@ fun SubscriptionScreen(onNavigateBack: () -> Unit) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
-    Scaffold { paddingValues ->
+    Scaffold(
+        contentWindowInsets = WindowInsets.systemBars
+    ) { paddingValues ->
         ScreenBackground(
             modifier = Modifier
                 .fillMaxSize()
@@ -111,11 +115,87 @@ fun SubscriptionScreen(onNavigateBack: () -> Unit) {
 
                 }
             }
+
+            /*
+
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .verticalScroll(rememberScrollState())
+                    .height(IntrinsicSize.Max)
+            ) {
+
+                Header()
+
+                //If you remove Items, Footer will be centered at the screen as you could see on attached screenshots
+                Item(text = "Item 1")
+                Item(text = "Item 2")
+                Item(text = "Item 3")
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        //.background(color = Color.Blue)
+                ) {
+                    Footer(modifier = Modifier.align(Alignment.Center))
+                }
+            }
+
+             */
+
         }
     }
 
 
 }
+/*
+@Composable
+fun Header() {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .background(color = Color.Yellow)
+    )
+}
+
+@Composable
+fun Item(text: String) {
+    Box(
+        modifier = Modifier
+            .padding(vertical = 8.dp)
+            .fillMaxWidth()
+            .height(50.dp)
+            .background(color = Color.White)
+
+    ) {
+        Text(
+            text = text,
+            modifier = Modifier.align(Alignment.Center),
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+@Composable
+fun Footer(modifier: Modifier) {
+    Box(
+        modifier = modifier
+            .padding(vertical = 8.dp)
+            .fillMaxWidth()
+            .height(100.dp)
+            .background(color = Color.Gray)
+
+    ) {
+        Text(
+            text = "Optional block",
+            modifier = Modifier.align(Alignment.Center),
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
+
+ */
 
 @Composable
 fun SubsButton(
