@@ -30,7 +30,7 @@ android {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
-    // It solve the issue with testing Coroutines Flow
+    // It solve the issue with testing Coroutines Flow / ViewModel state
     // and getting the error "app.cash.turbine.TurbineAssertionError: No value produced in 3s"
     testOptions {
         unitTests.isReturnDefaultValues = true

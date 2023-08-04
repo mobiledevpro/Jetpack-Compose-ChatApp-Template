@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.people.profile.view
 
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -102,7 +103,7 @@ fun PeopleProfileScreen(
             }
 
             ProfilePicture(
-                photoUri = profile.photo,
+                photoUri = profile.photo ?: Uri.EMPTY,
                 onlineStatus = profile.status,
                 size = ProfilePictureSize.LARGE,
                 modifier = Modifier

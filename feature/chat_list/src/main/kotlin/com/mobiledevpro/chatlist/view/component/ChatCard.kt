@@ -17,6 +17,7 @@
  */
 package com.mobiledevpro.chatlist.view.component
 
+import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -108,7 +109,7 @@ fun ChatPicture(profileList: List<PeopleProfile>, modifier: Modifier = Modifier)
             profileList.take(VISIBLE_PROFILES_COUNT).forEachIndexed { index, profile ->
 
                 ProfilePicture(
-                    profile.photo,
+                    profile.photo ?: Uri.EMPTY,
                     profile.status,
                     size = ProfilePictureSize.SMALL,
                     modifier = Modifier.padding(start = 16.dp * index)
