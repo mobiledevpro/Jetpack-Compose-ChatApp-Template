@@ -3,41 +3,41 @@
 app-version-code = "1"
 app-version-name = "1.0.0"
 sdk-min = "24"
-sdk-target = "33"
-sdk-compile = "33"
+sdk-target = "34"
+sdk-compile = "34"
 
 # Plugins
-android-gradle = "8.1.0-rc01"
-kotlin = "1.8.0"
-kotlin-coroutines = "1.6.4"
+android-gradle = "8.1.0"
+kotlin = "1.9.0"
+kotlin-coroutines = "1.7.3"
 kotlin-serialization = "1.4.1"
 
 # Libs
-android-core-ktx = "1.9.0"
-activity = "1.6.1"
-navigation = "2.5.3"
+android-core-ktx = "1.10.1"
+activity = "1.7.2"
+navigation = "2.6.0"
 retrofit = "2.9.0"
 room = "2.4.3"
-lifecycle = "2.6.0"
+lifecycle = "2.6.1"
 compose-bom = "2023.06.01"
-compose-compiler = "1.4.0"
-coil = "2.2.2"
+compose-compiler = "1.5.1"
+coil = "2.4.0"
 material3 = "1.2.0-alpha04"
-koin = "3.4.2"
-koin-compose = "3.4.5"
+koin = "3.4.3"
+koin-compose = "3.4.6"
 
 # test libraries
 test-junit = "4.13.2"
-test-mockk = "1.13.3"
+test-mockk = "1.13.5"
 test-coroutines-flow = "1.0.0"
 
 # android test libraries
-test-android-runner = "1.5.1"
+test-android-runner = "1.5.2"
 junit = "1.1.5"
 espresso-core = "3.5.1"
 
 # 3rd party libs
-lottie = "6.0.0"
+lottie = "6.1.0"
 
 [plugins]
 
