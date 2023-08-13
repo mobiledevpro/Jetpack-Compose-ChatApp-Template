@@ -52,12 +52,13 @@ import com.mobiledevpro.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun ChatCard(
+    modifier: Modifier = Modifier,
     chat: Chat,
     onClick: () -> Unit
 ) {
 
     CardItem(
-        modifier = Modifier
+        modifier = modifier
             .clickable { onClick.invoke() }
     ) {
 

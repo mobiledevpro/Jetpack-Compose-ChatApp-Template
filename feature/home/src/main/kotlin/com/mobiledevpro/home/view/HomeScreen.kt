@@ -20,7 +20,6 @@ package com.mobiledevpro.home.view
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -34,7 +33,7 @@ fun HomeScreen(
 
     Scaffold(
         bottomBar = bottomBar,
-        contentWindowInsets = WindowInsets.systemBars
+        contentWindowInsets = WindowInsets(left = 0, top = 0, right = 0, bottom = 0)
     ) { paddingValues ->
         ScreenBackground(
             modifier = Modifier

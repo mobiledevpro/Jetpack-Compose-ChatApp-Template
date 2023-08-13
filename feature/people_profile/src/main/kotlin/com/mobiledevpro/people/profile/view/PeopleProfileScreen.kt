@@ -29,6 +29,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -38,12 +39,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -73,11 +74,12 @@ fun PeopleProfileScreen(
     onOpenChatWith: (profile: PeopleProfile) -> Unit
 ) {
 
-    val backgroundBoxTopOffset = remember { mutableStateOf(0) }
+    val backgroundBoxTopOffset = remember { mutableIntStateOf(0) }
 
     ScreenBackground(
         modifier = Modifier
             .fillMaxSize()
+            .statusBarsPadding()
     ) {
 
         //Background with rounded top-corners
@@ -110,7 +112,7 @@ fun PeopleProfileScreen(
                     .padding(paddingValues = PaddingValues(16.dp, 16.dp, 16.dp, 16.dp))
                     .align(Alignment.CenterHorizontally)
                     .onGloballyPositioned {
-                        val rect = it.boundsInRoot()
+                        val rect = it.boundsInParent()
                         backgroundBoxTopOffset.value =
                             rect.topCenter.y.toInt() + (rect.bottomCenter.y - rect.topCenter.y).toInt() / 2
                     }

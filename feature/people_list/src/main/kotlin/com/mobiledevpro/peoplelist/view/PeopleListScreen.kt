@@ -19,10 +19,11 @@ package com.mobiledevpro.peoplelist.view
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,11 +33,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.mobiledevpro.domain.model.PeopleProfile
 import com.mobiledevpro.peoplelist.view.component.ProfileCard
 import com.mobiledevpro.ui.component.ScreenBackground
+import com.mobiledevpro.ui.ext.dp
+import com.mobiledevpro.ui.ext.statusBarHeight
 import com.mobiledevpro.ui.theme.AppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -116,9 +120,26 @@ private fun Loading() {
 
 @Composable
 private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId: Int) -> Unit) {
+
+    //Cause content is drawn edge-to-edge, let's set the top-padding for the first element in the list
+    val statusBarHeight: Dp = WindowInsets.statusBarHeight().dp()
+
     LazyColumn {
-        items(list) {profile ->
-            ProfileCard(item = profile, onClick = { onProfileClick(profile.id) })
+        itemsIndexed(
+            items = list,
+            key = { _, item -> item.listKey() }
+        ) { index, profile ->
+            ProfileCard(
+                modifier = Modifier.then(
+                    if (index == 0)
+                        Modifier.padding(top = statusBarHeight)
+                    else
+                        Modifier
+                ),
+
+
+                item = profile,
+                onClick = { onProfileClick(profile.id) })
         }
     }
 }

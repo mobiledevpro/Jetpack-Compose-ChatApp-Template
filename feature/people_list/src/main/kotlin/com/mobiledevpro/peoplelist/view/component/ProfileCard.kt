@@ -40,9 +40,9 @@ import com.mobiledevpro.ui.component.ProfilePictureSize
  *
  */
 @Composable
-internal fun ProfileCard(item: PeopleProfile, onClick: () -> Unit) {
+internal fun ProfileCard(modifier: Modifier = Modifier, item: PeopleProfile, onClick: () -> Unit) {
     CardItem(
-        modifier = Modifier
+        modifier = modifier
             .clickable { onClick.invoke() }
     ) {
 

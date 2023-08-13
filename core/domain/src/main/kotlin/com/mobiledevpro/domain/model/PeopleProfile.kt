@@ -27,11 +27,13 @@ import android.net.Uri
  */
 
 data class PeopleProfile(
-    val id : Int,
-    val name : String,
+    val id: Int,
+    val name: String,
     val status: Boolean,
-    val photo : Uri? = null
-)
+    val photo: Uri? = null
+) {
+    fun listKey(): String = "${id}_${name.replace("\\s+".toRegex(), "")}"
+}
 
 
 val fakePeopleProfileList = arrayListOf(
@@ -108,7 +110,7 @@ val fakePeopleProfileList = arrayListOf(
     )
 )
 
-fun List<PeopleProfile>.toChatName() : String =
+fun List<PeopleProfile>.toChatName(): String =
     mapTo(ArrayList<String>()) { profile -> profile.name }.let { names ->
         val stringBuilder = StringBuilder()
         names.onEachIndexed { index, s ->
