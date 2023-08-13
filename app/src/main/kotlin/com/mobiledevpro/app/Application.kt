@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.apptemplate
+package com.mobiledevpro.app
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

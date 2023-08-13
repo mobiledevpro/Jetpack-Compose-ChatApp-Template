@@ -11,7 +11,7 @@ android {
 
 
     defaultConfig {
-        applicationId = "com.mobiledevpro.apptemplate.compose"
+        applicationId = "com.mobiledevpro"
         minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = libs.versions.app.version.code.get().toInt()
@@ -25,12 +25,17 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("debug") {
+            applicationIdSuffix = ".apptemplate.compose"
+            isDebuggable = true
+        }
+
+        getByName("release") {
+            applicationIdSuffix = ".closetalk"
+            isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 

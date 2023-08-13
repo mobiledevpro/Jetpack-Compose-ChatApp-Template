@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.apptemplate.ui
+package com.mobiledevpro.app.ui
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
