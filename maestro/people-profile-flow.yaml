@@ -1,23 +1,23 @@
 appId: com.mobiledevpro.apptemplate.compose
 ---
 - launchApp:
-      appId: "com.mobiledevpro.apptemplate.compose"
-      clearState: true
+        appId: "com.mobiledevpro.apptemplate.compose"
+        clearState: true
 - waitForAnimationToEnd:
-      timeout: 1500
+        timeout: 1500
+#- extendedWaitUntil:
+#      visible: "Next"
+#      timeout: 1500
+#- tapOn: "Next"
+#- tapOn: "Next"
+#- tapOn: "Next"
 - extendedWaitUntil:
-      visible: "Next"
-      timeout: 1500
-- tapOn: "Next"
-- tapOn: "Next"
-- tapOn: "Next"
-- extendedWaitUntil:
-      visible: "People"
-      timeout: 5000
+        visible: "People"
+        timeout: 5000
 - tapOn: "People"
 - extendedWaitUntil:
-      visible: "Manilla Andrews"
-      timeout: 5000
+        visible: "Manilla Andrews"
+        timeout: 5000
 - tapOn: "Manilla Andrews"
 - "waitForAnimationToEnd"
 - "back"
