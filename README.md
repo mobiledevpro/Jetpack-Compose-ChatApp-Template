@@ -18,6 +18,10 @@
 
 ![closetalk_github_social_preview](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/343f1ab5-54e4-41c2-a554-af0526aee382)
 
+[👇 Watch on Youtube 👇](https://youtube.com/@mobiledevpro?sub_confirmation=1)
+
+[<img src="https://img.youtube.com/vi/q8PQnNo11Bk/hqdefault.jpg"/>](https://www.youtube.com/embed/q8PQnNo11Bk)
+
 ### Tech. stack
 
 * Kotlin
