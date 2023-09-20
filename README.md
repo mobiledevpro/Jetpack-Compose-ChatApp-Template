@@ -20,7 +20,8 @@
 
 [👇 Watch on Youtube 👇](https://youtube.com/@mobiledevpro?sub_confirmation=1)
 
-[<img src="https://img.youtube.com/vi/q8PQnNo11Bk/hqdefault.jpg"/>](https://www.youtube.com/embed/q8PQnNo11Bk)
+[<img src="https://img.youtube.com/vi/q8PQnNo11Bk/hqdefault.jpg"/>](https://youtu.be/q8PQnNo11Bk?si=OCiA80M_zOvCUx6W)
+
 
 ### Tech. stack
 
