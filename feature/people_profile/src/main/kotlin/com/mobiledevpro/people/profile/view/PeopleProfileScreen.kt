@@ -192,6 +192,18 @@ fun ProfileSocialIcons(modifier: Modifier) {
                 modifier = Modifier.padding(4.dp)
             )
         }
+
+        IconButton(
+            onClick = {
+
+            }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_twitter_white_48dp),
+                contentDescription = "",
+                modifier = Modifier.padding(4.dp)
+            )
+        }
     }
 }
 
