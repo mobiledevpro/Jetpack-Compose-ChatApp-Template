@@ -2,15 +2,13 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=flat-square)
 
-[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.9.0-blue.svg?style=flat-square)](http://kotlinlang.org/)
-[![Compose Bom](https://img.shields.io/badge/Compose%20Bom-2023.08.00-blue.svg?style=flat-square)]([http://kotlinlang.org/](https://developer.android.com/jetpack/compose/bom/bom-mapping))
-[![Gradle](https://img.shields.io/badge/Gradle-8.1.0-blue.svg?style=flat-square)](https://developer.android.com/build/releases/gradle-plugin)
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.9.10-blue.svg?style=flat-square)](http://kotlinlang.org/)
+[![Compose Bom](https://img.shields.io/badge/Compose%20Bom-2023.10.00-blue.svg?style=flat-square)]([http://kotlinlang.org/](https://developer.android.com/jetpack/compose/bom/bom-mapping))
+[![Gradle](https://img.shields.io/badge/Gradle-8.2.0-blue.svg?style=flat-square)](https://developer.android.com/build/releases/gradle-plugin)
 [![API](https://img.shields.io/badge/Min%20SDK-24%20[Android%207.0]-blue.svg?style=flat-square)](https://github.com/AndroidSDKSources/android-sdk-sources-list)
 [![Target SDK](https://img.shields.io/badge/Target%20SDK-34%20[Android%2014]-blue.svg?style=flat-square)](https://developer.android.com/about/versions/13)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2022.3.1-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
-
-
+[![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2023.1.1-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
 
 ![closetalk_github_social_preview](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/343f1ab5-54e4-41c2-a554-af0526aee382)
 
