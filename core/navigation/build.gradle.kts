@@ -41,6 +41,9 @@ dependencies {
 
     implementation(libs.bundles.koin)
 
+    implementation(project(":core:ui"))
+    implementation(project(":core:domain"))
+
     implementation(project(":feature:home"))
     implementation(project(":feature:onboarding"))
     implementation(project(":feature:subscription"))

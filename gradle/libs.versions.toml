@@ -57,6 +57,9 @@ lyfecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-ru
 navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "android-gradle" }
+gradle-api = { module = "com.android.tools.build:gradle-api", version.ref = "android-gradle" }
 
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
