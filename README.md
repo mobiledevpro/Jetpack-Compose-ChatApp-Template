@@ -86,4 +86,8 @@ limitations under the License.
 ## Thanks for your support!
 **Stargazers**
 
-[![Stargazers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](https://reporoster.com/stars/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/stargazers)
+[![Stargazers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](http://reporoster.com/stars/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/stargazers)
+
+**Forkers**
+
+[![Forkers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](http://reporoster.com/forks/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/network/members)
