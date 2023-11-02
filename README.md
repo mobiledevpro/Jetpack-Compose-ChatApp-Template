@@ -1,6 +1,7 @@
 # Android Chat App entirely built with Jetpack Compose
 
-![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=flat-square)
+[![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-compose-chatapp-template/badge)](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-compose-chatapp-template)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-Compose-ChatApp-Template&metric=alert_status)](https://sonarcloud.io/dashboard?id=mobiledevpro_Jetpack-Compose-ChatApp-Template)
 
 [![Kotlin Version](https://img.shields.io/badge/Kotlin-1.9.10-blue.svg?style=flat-square)](http://kotlinlang.org/)
 [![Compose Bom](https://img.shields.io/badge/Compose%20Bom-2023.10.00-blue.svg?style=flat-square)]([http://kotlinlang.org/](https://developer.android.com/jetpack/compose/bom/bom-mapping))
@@ -10,6 +11,8 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Android Studio](https://img.shields.io/badge/Android%20Studio%20Giraffe-2023.1.1-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
 
+![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=flat-square)
+
 ![closetalk_github_social_preview](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/343f1ab5-54e4-41c2-a554-af0526aee382)
 
 ##
@@ -18,7 +21,7 @@
 
 [<img src="https://img.youtube.com/vi/q8PQnNo11Bk/hqdefault.jpg"/>](https://youtu.be/q8PQnNo11Bk?si=OCiA80M_zOvCUx6W)
 
-[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Playlist+on+youtube)]([https://www.youtube.com/@mobiledevpro](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4))
+[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Playlist+on+youtube)](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4)
 
 
 ##
