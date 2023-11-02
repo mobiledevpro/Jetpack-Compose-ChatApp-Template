@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.chatlist.view.ChatListViewModel
+import com.mobiledevpro.di.koinScope
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.home.view.HomeViewModel
 import com.mobiledevpro.navigation.ext.navigateTo
@@ -48,7 +49,6 @@ import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.peoplelist.view.PeopleListViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
 import com.mobiledevpro.user.profile.di.featureUserProfileModule
-import com.mobiledevpro.user.profile.di.koinScope
 import com.mobiledevpro.user.profile.view.ProfileScreen
 import com.mobiledevpro.user.profile.view.vm.ProfileViewModel
 import org.koin.core.context.loadKoinModules

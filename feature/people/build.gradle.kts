@@ -3,6 +3,6 @@ plugins {
 }
 
 dependencies {
-    api(project(":feature:people_list"))
-    api(project(":feature:people_profile"))
+    api(projects.feature.peopleList.dependencyProject)
+    api(projects.feature.peopleProfile.dependencyProject)
 }

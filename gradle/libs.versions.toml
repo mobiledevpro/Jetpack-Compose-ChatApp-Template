@@ -77,7 +77,7 @@ test-junit = { module = "junit:junit", version.ref = "test-junit" }
 test-kotlin = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
 test-mockk = { module = "io.mockk:mockk", version.ref = "test-mockk" }
-test-coroutines-flow = { module = "app.cash.turbine:turbine", version.ref = "test-coroutines-flow"}
+test-coroutines-flow = { module = "app.cash.turbine:turbine", version.ref = "test-coroutines-flow" }
 
 # Android test libraries
 test-android-compose = { group = "androidx.compose.ui", name = "ui-test-junit4" }
@@ -102,7 +102,6 @@ compose = [
     "compose-material3",
     "activity-compose",
     "compose-ui-util"
-    # "compose-constraintlayout"
 ]
 
 compose-debug = [

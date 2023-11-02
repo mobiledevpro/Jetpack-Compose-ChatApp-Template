@@ -17,11 +17,6 @@
  */
 package com.mobiledevpro.user.profile.di
 
-import androidx.compose.runtime.Composable
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelStoreOwner
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import com.mobiledevpro.user.profile.data.local.ImplUserProfileLocalSource
 import com.mobiledevpro.user.profile.data.local.UserProfileLocalSource
 import com.mobiledevpro.user.profile.data.repository.ImplUserProfileRepository
@@ -29,18 +24,8 @@ import com.mobiledevpro.user.profile.data.repository.UserProfileRepository
 import com.mobiledevpro.user.profile.domain.interactor.ImplUserProfileInteractor
 import com.mobiledevpro.user.profile.domain.interactor.UserProfileInteractor
 import com.mobiledevpro.user.profile.view.vm.ProfileViewModel
-import org.koin.androidx.compose.defaultExtras
 import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.androidx.viewmodel.resolveViewModel
-import org.koin.compose.LocalKoinScope
-import org.koin.core.annotation.KoinInternalApi
-import org.koin.core.parameter.ParametersDefinition
-import org.koin.core.qualifier.Qualifier
-import org.koin.core.qualifier.TypeQualifier
-import org.koin.core.scope.Scope
 import org.koin.dsl.module
-import org.koin.ext.getFullName
-import org.koin.java.KoinJavaComponent
 
 /**
  * User Profile screen module
@@ -72,32 +57,4 @@ val featureUserProfileModule = module {
             )
         }
     }
-}
-
-
-inline fun <reified T : Any> koinScope(): Scope {
-
-    val scopeId = T::class.getFullName() + "@" + T::class.hashCode()
-    val qualifier = TypeQualifier(T::class)
-
-    return KoinJavaComponent.getKoin().getOrCreateScope(scopeId, qualifier)
-}
-
-
-
-@OptIn(KoinInternalApi::class)
-@Composable
-inline fun <reified T : ViewModel> koinViewModel(
-    qualifier: Qualifier? = null,
-    viewModelStoreOwner: ViewModelStoreOwner = checkNotNull(LocalViewModelStoreOwner.current) {
-        "No ViewModelStoreOwner was provided via LocalViewModelStoreOwner"
-    },
-    key: String? = null,
-    extras: CreationExtras = defaultExtras(viewModelStoreOwner),
-    scope: Scope = LocalKoinScope.current,
-    noinline parameters: ParametersDefinition? = null,
-): T {
-    return resolveViewModel(
-        T::class, viewModelStoreOwner.viewModelStore, key, extras, qualifier, scope, parameters
-    )
 }

@@ -12,15 +12,14 @@ dependencies {
 
     api(libs.navigation)
 
-    implementation(libs.bundles.koin)
+    api(projects.core.ui.dependencyProject)
+    api(projects.core.di.dependencyProject)
+    implementation(projects.core.domain.dependencyProject)
 
-    implementation(project(":core:ui"))
-    implementation(project(":core:domain"))
-
-    implementation(project(":feature:home"))
-    implementation(project(":feature:onboarding"))
-    implementation(project(":feature:subscription"))
-    implementation(project(":feature:chat_list"))
-    implementation(project(":feature:people"))
-    implementation(project(":feature:user_profile"))
+    implementation(projects.feature.home.dependencyProject)
+    implementation(projects.feature.onboarding.dependencyProject)
+    implementation(projects.feature.subscription.dependencyProject)
+    implementation(projects.feature.chatList.dependencyProject)
+    implementation(projects.feature.people.dependencyProject)
+    implementation(projects.feature.userProfile.dependencyProject)
 }
