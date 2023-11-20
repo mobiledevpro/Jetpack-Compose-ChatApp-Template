@@ -15,13 +15,7 @@
 
 ![closetalk_github_social_preview](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/343f1ab5-54e4-41c2-a554-af0526aee382)
 
-##
-
-👇 Tap to watch
-
-[<img src="https://img.youtube.com/vi/q8PQnNo11Bk/hqdefault.jpg"/>](https://youtu.be/q8PQnNo11Bk?si=OCiA80M_zOvCUx6W)
-
-[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Playlist+on+youtube)](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4)
+[![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Watch+on)](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4)
 
 
 ##
@@ -51,7 +45,7 @@
 ![modularization](doc/modularization.png)
 
 ##
-### Created by:
+## Author:
 
 <a href="https://github.com/dmitriy-chernysh" target="_blank">
   <img src="https://s.gravatar.com/avatar/72c649d298a8f0f088fd0850e19b9147?s=400" width="70" align="left">
@@ -59,20 +53,14 @@
 
 **Dmitri Chernysh**
 
-> ⚡️ I`m a Software Engineer from Ukraine with over 10 years of experience in software development and a Top-Rated freelance Developer on Upwork since 2016.
-> 
-> ⚡️ Since 2015 I've been dealing mostly with Android Development and building modern [native] apps for devices running on Android OS from version 6 <sup>Marshmallow</sup> to 13 <sup>Tiramisu</sup>. It covers about ~96.2% of all Android devices nowadays.
->
-   
-[![Instagram](https://img.shields.io/badge/-instagram-E4405F?logo=instagram&message=Behind+the+scenes+in+Storiesn&style=for-the-badge&logoColor=white)](https://www.instagram.com/mobiledevpro/)
 [![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge)](https://www.youtube.com/@mobiledevpro?sub_confirmation=1)
+[![Instagram](https://img.shields.io/badge/-instagram-E4405F?logo=instagram&message=Behind+the+scenes+in+Storiesn&style=for-the-badge&logoColor=white)](https://www.instagram.com/mobiledevpro/)
 [![Twitter](https://img.shields.io/badge/-twitter-1DA1F2?logo=twitter&style=for-the-badge&logoColor=white)](https://twitter.com/mobiledev_pro)
 [![Linkedin](https://img.shields.io/badge/-linkedin-0A66C2?logo=linkedin&style=for-the-badge&logoColor=white)](https://www.linkedin.com/in/dmitriychernysh/)
-[![Upwork](https://img.shields.io/badge/-upwork-brightgreen?logo=upwork&message=Upwork&style=for-the-badge)](https://www.upwork.com/freelancers/~01fb21586ed544f07b?s=996364627857502209)
 
 ## License:
 
-Copyright 2023 Dmitriy Chernysh
+Copyright 2023 Dmitri Chernysh
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -86,7 +74,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-## Thanks for your support!
+## Thanks for the support
 **Stargazers**
 
 [![Stargazers repo roster for @mobiledevpro/Jetpack-Compose-ChatApp-Template](http://reporoster.com/stars/dark/mobiledevpro/Jetpack-Compose-ChatApp-Template)](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/stargazers)
