@@ -22,6 +22,7 @@ include(":app")
 include(":core:ui")
 include(":core:navigation")
 include(":core:domain")
+include(":core:coroutines")
 
 include(":feature:home")
 include(":feature:onboarding")
