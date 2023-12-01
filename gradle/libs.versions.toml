@@ -7,24 +7,25 @@ sdk-target = "34"
 sdk-compile = "34"
 
 # Plugins
-android-gradle = "8.1.2"
+android-gradle = "8.1.4"
 kotlin = "1.9.10"
 kotlin-coroutines = "1.7.3"
 kotlin-serialization = "1.4.1"
 
 # Libs
 android-core-ktx = "1.12.0"
-activity = "1.8.0"
-navigation = "2.7.4"
+activity = "1.8.1"
+navigation = "2.7.5"
 retrofit = "2.9.0"
 room = "2.4.3"
 lifecycle = "2.6.2"
-compose-bom = "2023.10.00"
+compose-bom = "2023.10.01"
 compose-compiler = "1.5.3"
-coil = "2.4.0"
-material3 = "1.2.0-alpha09"
+coil = "2.5.0"
+material3 = "1.2.0-alpha11"
 koin = "3.5.0"
 koin-compose = "3.5.0"
+coroutines-android = "1.7.3"
 
 # test libraries
 test-junit = "4.13.2"
@@ -60,6 +61,7 @@ kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "android-gradle" }
 gradle-api = { module = "com.android.tools.build:gradle-api", version.ref = "android-gradle" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines-android" }
 
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
