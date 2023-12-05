@@ -12,14 +12,14 @@ dependencies {
 
     api(libs.navigation)
 
-    api(projects.core.ui.dependencyProject)
-    api(projects.core.di.dependencyProject)
-    implementation(projects.core.domain.dependencyProject)
+    api(projects.core.ui)
+    api(projects.core.di)
+    implementation(projects.core.domain)
 
-    implementation(projects.feature.home.dependencyProject)
-    implementation(projects.feature.onboarding.dependencyProject)
-    implementation(projects.feature.subscription.dependencyProject)
-    implementation(projects.feature.chatList.dependencyProject)
-    implementation(projects.feature.people.dependencyProject)
-    implementation(projects.feature.userProfile.dependencyProject)
+    implementation(projects.feature.home)
+    implementation(projects.feature.onboarding)
+    implementation(projects.feature.subscription)
+    implementation(projects.feature.chatList)
+    implementation(projects.feature.people)
+    implementation(projects.feature.userProfile)
 }

@@ -63,7 +63,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
-    implementation(project(":core:navigation"))
+    implementation(projects.core.navigation)
 
     testApi(libs.bundles.test.common)
 }
