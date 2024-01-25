@@ -60,6 +60,8 @@ captures/
 *.jks
 *.keystore
 *.asc
+!gradle-wrapper.properties
+!gradle.properties
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
