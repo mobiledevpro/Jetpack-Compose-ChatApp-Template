@@ -28,12 +28,10 @@ android {
 
     buildTypes {
         getByName("debug") {
-            applicationIdSuffix = ".apptemplate.compose"
             isDebuggable = true
         }
 
         getByName("release") {
-            applicationIdSuffix = ".closetalk"
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = false
@@ -46,12 +44,13 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
+            applicationIdSuffix = ".closetalk"
         }
 
-        // Add more variants below
-        /*create("dev") {
+        create("dev") {
             dimension = "default"
-        }*/
+            applicationIdSuffix = ".apptemplate.compose"
+        }
     }
 
     compileOptions {

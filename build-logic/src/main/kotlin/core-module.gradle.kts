@@ -24,6 +24,18 @@ android {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
+    flavorDimensions += listOf("default")
+
+    productFlavors {
+        create("production") {
+            dimension = "default"
+        }
+
+        create("dev") {
+            dimension = "default"
+        }
+    }
+
     println("# Namespace: $projectName")
     println("# Compile SDK version: ${libs.versionStr("sdk.compile")}")
     println("# Min SDK version: ${libs.versionStr("sdk.min")}")
