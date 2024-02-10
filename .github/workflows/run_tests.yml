@@ -1,0 +1,72 @@
+name: Run Unit Tests
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: >
+            ${{ runner.os }}-gradle-
+            ${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          # It finds the cache by key "Linux-gradle-"
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'zulu'
+          cache: gradle
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Update dependencies
+        run: ./gradlew dependencies
+
+      # Run tests and merge all reports into a single one.
+      # It requires to add a plugin to project level build.gradle: apply(plugin = "android-reporting")
+      - name: Run Unit tests
+        run: ./gradlew test
+
+      # Optional: Run instrumented tests (Requires Android Emulator)
+      # - name: Run Instrumented Tests
+      #  run: ./gradlew connectedAndroidTest
+
+      #   - name: Upload Test Report
+      #     uses: actions/upload-artifact@v4
+      #     with:
+      #       name: Test-Reports
+      #       path: feature/glow_editor/build/reports/tests/testProductionDebugUnitTest
+
+      #      - name: Deploy Test Reports to GitHub Pages
+      #        uses: peaceiris/actions-gh-pages@v3
+      #        with:
+      #          github_token: ${{ secrets.GITHUB_TOKEN }}
+      #          publish_dir: ./feature/glow_editor/build/reports/tests/testProductionDebugUnitTest  # Adjust this to the path where your HTML reports are generated
+      #          publish_branch: gh-pages
+
+      - name: Build status = ${{ job.status }}
+        run: echo "Build status report=${{ job.status }}."
