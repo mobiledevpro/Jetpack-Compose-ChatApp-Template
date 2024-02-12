@@ -30,6 +30,7 @@
 * [Coil](https://coil-kt.github.io/coil/compose/) for image loading
 * MVI + modularization with a clean architecture
 * [Circle CI](https://circleci.com/) for continuous integration and delivery
+* GitHub Actions [[Complete Guide](https://mobiledevpro.gumroad.com/l/zjbvsd)]
 
 ##
 ## UI testing with [Maestro](https://maestro.mobile.dev/):
