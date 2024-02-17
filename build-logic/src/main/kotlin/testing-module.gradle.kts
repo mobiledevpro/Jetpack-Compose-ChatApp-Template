@@ -15,6 +15,6 @@ dependencies {
     androidTestImplementation(libs.bundle("test.android"))
     androidTestImplementation(libs.bundle("test.koin"))
 
-    testImplementation(libs.bundle("test"))
+    testImplementation(libs.bundle("test.common"))
     testImplementation(libs.bundle("test.koin"))
 }

@@ -17,7 +17,6 @@
  */
 package com.mobiledevpro.peoplelist.view
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.mobiledevpro.peoplelist.domain.usecase.GetPeopleListUseCase
 import com.mobiledevpro.ui.vm.BaseViewModel
@@ -29,10 +28,9 @@ class PeopleListViewModel(
     private val getPeopleListUseCase: GetPeopleListUseCase
 ) : BaseViewModel<PeopleProfileUIState>() {
 
-    override fun initUIState(): PeopleProfileUIState = PeopleProfileUIState.Empty
+    override fun initUIState(): PeopleProfileUIState = PeopleProfileUIState.Loading
 
     init {
-        Log.d("UI", "PeopleListViewModel init")
         observePeopleList()
     }
 
