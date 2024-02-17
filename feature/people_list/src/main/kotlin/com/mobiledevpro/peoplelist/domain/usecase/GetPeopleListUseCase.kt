@@ -15,18 +15,21 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.domain.interactor
+package com.mobiledevpro.peoplelist.domain.usecase
 
-import com.mobiledevpro.user.profile.data.repository.UserProfileRepository
+import com.mobiledevpro.coroutines.BaseCoroutinesFLowUseCase
+import com.mobiledevpro.coroutines.None
+import com.mobiledevpro.domain.model.PeopleProfile
+import com.mobiledevpro.domain.model.fakePeopleProfileList
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
-/**
- * For User Profile screen
- *
- * Created on Jul 22, 2023.
- *
- */
-class ImplUserProfileInteractor(
-    val repository: UserProfileRepository
-) : UserProfileInteractor {
 
+class GetPeopleListUseCase(
+
+) : BaseCoroutinesFLowUseCase<List<PeopleProfile>, None>(Dispatchers.IO) {
+
+    override fun buildUseCaseFlow(params: None?): Flow<List<PeopleProfile>> =
+        flowOf(fakePeopleProfileList)
 }

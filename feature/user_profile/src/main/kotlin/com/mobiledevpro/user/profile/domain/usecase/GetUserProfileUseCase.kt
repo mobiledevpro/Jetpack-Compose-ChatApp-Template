@@ -15,18 +15,21 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.data.repository
+package com.mobiledevpro.user.profile.domain.usecase
 
-import com.mobiledevpro.user.profile.data.local.UserProfileLocalSource
+import com.mobiledevpro.coroutines.BaseCoroutinesFLowUseCase
+import com.mobiledevpro.coroutines.None
+import com.mobiledevpro.domain.model.UserProfile
+import com.mobiledevpro.domain.model.fakeUser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
-/**
- * For User Profile screen
- *
- * Created on Jul 22, 2023.
- *
- */
-class ImplUserProfileRepository(
-    private val localSource: UserProfileLocalSource
-) : UserProfileRepository {
 
+class GetUserProfileUseCase(
+
+) : BaseCoroutinesFLowUseCase<UserProfile, None>(Dispatchers.IO) {
+
+    override fun buildUseCaseFlow(params: None?): Flow<UserProfile> =
+        flowOf(fakeUser)
 }

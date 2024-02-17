@@ -15,16 +15,22 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.data.local
+package com.mobiledevpro.chatlist.domain.usecase
 
-/**
- * For User Profile screen
- *
- * Created on Jul 22, 2023.
- *
- */
-class ImplUserProfileLocalSource(
+import com.mobiledevpro.coroutines.BaseCoroutinesFLowUseCase
+import com.mobiledevpro.coroutines.None
+import com.mobiledevpro.domain.model.Chat
+import com.mobiledevpro.domain.model.fakeChatList
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
-) : UserProfileLocalSource {
+
+class GetChatListUseCase(
+
+) : BaseCoroutinesFLowUseCase<List<Chat>, None>(Dispatchers.IO) {
+
+    override fun buildUseCaseFlow(params: None?): Flow<List<Chat>> =
+        flowOf(fakeChatList)
 
 }

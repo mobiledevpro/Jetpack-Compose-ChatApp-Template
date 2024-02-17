@@ -28,9 +28,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.mobiledevpro.chatlist.di.featureChatListModule
 import com.mobiledevpro.chatlist.view.ChatListScreen
 import com.mobiledevpro.chatlist.view.ChatListViewModel
-import com.mobiledevpro.di.koinScope
+import com.mobiledevpro.di.rememberViewModel
 import com.mobiledevpro.home.view.HomeScreen
 import com.mobiledevpro.home.view.HomeViewModel
 import com.mobiledevpro.navigation.ext.navigateTo
@@ -45,13 +46,13 @@ import com.mobiledevpro.people.profile.view.PeopleProfileScreen
 import com.mobiledevpro.people.profile.view.PeopleProfileViewModel
 import com.mobiledevpro.people.profile.view.args.PeopleProfileArgs
 import com.mobiledevpro.people.view.PeopleScreen
+import com.mobiledevpro.peoplelist.di.featurePeopleListModule
 import com.mobiledevpro.peoplelist.view.PeopleListScreen
 import com.mobiledevpro.peoplelist.view.PeopleListViewModel
 import com.mobiledevpro.subscription.SubscriptionScreen
 import com.mobiledevpro.user.profile.di.featureUserProfileModule
 import com.mobiledevpro.user.profile.view.ProfileScreen
 import com.mobiledevpro.user.profile.view.vm.ProfileViewModel
-import org.koin.core.context.loadKoinModules
 
 
 fun NavGraphBuilder.homeNavGraph(onNavigateToRoot: (Screen) -> Unit) {
@@ -179,7 +180,9 @@ fun NavGraphBuilder.chatListScreen() {
         route = Screen.ChatList.route
     ) {
 
-        val viewModel: ChatListViewModel = viewModel()
+        val viewModel = rememberViewModel<ChatListViewModel>(
+            modules = { listOf(featureChatListModule) }
+        )
 
         ChatListScreen(
             state = viewModel.uiState,
@@ -195,7 +198,9 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.PeopleList.route
     ) {
 
-        val viewModel: PeopleListViewModel = viewModel()
+        val viewModel = rememberViewModel<PeopleListViewModel>(
+            modules = { listOf(featurePeopleListModule) }
+        )
 
         PeopleListScreen(
             viewModel.uiState,
@@ -237,8 +242,11 @@ fun NavGraphBuilder.profileScreen(onNavigateTo: (Screen) -> Unit) {
         route = Screen.Profile.route
     ) {
 
-        loadKoinModules(featureUserProfileModule)
-        val viewModel: ProfileViewModel by koinScope<ProfileViewModel>().inject()
+        val viewModel = rememberViewModel<ProfileViewModel>(
+            modules = {
+                listOf(featureUserProfileModule)
+            }
+        )
 
         ProfileScreen(
             state = viewModel.uiState,

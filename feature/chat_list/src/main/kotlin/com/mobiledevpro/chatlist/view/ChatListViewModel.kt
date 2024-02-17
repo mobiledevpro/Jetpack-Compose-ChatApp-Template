@@ -17,40 +17,34 @@
  */
 package com.mobiledevpro.chatlist.view
 
-import androidx.lifecycle.ViewModel
+import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.mobiledevpro.domain.model.fakeChatList
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import com.mobiledevpro.chatlist.domain.usecase.GetChatListUseCase
+import com.mobiledevpro.ui.vm.BaseViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 
-class ChatListViewModel : ViewModel() {
-    private val _uiState: MutableStateFlow<ChatListUIState> =
-        MutableStateFlow(ChatListUIState.Empty)
-    val uiState: StateFlow<ChatListUIState> = _uiState.asStateFlow()
+class ChatListViewModel(
+    private val getChatListUseCase: GetChatListUseCase
+) : BaseViewModel<ChatListUIState>() {
+
+    override fun initUIState(): ChatListUIState = ChatListUIState.Empty
 
     init {
+        Log.d("UI", "ChatListViewModel init")
         observeChatList()
     }
 
     private fun observeChatList() {
-        viewModelScope.launch {
-
-            _uiState.update { ChatListUIState.Loading }
-
-           // delay(1000)
-
-            /*
-           _uiState.update { PeopleProfileUIState.Empty }
-            _uiState.update { PeopleProfileUIState.Fail(Throwable("Test error")) }
-
-             */
-            _uiState.update {
-                ChatListUIState.Success(fakeChatList)
-            }
-        }
+        getChatListUseCase.execute()
+            .onEach { result ->
+                result.onSuccess { list ->
+                    ChatListUIState.Success(list)
+                        .also { _uiState.value = it }
+                }.onFailure {
+                    //TODO: show an error
+                }
+            }.launchIn(viewModelScope)
     }
 }

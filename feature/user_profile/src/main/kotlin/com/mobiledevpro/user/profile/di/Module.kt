@@ -17,14 +17,10 @@
  */
 package com.mobiledevpro.user.profile.di
 
-import com.mobiledevpro.user.profile.data.local.ImplUserProfileLocalSource
-import com.mobiledevpro.user.profile.data.local.UserProfileLocalSource
-import com.mobiledevpro.user.profile.data.repository.ImplUserProfileRepository
-import com.mobiledevpro.user.profile.data.repository.UserProfileRepository
-import com.mobiledevpro.user.profile.domain.interactor.ImplUserProfileInteractor
-import com.mobiledevpro.user.profile.domain.interactor.UserProfileInteractor
+import com.mobiledevpro.user.profile.domain.usecase.GetUserProfileUseCase
 import com.mobiledevpro.user.profile.view.vm.ProfileViewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.scopedOf
 import org.koin.dsl.module
 
 /**
@@ -38,23 +34,6 @@ val featureUserProfileModule = module {
 
     scope<ProfileViewModel> {
         viewModelOf(::ProfileViewModel)
-
-        scoped<UserProfileInteractor>{
-            ImplUserProfileInteractor(
-                repository = get()
-            )
-        }
-
-        scoped<UserProfileRepository> {
-            ImplUserProfileRepository(
-                localSource = get()
-            )
-        }
-
-        scoped<UserProfileLocalSource> {
-            ImplUserProfileLocalSource(
-
-            )
-        }
+        scopedOf(::GetUserProfileUseCase)
     }
 }

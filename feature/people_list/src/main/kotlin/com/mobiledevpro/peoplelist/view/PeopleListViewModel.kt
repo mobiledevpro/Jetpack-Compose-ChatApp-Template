@@ -17,41 +17,36 @@
  */
 package com.mobiledevpro.peoplelist.view
 
-import androidx.lifecycle.ViewModel
+import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.mobiledevpro.domain.model.fakePeopleProfileList
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import com.mobiledevpro.peoplelist.domain.usecase.GetPeopleListUseCase
+import com.mobiledevpro.ui.vm.BaseViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 
-class PeopleListViewModel : ViewModel() {
+class PeopleListViewModel(
+    private val getPeopleListUseCase: GetPeopleListUseCase
+) : BaseViewModel<PeopleProfileUIState>() {
 
-    private val _uiState: MutableStateFlow<PeopleProfileUIState> =
-        MutableStateFlow(PeopleProfileUIState.Empty)
-    val uiState: StateFlow<PeopleProfileUIState> = _uiState.asStateFlow()
+    override fun initUIState(): PeopleProfileUIState = PeopleProfileUIState.Empty
 
     init {
+        Log.d("UI", "PeopleListViewModel init")
         observePeopleList()
     }
 
     private fun observePeopleList() {
-        viewModelScope.launch {
 
-            _uiState.update { PeopleProfileUIState.Loading }
-
-             delay(2000)
-
-            // _uiState.update { PeopleProfileUIState.Empty }
-            //   _uiState.update { PeopleProfileUIState.Fail(Throwable("Test error")) }
-
-            _uiState.update {
-                PeopleProfileUIState.Success(fakePeopleProfileList)
-            }
-        }
+        getPeopleListUseCase.execute()
+            .onEach { result ->
+                result.onSuccess { list ->
+                    PeopleProfileUIState.Success(list)
+                        .also { _uiState.value = it }
+                }.onFailure {
+                    //TODO: show error
+                }
+            }.launchIn(viewModelScope)
     }
 
 }

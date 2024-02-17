@@ -17,16 +17,37 @@
  */
 package com.mobiledevpro.di
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisallowComposableCalls
+import androidx.compose.runtime.remember
+import org.koin.compose.module.rememberKoinModules
+import org.koin.compose.scope.rememberKoinScope
+import org.koin.core.annotation.KoinExperimentalAPI
+import org.koin.core.module.Module
 import org.koin.core.qualifier.TypeQualifier
 import org.koin.core.scope.Scope
 import org.koin.ext.getFullName
 import org.koin.java.KoinJavaComponent
 
 
-inline fun <reified T : Any> koinScope(): Scope {
+inline fun <reified T> koinScope(): Scope {
 
     val scopeId = T::class.getFullName() + "@" + T::class.hashCode()
     val qualifier = TypeQualifier(T::class)
 
     return KoinJavaComponent.getKoin().getOrCreateScope(scopeId, qualifier)
+}
+
+@OptIn(KoinExperimentalAPI::class)
+@Composable
+inline fun <reified T> rememberViewModel(
+    crossinline modules: @DisallowComposableCalls () -> List<Module>
+): T {
+    rememberKoinModules(
+        modules = modules
+    )
+
+    val scope = rememberKoinScope(scope = koinScope<T>())
+
+    return remember { scope.get() }
 }

@@ -18,6 +18,7 @@
 package com.mobiledevpro.peoplelist.view
 
 import com.mobiledevpro.domain.model.PeopleProfile
+import com.mobiledevpro.ui.state.UIState
 
 /**
  * UI state for [com.mobiledevpro.peoplelist.view.PeopleListScreen]
@@ -25,7 +26,7 @@ import com.mobiledevpro.domain.model.PeopleProfile
  * Created on Feb 04, 2023.
  *
  */
-sealed interface PeopleProfileUIState {
+sealed interface PeopleProfileUIState : UIState {
 
     object Empty : PeopleProfileUIState
 

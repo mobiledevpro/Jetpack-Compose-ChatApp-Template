@@ -1,5 +1,5 @@
 plugins {
-    id("core-module")
+    id("core-compose-module")
 }
 
 dependencies {

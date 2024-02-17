@@ -15,13 +15,25 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.data.repository
+package com.mobiledevpro.chatlist.di
+
+import com.mobiledevpro.chatlist.domain.usecase.GetChatListUseCase
+import com.mobiledevpro.chatlist.view.ChatListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.scopedOf
+import org.koin.dsl.module
 
 /**
- *  For User Profile screen
+ * User Profile screen module
  *
  * Created on Jul 22, 2023.
  *
  */
-interface UserProfileRepository {
+
+val featureChatListModule = module {
+
+    scope<ChatListViewModel> {
+        viewModelOf(::ChatListViewModel)
+        scopedOf(::GetChatListUseCase)
+    }
 }

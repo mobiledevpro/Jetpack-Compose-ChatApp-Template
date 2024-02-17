@@ -15,13 +15,25 @@
  * limitations under the License.
  *
  */
-package com.mobiledevpro.user.profile.data.local
+package com.mobiledevpro.peoplelist.di
+
+import com.mobiledevpro.peoplelist.domain.usecase.GetPeopleListUseCase
+import com.mobiledevpro.peoplelist.view.PeopleListViewModel
+import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.core.module.dsl.scopedOf
+import org.koin.dsl.module
 
 /**
- * For User Profile screen
+ * User Profile screen module
  *
  * Created on Jul 22, 2023.
  *
  */
-interface UserProfileLocalSource {
+
+val featurePeopleListModule = module {
+
+    scope<PeopleListViewModel> {
+        viewModelOf(::PeopleListViewModel)
+        scopedOf(::GetPeopleListUseCase)
+    }
 }

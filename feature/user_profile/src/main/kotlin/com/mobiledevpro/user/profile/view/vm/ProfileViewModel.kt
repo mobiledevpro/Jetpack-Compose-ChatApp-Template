@@ -17,33 +17,35 @@
  */
 package com.mobiledevpro.user.profile.view.vm
 
+import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.mobiledevpro.domain.model.fakeUser
 import com.mobiledevpro.ui.vm.BaseViewModel
-import com.mobiledevpro.user.profile.domain.interactor.UserProfileInteractor
+import com.mobiledevpro.user.profile.domain.usecase.GetUserProfileUseCase
 import com.mobiledevpro.user.profile.view.state.UserProfileUIState
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 class ProfileViewModel(
-    private val interactor: UserProfileInteractor
+    private val getUserProfileUseCase: GetUserProfileUseCase
 ) : BaseViewModel<UserProfileUIState>() {
 
     override fun initUIState(): UserProfileUIState = UserProfileUIState.Empty
 
     init {
+        Log.d("UI", "ProfileViewModel init")
         observeUserProfile()
     }
 
     private fun observeUserProfile() {
-        viewModelScope.launch {
+        getUserProfileUseCase.execute()
+            .onEach { result ->
+                result.onSuccess { profile ->
+                    UserProfileUIState.Success(profile)
+                        .also { _uiState.value = it }
+                }.onFailure {
+                    //TODO: show the error
+                }
 
-            //TODO: call repository here
-
-
-            _uiState.update {
-                UserProfileUIState.Success(fakeUser)
-            }
-        }
+            }.launchIn(viewModelScope)
     }
 }

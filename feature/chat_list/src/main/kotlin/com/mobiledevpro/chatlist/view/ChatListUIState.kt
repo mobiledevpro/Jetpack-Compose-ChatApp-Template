@@ -18,6 +18,7 @@
 package com.mobiledevpro.chatlist.view
 
 import com.mobiledevpro.domain.model.Chat
+import com.mobiledevpro.ui.state.UIState
 
 /**
  * UI state for [com.mobiledevpro.chatlist.view.ChatListScreen]
@@ -25,11 +26,11 @@ import com.mobiledevpro.domain.model.Chat
  * Created on Feb 04, 2023.
  *
  */
-sealed interface ChatListUIState {
+sealed interface ChatListUIState : UIState {
 
-    object Empty : ChatListUIState
+    data object Empty : ChatListUIState
 
-    object Loading : ChatListUIState
+    data object Loading : ChatListUIState
 
     class Success(val profileList : List<Chat>) : ChatListUIState
 
