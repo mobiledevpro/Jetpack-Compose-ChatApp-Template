@@ -15,7 +15,4 @@ dependencies {
     api(platform(libs.library("compose.bom")))
     api(libs.bundle("compose"))
     debugApi(libs.bundle("compose.debug"))
-
-    androidTestApi(platform(libs.library("compose.bom")))
-    androidTestApi(libs.bundle("test.android"))
 }

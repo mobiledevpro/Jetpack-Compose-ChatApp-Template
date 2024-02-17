@@ -77,6 +77,9 @@ android {
 dependencies {
 
     implementation(libs.androidx.core.ktx)
+    coreLibraryDesugaring(libs.desugaring)
+    implementation(libs.bundles.lifecycle)
+
     implementation(projects.core.navigation)
 
     testApi(libs.bundles.test.common)
