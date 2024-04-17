@@ -8,8 +8,8 @@ sdk-compile = "34"
 
 # Plugins
 android-gradle = "8.1.4"
-kotlin = "1.9.22"
-kotlin-coroutines = "1.7.3"
+kotlin = "1.9.23"
+kotlin-coroutines = "1.8.0"
 kotlin-serialization = "1.4.1"
 google-services = "4.4.1"
 plugin-crashlytics = "2.9.9"
@@ -22,24 +22,24 @@ navigation = "2.7.7"
 retrofit = "2.9.0"
 room = "2.4.3"
 lifecycle = "2.7.0"
-compose-bom = "2024.02.00"
+compose-bom = "2024.04.00"
 compose-compiler = "1.5.8"
 coil = "2.5.0"
-material3 = "1.2.0"
+material3 = "1.2.1"
 koin = "3.5.3"
 data-store = "1.0.0"
 koin-compose = "3.5.3"
-coroutines-android = "1.7.3"
+coroutines-android = "1.8.0"
 workmanager = "2.9.0"
 inapp-update = "2.1.0"
 
 # Firebase
-firebase-bom = "32.7.2"
+firebase-bom = "32.8.1"
 
 # test libraries
 test-junit = "4.13.2"
-test-mockk = "1.13.9"
-test-coroutines-flow = "1.0.0"
+test-mockk = "1.13.10"
+test-coroutines-flow = "1.1.0"
 
 # android test libraries
 test-android-runner = "1.5.2"
