@@ -5,4 +5,5 @@ dependencies {
     api(libs.bundles.lifecycle)
     api(libs.coil)
     api(libs.lottie)
+    api(libs.splash.screen)
 }

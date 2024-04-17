@@ -32,6 +32,7 @@ koin-compose = "3.5.3"
 coroutines-android = "1.8.0"
 workmanager = "2.9.0"
 inapp-update = "2.1.0"
+splash-screen = "1.1.0-rc01"
 
 # Firebase
 firebase-bom = "32.8.1"
@@ -83,6 +84,7 @@ workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workma
 desugaring = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugaring" }
 inapp-update = { module = "com.google.android.play:app-update", version.ref = "inapp-update" }
 inapp-update-ext = { module = "com.google.android.play:app-update-ktx", version.ref = "inapp-update" }
+splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "splash-screen" }
 
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
