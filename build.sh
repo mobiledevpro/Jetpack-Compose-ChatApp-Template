@@ -36,6 +36,6 @@ git submodule update
   export KEYSTORE_ALIAS &&
 
   #build AAB bundles
-  ./gradlew clean bundleRelease --stacktrace --no-build-cache
+  ./gradlew clean bundleProductionRelease --stacktrace --no-build-cache
 
 rm app/release.jks
