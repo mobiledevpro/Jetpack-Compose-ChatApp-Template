@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "893380205579",
+    "project_id": "close-talk-app-android",
+    "storage_bucket": "close-talk-app-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893380205579:android:74571fe1c67478b0d97b0e",
+        "android_client_info": {
+          "package_name": "com.mobiledevpro.apptemplate.compose"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjppGln1CyNvS_zWDdF1g3m3OmtEpJyxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893380205579:android:9fe82812e5a3bc79d97b0e",
+        "android_client_info": {
+          "package_name": "com.mobiledevpro.closetalk.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjppGln1CyNvS_zWDdF1g3m3OmtEpJyxg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

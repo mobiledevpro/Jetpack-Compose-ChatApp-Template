@@ -1,10 +1,16 @@
 import com.android.build.gradle.AppExtension
+import java.io.FileNotFoundException
+import java.util.Properties
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.crashlytics)
+    alias(libs.plugins.performance.monitor)
 }
 
 android {
@@ -26,6 +32,22 @@ android {
         }
     }
 
+    signingConfigs {
+        val keystoreProperties = Properties()
+        try {
+            keystoreProperties.load(File(rootDir, "keystore.properties").inputStream())
+
+            create("release") {
+                storeFile = file("release.jks")
+                storePassword = keystoreProperties["KSTOREPWD"] as String
+                keyAlias = keystoreProperties["KEYSTORE_ALIAS"] as String
+                keyPassword = keystoreProperties["KEYPWD"] as String
+            }
+        } catch (e: FileNotFoundException) {
+            println("Warning: keystore.properties file not found.")
+        }
+    }
+
     buildTypes {
         getByName("debug") {
             isDebuggable = true
@@ -36,6 +58,12 @@ android {
             isMinifyEnabled = true
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            signingConfig = try {
+                signingConfigs.getByName("release")
+            } catch (e: UnknownDomainObjectException) {
+                println("SigningConfig with not found. Skipping...")
+                null
+            }
         }
     }
 
@@ -50,6 +78,7 @@ android {
         create("dev") {
             dimension = "default"
             applicationIdSuffix = ".apptemplate.compose"
+            isDefault = true
         }
     }
 
@@ -82,7 +111,21 @@ dependencies {
 
     implementation(projects.core.navigation)
 
+    implementation(libs.firebase.performance)
+    implementation(projects.core.analytics)
+
     testApi(libs.bundles.test.common)
+
+    // Exclude Firebase from your Android tests due to errors "Could not resolve all files for configuration"
+    androidTestImplementation(libs.firebase.performance) {
+        exclude(group = "com.google.firebase", module = "firebase-perf")
+    }
+    androidTestImplementation(libs.firebase.analytics) {
+        exclude(group = "com.google.firebase", module = "firebase-analytics")
+    }
+    androidTestImplementation(libs.firebase.crashlytics) {
+        exclude(group = "com.google.firebase", module = "firebase-crashlytics")
+    }
 }
 
 
