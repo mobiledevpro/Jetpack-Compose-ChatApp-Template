@@ -10,7 +10,7 @@ jobs:
 
     # Setting up ENV for all steps in this job
     env:
-      RELEASE_NOTES_PATH: ./docs/RELEASE_NOTES.md
+      RELEASE_NOTES_PATH: ./doc/RELEASE_NOTES.md
 
     steps:
       - uses: actions/checkout@v4
