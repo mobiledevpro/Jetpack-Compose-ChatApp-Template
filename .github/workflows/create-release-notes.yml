@@ -1,0 +1,69 @@
+name: Create Release Notes
+
+on:
+  # Enables this workflow to be called from other workflows
+  workflow_call:
+
+jobs:
+  create-release-notes:
+    runs-on: ubuntu-latest
+
+    # Setting up ENV for all steps in this job
+    env:
+      RELEASE_NOTES_PATH: ./docs/RELEASE_NOTES.md
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Release Notes file exists
+        run: |
+          if [ -f ${RELEASE_NOTES_PATH} ]; then
+          echo "RELEASE_NOTES.md file exists."
+          else
+          echo "RELEASE_NOTES.md does not exist." >&2
+          exit 1  
+          fi
+        continue-on-error: false
+
+      - name: Parse Release Notes
+        run: |
+          TAG_NAME=${GITHUB_REF#refs/tags/}
+          echo "TAG_NAME"
+          echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          
+          # Version should be in the following format 'v1.2.3-build-4'
+          VERSION=$(echo $TAG_NAME | grep -o 'v[0-9]\+\.[0-9]\+\.[0-9]\+[-a-zA-Z0-9]*')
+          
+          sed -n '/## '$VERSION'/,/##/p' ${RELEASE_NOTES_PATH} | \
+          sed '1d;$d' | \
+          sed '/^$/d' > extracted_notes.md
+
+          echo "Release notes:$(<extracted_notes.md)"
+
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+          cat extracted_notes.md >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+          echo "$RELEASE_NOTES"
+          rm extracted_notes.md
+        continue-on-error: false
+
+      - name: Check Release Notes are not empty
+        run: |
+          if [ -z "${RELEASE_NOTES}" ]; then
+          echo "RELEASE_NOTES is empty"
+            exit 1  # Exit with error if RELEASE_NOTES is empty
+          else
+            echo "RELEASE_NOTES is not empty"
+          fi
+        continue-on-error: false
+
+      - name: Save parsed Release Notes
+        run: |
+          echo -e "$RELEASE_NOTES" > \
+          release_notes_${{ env.TAG_NAME }}.txt
+
+      - name: Upload Release Notes to GitHub Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release_notes
+          path: release_notes_${{ env.TAG_NAME }}.txt

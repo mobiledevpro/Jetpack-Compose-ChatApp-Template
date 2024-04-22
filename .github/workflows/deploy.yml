@@ -1,0 +1,30 @@
+name: Deploy Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  create-release-notes:
+    uses: ./.github/workflows/create-release-notes.yml
+    secrets: inherit
+
+  build-signed-bundle:
+    uses: ./.github/workflows/build-signed-bundle.yml
+    needs: create-release-notes
+    secrets: inherit
+
+  create-github-release:
+    uses: ./.github/workflows/create-github-release.yml
+    needs: build-signed-bundle
+    secrets: inherit
+
+  deploy-to-production-track:
+    uses: ./.github/workflows/deploy-to-closed-track.yml
+    needs: build-signed-bundle
+    secrets: inherit

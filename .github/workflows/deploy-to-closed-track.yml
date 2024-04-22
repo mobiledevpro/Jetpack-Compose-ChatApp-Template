@@ -1,0 +1,71 @@
+name: Deploy to Google Play Production track
+
+on:
+  # Enables this workflow to be called from other workflows
+  workflow_call:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  deploy-to-google-play-production-draft:
+    runs-on: ubuntu-latest
+    env:
+      DOWNLOADS_PATH: ./downloaded-artifacts
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Echo path to download bundles
+        run: echo "Download bundles path is ${ARTIFACTS_PATH}"
+
+      - name: Download bundles from GitHub Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: bundles
+          path: ${{ env.DOWNLOADS_PATH }}
+
+      - name: Download Release Notes from GitHub Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release_notes
+          path: ${{ env.DOWNLOADS_PATH }}
+
+      - name: Display structure of downloaded files
+        run: cd ${DOWNLOADS_PATH} && ls -R
+
+      - name: Check bundles are downloaded
+        run: |
+          shopt -s nullglob
+          aab_files=(${DOWNLOADS_PATH}/*/*-production-release.aab)
+          if [ ${#aab_files[@]} -eq 0 ]; then
+            echo "No production .AAB files found in ${DOWNLOADS_PATH}"
+            exit 1
+          else
+            echo "Found ${#aab_files[@]} .aab file(s) in ${DOWNLOADS_PATH}:"
+            printf '%s\n' "${aab_files[@]}"
+            echo "AAB_FILE=${aab_files[@]}" >> $GITHUB_ENV
+          fi
+        continue-on-error: false
+
+      - name: Copy Release Notes
+        run: |
+          mkdir -p ${DOWNLOADS_PATH}/whatsnew &&
+          cp ${DOWNLOADS_PATH}/release_notes_${GITHUB_REF#refs/tags/}.txt \
+          ${DOWNLOADS_PATH}/whatsnew/whatsnew-en-US   
+
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          # Replace with your package name
+          packageName: com.mobiledevpro.closetalk.app
+          releaseFiles: ${{ env.AAB_FILE }}
+          # Can be 'internal', 'alpha', 'beta', or 'production', or 'internalsharing'
+          track: internal
+          # Optional: 'completed', 'draft', 'inProgress', or 'halted'
+          status: completed
+          whatsNewDirectory: ${{ env.DOWNLOADS_PATH }}/whatsnew
+          # Optional: Integer from 0 (low) to 5 (high)
+          inAppUpdatePriority: 0

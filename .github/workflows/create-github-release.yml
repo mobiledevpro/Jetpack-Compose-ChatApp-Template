@@ -1,0 +1,74 @@
+name: Create GutHub Release
+
+on:
+  # Enables this workflow to be called from other workflows
+  workflow_call:
+
+jobs:
+  create-github-release:
+    runs-on: ubuntu-latest
+    # Setting up ENV for all steps in this job
+    env:
+      DOWNLOADS_PATH: ./downloaded-artifacts
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Echo path to download bundles
+        run: echo "Download bundles path is ${DOWNLOADS_PATH}"
+
+      - name: Download bundles from GitHub Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: bundles
+          path: ${{ env.DOWNLOADS_PATH }}
+
+      - name: Download Release Notes from GitHub Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release_notes
+          path: ${{ env.DOWNLOADS_PATH }}
+
+      - name: Display structure of downloaded files
+        run: cd ${DOWNLOADS_PATH} && ls -R
+
+      - name: Check bundles are downloaded
+        run: |
+          shopt -s nullglob
+          aab_files=(${DOWNLOADS_PATH}/*/*.aab)
+          if [ ${#aab_files[@]} -eq 0 ]; then
+            echo "No .AAB files found in ${DOWNLOADS_PATH}"
+            exit 1
+          else
+            echo "Found ${#aab_files[@]} .aab file(s) in ${DOWNLOADS_PATH}:"
+            printf '%s\n' "${aab_files[@]}"
+          fi
+        continue-on-error: false
+
+      - name: Get Release Notes
+        run: |
+          cd ${DOWNLOADS_PATH}
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_ENV
+          cat release_notes_${GITHUB_REF#refs/tags/}.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Provided by Actions, no need to create this secret yourself
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ env.RELEASE_NOTES }}
+          draft: false
+          prerelease: false
+
+      - name: Upload bundles to GitHub Release
+        id: upload-release-assets
+        uses: dwenegar/upload-release-assets@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          release_id: ${{ steps.create_release.outputs.id }}
+          assets_path: ${{ env.DOWNLOADS_PATH }}/*/

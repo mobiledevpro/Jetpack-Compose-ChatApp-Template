@@ -44,7 +44,7 @@ android {
     productFlavors {
         create("production") {
             dimension = "default"
-            applicationIdSuffix = ".closetalk"
+            applicationIdSuffix = ".closetalk.app"
         }
 
         create("dev") {
@@ -86,8 +86,8 @@ dependencies {
 }
 
 
-// This task is used for .AAB file renaming to the following format:
-// {application_id}-v{version_name}-build{version_code}-{product_flavor}-{build_type}.aab
+//This task is used for .AAB file renaming to following format:
+//{application_id}-v{version_name}-build{version_code}-{product_flavor}-{build_type}.aab
 
 tasks.register("renameBundle") {
     doLast {
@@ -95,8 +95,16 @@ tasks.register("renameBundle") {
 
         androidExtension?.also { android ->
 
+            println("Variant variants: ${android.applicationVariants}")
+
             android.applicationVariants.forEach { variant ->
                 println("===============================")
+                println("Variant name: ${variant.name}")
+                println("Version name: ${variant.versionName}")
+                println("Version code: ${variant.versionCode}")
+                println("Flavor name: ${variant.productFlavors.map { it.name }.joinToString()}")
+
+
                 val flavorName = variant.productFlavors.map { it.name }.joinToString()
                 val variantName = variant.name
                 val buildType = variant.buildType.name
@@ -104,11 +112,6 @@ tasks.register("renameBundle") {
                 val versionCode = variant.versionCode
                 val bundleDir =
                     "$buildDir/outputs/bundle/${variantName}"
-
-                println("Variant name: $variantName")
-                println("Version name: $versionName")
-                println("Version code: $versionCode")
-                println("Flavor name: $flavorName")
 
                 val oldFileName = "app-${flavorName}-${buildType}.aab"
                 val newFileName =
@@ -118,19 +121,18 @@ tasks.register("renameBundle") {
                             "$flavorName-" +
                             "$buildType.aab"
 
-                println("newFileName: $newFileName")
-
                 //remove an old file if exist
                 delete("$bundleDir/$newFileName")
 
                 val originalFile = file("$bundleDir/$oldFileName")
-                val newFile = file("$bundleDir/$newFileName")
 
-                if (originalFile.exists()) {
+                if (!originalFile.exists()) {
+                    println("Original '${originalFile.absolutePath}' file not found")
+                } else {
+                    println("newFileName: $newFileName")
+                    val newFile = file("$bundleDir/$newFileName")
                     originalFile.renameTo(newFile)
                     println("Renamed '$oldFileName' file to $newFileName")
-                } else {
-                    println("Original '${originalFile.absolutePath}' file not found")
                 }
             }
 
