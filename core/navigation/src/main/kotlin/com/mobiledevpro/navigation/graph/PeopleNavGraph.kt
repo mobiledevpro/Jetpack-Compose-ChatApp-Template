@@ -17,6 +17,8 @@
  */
 package com.mobiledevpro.navigation.graph
 
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -33,21 +35,30 @@ import com.mobiledevpro.navigation.peopleProfileScreen
  *
  */
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun PeopleNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = Screen.PeopleList.route,
-        modifier = modifier,
-    ) {
+    SharedTransitionLayout {
+        NavHost(
+            navController = navController,
+            startDestination = Screen.PeopleList.route,
+            modifier = modifier,
+        ) {
 
-        peopleListScreen(onNavigateTo = navController::navigateTo)
-        peopleProfileScreen(
-            onNavigateTo = navController::navigateTo,
-            onNavigateBack = navController::navigateUp
-        )
+            peopleListScreen(
+                this@SharedTransitionLayout,
+                onNavigateTo = navController::navigateTo
+            )
+
+            peopleProfileScreen(
+                this@SharedTransitionLayout,
+                onNavigateTo = navController::navigateTo,
+                onNavigateBack = navController::navigateUp
+            )
+        }
     }
+
 }

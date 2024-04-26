@@ -18,6 +18,9 @@
 package com.mobiledevpro.peoplelist.view
 
 import android.widget.Toast
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,7 +35,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -41,14 +43,14 @@ import com.mobiledevpro.peoplelist.view.component.ProfileCard
 import com.mobiledevpro.ui.component.ScreenBackground
 import com.mobiledevpro.ui.ext.dp
 import com.mobiledevpro.ui.ext.statusBarHeight
-import com.mobiledevpro.ui.theme.AppTheme
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun PeopleListScreen(
+fun SharedTransitionScope.PeopleListScreen(
     stateFlow: StateFlow<PeopleProfileUIState>,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     onNavigateToProfile: (profileId: Int) -> Unit
 ) {
 
@@ -66,6 +68,7 @@ fun PeopleListScreen(
             is PeopleProfileUIState.Success ->
                 PeopleList(
                     list = (uiState as PeopleProfileUIState.Success).profileList,
+                    animatedVisibilityScope = animatedVisibilityScope,
                     onProfileClick = onNavigateToProfile
                 )
 
@@ -118,8 +121,13 @@ private fun Loading() {
     }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId: Int) -> Unit) {
+private fun SharedTransitionScope.PeopleList(
+    list: List<PeopleProfile>,
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    onProfileClick: (profileId: Int) -> Unit
+) {
 
     //Cause content is drawn edge-to-edge, let's set the top-padding for the first element in the list
     val statusBarHeight: Dp = WindowInsets.statusBarHeight().dp()
@@ -130,21 +138,27 @@ private fun PeopleList(list: List<PeopleProfile>, onProfileClick: (profileId: In
             key = { _, item -> item.listKey() }
         ) { index, profile ->
             ProfileCard(
-                modifier = Modifier.then(
-                    if (index == 0)
-                        Modifier.padding(top = statusBarHeight)
-                    else
-                        Modifier
-                ),
-
-
+                modifier = Modifier
+                    .then(
+                        if (index == 0)
+                            Modifier.padding(top = statusBarHeight)
+                        else
+                            Modifier
+                    )
+                    .sharedElement(
+                        state = rememberSharedContentState(
+                            key = "image-${profile.photo}"
+                        ),
+                        animatedVisibilityScope = animatedVisibilityScope,
+                    ),
                 item = profile,
                 onClick = { onProfileClick(profile.id) })
         }
     }
 }
 
-
+/*
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Composable
 fun PeopleListPreview() {
@@ -155,3 +169,5 @@ fun PeopleListPreview() {
         )
     }
 }
+
+ */

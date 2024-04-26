@@ -18,6 +18,10 @@
 package com.mobiledevpro.people.profile.view
 
 import android.net.Uri
+import androidx.annotation.DrawableRes
+import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,17 +51,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.boundsInParent
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.mobiledevpro.domain.model.PeopleProfile
-import com.mobiledevpro.domain.model.fakePeopleProfileList
 import com.mobiledevpro.people.profile.R
 import com.mobiledevpro.ui.component.ProfileContent
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
 import com.mobiledevpro.ui.component.ScreenBackground
-import com.mobiledevpro.ui.theme.AppTheme
 import com.mobiledevpro.ui.R as RApp
 
 /**
@@ -67,11 +68,14 @@ import com.mobiledevpro.ui.R as RApp
  *
  */
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
-fun PeopleProfileScreen(
+fun SharedTransitionScope.PeopleProfileScreen(
     profile: PeopleProfile,
+    animatedVisibilityScope: AnimatedVisibilityScope,
     onBackPressed: () -> Unit,
-    onOpenChatWith: (profile: PeopleProfile) -> Unit
+    onOpenChatWith: (profile: PeopleProfile) -> Unit,
+    onOpenSocialLink: (Uri) -> Unit
 ) {
 
     val backgroundBoxTopOffset = remember { mutableIntStateOf(0) }
@@ -116,6 +120,10 @@ fun PeopleProfileScreen(
                         backgroundBoxTopOffset.value =
                             rect.topCenter.y.toInt() + (rect.bottomCenter.y - rect.topCenter.y).toInt() / 2
                     }
+                    .sharedElement(
+                        state = rememberSharedContentState(key = "image-${profile.photo}"),
+                        animatedVisibilityScope = animatedVisibilityScope,
+                    )
             )
 
             ProfileContent(
@@ -127,7 +135,11 @@ fun PeopleProfileScreen(
                     .align(Alignment.CenterHorizontally)
             )
 
-            ProfileSocialIcons(modifier = Modifier.align(Alignment.CenterHorizontally))
+            ProfileSocialIcons(
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+                profile = profile,
+                onOpenSocialLink = onOpenSocialLink
+            )
 
             Row(
                 modifier = Modifier
@@ -153,71 +165,77 @@ fun PeopleProfileScreen(
 }
 
 @Composable
-fun ProfileSocialIcons(modifier: Modifier) {
+fun ProfileSocialIcons(
+    profile: PeopleProfile,
+    modifier: Modifier,
+    onOpenSocialLink: (Uri) -> Unit
+) {
     Row(
         modifier = modifier
     ) {
-        IconButton(
-            onClick = {
 
-            }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_instagram_white_48dp),
-                contentDescription = "",
-                modifier = Modifier.padding(4.dp),
+        profile.instagram?.also { uri ->
+            SocialButton(
+                iconResId = R.drawable.ic_instagram_white_48dp,
+                link = uri,
+                onClick = onOpenSocialLink
             )
         }
 
-        IconButton(
-            onClick = {
-
-            }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_linkedin_white_48dp),
-                contentDescription = "",
-                modifier = Modifier.padding(4.dp)
+        profile.twitter?.also { uri ->
+            SocialButton(
+                iconResId = R.drawable.ic_twitter_white_48dp,
+                link = uri,
+                onClick = onOpenSocialLink
             )
         }
 
-        IconButton(
-            onClick = {
-
-            }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_youtube_white_48dp),
-                contentDescription = "",
-                modifier = Modifier.padding(4.dp)
+        profile.youtube?.also { uri ->
+            SocialButton(
+                iconResId = R.drawable.ic_youtube_white_48dp,
+                link = uri,
+                onClick = onOpenSocialLink
             )
         }
 
-        IconButton(
-            onClick = {
-
-            }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.ic_twitter_white_48dp),
-                contentDescription = "",
-                modifier = Modifier.padding(4.dp)
+        profile.linkedin?.also { uri ->
+            SocialButton(
+                iconResId = R.drawable.ic_linkedin_white_48dp,
+                link = uri,
+                onClick = onOpenSocialLink
             )
         }
     }
 }
 
+@Composable
+fun SocialButton(@DrawableRes iconResId: Int, link: Uri, onClick: (Uri) -> Unit) {
+    IconButton(
+        onClick = { onClick(link) }
+    ) {
+        Icon(
+            painter = painterResource(id = iconResId),
+            contentDescription = "",
+            modifier = Modifier.padding(4.dp),
+        )
+    }
+}
 
+/*
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Preview
 @Composable
-fun PeopleProfilePreview() {
+fun SharedTransitionScope.PeopleProfilePreview() {
     AppTheme(darkTheme = true) {
         fakePeopleProfileList.find { it.id == 2 }?.let {
             PeopleProfileScreen(
                 it,
+                animatedVisibilityScope = null,
                 onBackPressed = {},
                 onOpenChatWith = {}
             )
         }
     }
 }
+
+ */

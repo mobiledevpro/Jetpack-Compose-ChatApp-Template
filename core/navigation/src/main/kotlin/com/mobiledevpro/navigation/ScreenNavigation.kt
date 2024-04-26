@@ -17,10 +17,15 @@
  */
 package com.mobiledevpro.navigation
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -193,7 +198,11 @@ fun NavGraphBuilder.chatListScreen() {
     }
 }
 
-fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
+@OptIn(ExperimentalSharedTransitionApi::class)
+fun NavGraphBuilder.peopleListScreen(
+    transitionScope: SharedTransitionScope,
+    onNavigateTo: (Screen) -> Unit
+) {
     composable(
         route = Screen.PeopleList.route
     ) {
@@ -202,8 +211,9 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
             modules = { listOf(featurePeopleListModule) }
         )
 
-        PeopleListScreen(
+        transitionScope.PeopleListScreen(
             viewModel.uiState,
+            animatedVisibilityScope = this,
             onNavigateToProfile = { profileId: Int ->
                 Screen.PeopleProfile.routeWith(profileId.toString())
                     .also(onNavigateTo)
@@ -212,7 +222,9 @@ fun NavGraphBuilder.peopleListScreen(onNavigateTo: (Screen) -> Unit) {
     }
 }
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 fun NavGraphBuilder.peopleProfileScreen(
+    transitionScope: SharedTransitionScope,
     onNavigateBack: () -> Unit,
     onNavigateTo: (Screen) -> Unit
 ) {
@@ -228,10 +240,22 @@ fun NavGraphBuilder.peopleProfileScreen(
 
         peopleProfile ?: return@composable
 
-        PeopleProfileScreen(
+        val context = LocalContext.current
+
+        val openWebLink: (Uri) -> Unit = { uri ->
+            Intent(Intent.ACTION_VIEW).apply {
+                data = uri
+            }.also { intent ->
+                context.startActivity(intent)
+            }
+        }
+
+        transitionScope.PeopleProfileScreen(
             peopleProfile,
+            animatedVisibilityScope = this,
             onBackPressed = onNavigateBack,
-            onOpenChatWith = {}
+            onOpenChatWith = {},
+            onOpenSocialLink = openWebLink
         )
     }
 }

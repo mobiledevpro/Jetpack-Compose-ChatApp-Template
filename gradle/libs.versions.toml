@@ -18,12 +18,14 @@ plugin-performance = "1.4.2"
 # Libs
 android-core-ktx = "1.12.0"
 activity = "1.8.2"
-navigation = "2.7.7"
+navigation = "2.8.0-alpha07"
 retrofit = "2.9.0"
 room = "2.4.3"
 lifecycle = "2.7.0"
-compose-bom = "2024.04.00"
+compose-bom = "2024.04.01"
 compose-compiler = "1.5.11"
+compose-alpha = "1.7.0-alpha07"
+
 coil = "2.5.0"
 material3 = "1.2.1"
 koin = "3.5.3"
@@ -89,8 +91,8 @@ splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "spl
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "compose-alpha" }
+compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose-alpha" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
