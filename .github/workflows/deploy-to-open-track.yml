@@ -63,7 +63,7 @@ jobs:
           packageName: com.mobiledevpro.closetalk.app
           releaseFiles: ${{ env.AAB_FILE }}
           # Can be 'internal', 'alpha', 'beta', or 'production', or 'internalsharing'
-          track: internal
+          track: beta
           # Optional: 'completed', 'draft', 'inProgress', or 'halted'
           status: completed
           whatsNewDirectory: ${{ env.DOWNLOADS_PATH }}/whatsnew
