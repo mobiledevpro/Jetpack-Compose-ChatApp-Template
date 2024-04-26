@@ -13,7 +13,11 @@
 [![Android Studio](https://img.shields.io/badge/Android%20Studio%20Jellyfish-2023.3.1-orange.svg?style=flat-square)](https://developer.android.com/studio/preview)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=flat-square)
+##
+### Try demo version:
+[<img src="https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/56e09ffa-faa5-4ad1-8ad8-4ee35957870b" width="250" alt="Demo"/>](https://play.google.com/store/apps/details?id=com.mobiledevpro.closetalk.app&utm_source=landing)
 
+##
 ![closetalk_github_social_preview](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/343f1ab5-54e4-41c2-a554-af0526aee382)
 
 [![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Watch+on)](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4)
