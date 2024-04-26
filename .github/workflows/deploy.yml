@@ -25,6 +25,6 @@ jobs:
     secrets: inherit
 
   deploy-to-production-track:
-    uses: ./.github/workflows/deploy-to-closed-track.yml
+    uses: ./.github/workflows/deploy-to-open-track.yml
     needs: build-signed-bundle
     secrets: inherit
