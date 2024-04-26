@@ -92,6 +92,7 @@ splash-screen = { module = "androidx.core:core-splashscreen", version.ref = "spl
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "compose-alpha" }
+compose-ui-animation = { group = "androidx.compose.animation", name = "animation", version.ref = "compose-alpha" }
 compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose-alpha" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
@@ -136,6 +137,7 @@ firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 compose = [
     "compose-ui",
     "compose-ui-graphics",
+    "compose-ui-animation",
     "compose-ui-preview",
     "compose-material3",
     "activity-compose",
