@@ -38,4 +38,6 @@ jobs:
   remove-artifacts:
     uses: ./.github/workflows/clean-up-artifacts.yml
     needs: deploy-to-production-track
+    # Run this job even if "needs" job is failed
+    if: ${{ always() && contains(needs.*.result, 'failure') }}
     secrets: inherit
