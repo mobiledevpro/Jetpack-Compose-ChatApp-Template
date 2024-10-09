@@ -14,7 +14,7 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/mobiledevpro/Jetpack-Compose-ChatApp-Template?color=red&style=flat-square)
 ##
-### Try demo version:
+### Try demo:
 [<img src="https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/assets/5750211/56e09ffa-faa5-4ad1-8ad8-4ee35957870b" width="250" alt="Demo"/>](https://play.google.com/store/apps/details?id=com.mobiledevpro.closetalk.app&utm_source=landing)
 
 ##
@@ -22,7 +22,10 @@
 
 [![Youtube](https://img.shields.io/badge/-youtube-red?logo=youtube&message=Youtube&style=for-the-badge&label=Watch+on)](https://www.youtube.com/playlist?list=PL9IBbMupfHWrW419OtGlzc7cBEMNqyLa4)
 
-
+##
+### Production apps use this template: 
+- [NeonFrame.app](https://NeonFrame.app) - Increase engagement with highlighted screenshots you're sharing on Twitter, Instagram, LinkedIn, etc. 
+ 
 ##
 ### Tech. stack
 
