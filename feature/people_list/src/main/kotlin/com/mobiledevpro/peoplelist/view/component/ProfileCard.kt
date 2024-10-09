@@ -26,12 +26,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mobiledevpro.domain.model.PeopleProfile
+import com.mobiledevpro.domain.model.fakePeopleProfileList
 import com.mobiledevpro.ui.component.CardItem
 import com.mobiledevpro.ui.component.ProfileContent
 import com.mobiledevpro.ui.component.ProfilePicture
 import com.mobiledevpro.ui.component.ProfilePictureSize
+import com.mobiledevpro.ui.theme.AppTheme
 
 /**
  * For People list
@@ -41,13 +44,10 @@ import com.mobiledevpro.ui.component.ProfilePictureSize
  */
 @Composable
 internal fun ProfileCard(modifier: Modifier = Modifier, item: PeopleProfile, onClick: () -> Unit) {
-    CardItem(
-        modifier = modifier
-            .clickable { onClick.invoke() }
-    ) {
-
+    CardItem(modifier = modifier.clickable { onClick.invoke() }) {
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
@@ -65,5 +65,16 @@ internal fun ProfileCard(modifier: Modifier = Modifier, item: PeopleProfile, onC
                 modifier = Modifier.padding(8.dp)
             )
         }
+    }
+}
+
+@Composable
+@Preview
+internal fun ProfileCardPreview() {
+    AppTheme {
+        ProfileCard(
+            item = fakePeopleProfileList[0],
+            onClick = {}
+        )
     }
 }

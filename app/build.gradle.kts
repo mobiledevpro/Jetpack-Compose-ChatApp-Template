@@ -7,6 +7,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    alias(libs.plugins.compose.compiler)
 
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)
@@ -83,6 +84,8 @@ android {
     }
 
     compileOptions {
+        android.compileOptions.isCoreLibraryDesugaringEnabled = true
+
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -93,9 +96,6 @@ android {
 
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
 
     packaging {
@@ -146,15 +146,16 @@ tasks.register("renameBundle") {
                 println("Version name: ${variant.versionName}")
                 println("Version code: ${variant.versionCode}")
                 println("Flavor name: ${variant.productFlavors.map { it.name }.joinToString()}")
-
+                println("Build directory: ${layout.buildDirectory.get()}")
 
                 val flavorName = variant.productFlavors.map { it.name }.joinToString()
                 val variantName = variant.name
                 val buildType = variant.buildType.name
                 val versionName = variant.versionName
                 val versionCode = variant.versionCode
+
                 val bundleDir =
-                    "$buildDir/outputs/bundle/${variantName}"
+                    "${layout.buildDirectory.get()}/outputs/bundle/${variantName}"
 
                 val oldFileName = "app-${flavorName}-${buildType}.aab"
                 val newFileName =

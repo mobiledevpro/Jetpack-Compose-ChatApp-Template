@@ -2,12 +2,12 @@ plugins {
     id("core-module")
 }
 
+with(pluginManager) {
+    apply("org.jetbrains.kotlin.plugin.compose")
+}
+
 android {
     buildFeatures.compose = true
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versionStr("compose.compiler")
-    }
 }
 
 dependencies {
