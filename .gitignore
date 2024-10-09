@@ -53,6 +53,9 @@ captures/
 .idea/navEditor.xml
 .idea/appInsightsSettings.xml
 .idea/androidTestResultsUserPreferences.xml
+.idea/migrations.xml
+.idea/inspectionProfiles/*
+.idea/runConfigurations.xml
 
 
 # Keystore files
@@ -91,3 +94,5 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+app/google-services.json
