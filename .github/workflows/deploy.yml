@@ -14,9 +14,14 @@ jobs:
     uses: ./.github/workflows/create-release-notes.yml
     secrets: inherit
 
+  create-service-json:
+    uses: ./.github/workflows/create-service-json.yml
+    needs: create-release-notes
+    secrets: inherit
+
   build-signed-bundle:
     uses: ./.github/workflows/build-signed-bundle.yml
-    needs: create-release-notes
+    needs: create-service-json
     secrets: inherit
 
   create-github-release:

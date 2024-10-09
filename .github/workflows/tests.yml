@@ -1,0 +1,23 @@
+name: Run Tests
+
+on:
+
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main", "improve-actions" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+
+  create-service-json:
+    uses: ./.github/workflows/create-service-json.yml
+    secrets: inherit
+
+  run-tests:
+    uses: ./.github/workflows/run-tests.yml
+    needs: create-service-json
+    secrets: inherit
