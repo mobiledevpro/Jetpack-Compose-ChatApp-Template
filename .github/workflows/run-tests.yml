@@ -11,9 +11,6 @@ on:
 jobs:
   run-tests:
     runs-on: ubuntu-latest
-    # Setting up ENV for all steps in this job
-    env:
-      DOWNLOADS_PATH: ./downloaded-artifacts
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -44,11 +41,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      - name: Download Google Service JSON for GitHub artifacs
+      - name: Download Google Service JSON for GitHub artifacts
         uses: actions/download-artifact@v4
         with:
           name: google_service_json
-          path: ${{ env.DOWNLOADS_PATH }}
+          path: ./app
 
       - name: Update dependencies
         run: ./gradlew dependencies

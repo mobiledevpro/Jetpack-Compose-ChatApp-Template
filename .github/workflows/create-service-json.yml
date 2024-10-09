@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 jobs:
-  create-release-notes:
+  create-service-json:
     runs-on: ubuntu-latest
 
     steps:

@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 jobs:
-  create-release-notes:
+  remove-artifacs:
     runs-on: ubuntu-latest
 
     steps:
