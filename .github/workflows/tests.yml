@@ -21,3 +21,9 @@ jobs:
     uses: ./.github/workflows/run-tests.yml
     needs: create-service-json
     secrets: inherit
+
+  # It allow to remove artifacts created to use between workflows (google service json, bundles, etc)
+  remove-artifacts:
+    uses: ./.github/workflows/clean-up-artifacts.yml
+    needs: run-tests
+    secrets: inherit

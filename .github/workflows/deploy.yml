@@ -33,3 +33,9 @@ jobs:
     uses: ./.github/workflows/deploy-to-open-track.yml
     needs: build-signed-bundle
     secrets: inherit
+
+  # It allow to remove artifacts created to use between workflows (google service json, bundles, etc)
+  remove-artifacts:
+    uses: ./.github/workflows/clean-up-artifacts.yml
+    needs: deploy-to-production-track
+    secrets: inherit

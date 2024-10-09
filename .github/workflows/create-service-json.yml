@@ -1,4 +1,4 @@
-name: Create Release Notes
+name: Create Google Service JSON
 
 on:
   # Enables this workflow to be called from other workflows
@@ -25,3 +25,10 @@ jobs:
           exit 1
           fi
         continue-on-error: false
+
+      - name: Upload to artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: google_service
+          path: ${{ github.workspace }}/app/google-services.json
+
