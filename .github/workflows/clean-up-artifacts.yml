@@ -14,6 +14,6 @@ jobs:
           name: |
             bundles
             release_notes
-            google_service
+            google_service_json
           failOnError: false
 
