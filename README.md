@@ -1,6 +1,6 @@
 # Android Chat App entirely built with Jetpack Compose
 
-![Run Unit Tests](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/actions/workflows/run_tests.yml/badge.svg)
+![Run Unit Tests](https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template/actions/workflows/tests.yml/badge.svg)
 [![CodeFactor](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-compose-chatapp-template/badge)](https://www.codefactor.io/repository/github/mobiledevpro/jetpack-compose-chatapp-template)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mobiledevpro_Jetpack-Compose-ChatApp-Template&metric=alert_status)](https://sonarcloud.io/dashboard?id=mobiledevpro_Jetpack-Compose-ChatApp-Template)
 
