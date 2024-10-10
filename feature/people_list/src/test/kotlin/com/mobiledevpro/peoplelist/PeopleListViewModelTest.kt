@@ -64,6 +64,7 @@ class PeopleListViewModelTest {
         }
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @After
     fun finish() = Dispatchers.resetMain()
 }

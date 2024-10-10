@@ -1,0 +1,19 @@
+name: Clean up artifacts
+
+on:
+  # Enables this workflow to be called from other workflows
+  workflow_call:
+
+jobs:
+  remove-artifacs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: geekyeggo/delete-artifact@v5
+        with:
+          name: |
+            bundles
+            release_notes
+            google_service_json
+          failOnError: false
+

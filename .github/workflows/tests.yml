@@ -1,43 +1,31 @@
-name: Deploy Release
+name: Run Tests
 
 on:
+
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    tags:
-      - 'v*'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
 
-  create-release-notes:
-    uses: ./.github/workflows/create-release-notes.yml
-    secrets: inherit
-
   create-service-json:
     uses: ./.github/workflows/create-service-json.yml
-    needs: create-release-notes
     secrets: inherit
 
-  build-signed-bundle:
-    uses: ./.github/workflows/build-signed-bundle.yml
+  run-tests:
+    uses: ./.github/workflows/run-tests.yml
     needs: create-service-json
-    secrets: inherit
-
-  create-github-release:
-    uses: ./.github/workflows/create-github-release.yml
-    needs: build-signed-bundle
-    secrets: inherit
-
-  deploy-to-production-track:
-    uses: ./.github/workflows/deploy-to-open-track.yml
-    needs: build-signed-bundle
     secrets: inherit
 
   # It allow to remove artifacts created to use between workflows (google service json, bundles, etc)
   remove-artifacts:
     uses: ./.github/workflows/clean-up-artifacts.yml
-    needs: deploy-to-production-track
+    needs: run-tests
     # Run this job even if "needs" job is failed
     if: ${{ always() && contains(needs.*.result, 'failure') }}
     secrets: inherit
