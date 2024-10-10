@@ -36,6 +36,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      - name: Download Google Service JSON from GitHub artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: google_service_json
+          path: ./app
+
       - name: Update dependencies
         run: ./gradlew dependencies
 

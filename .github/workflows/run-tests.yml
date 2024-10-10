@@ -47,10 +47,6 @@ jobs:
           name: google_service_json
           path: ./app
 
-      - name: Echo file
-        run: |
-          cat ./app/google-services.json 
-
       - name: Update dependencies
         run: ./gradlew dependencies
 

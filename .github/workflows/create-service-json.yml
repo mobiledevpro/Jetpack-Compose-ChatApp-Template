@@ -13,7 +13,6 @@ jobs:
 
       - name: Create Google Service JSON
         run: |
-          echo '${{ secrets.GOOGLE_SERVICE_JSON }}'  &&
           echo '${{ secrets.GOOGLE_SERVICE_JSON }}' > \
           ${{ github.workspace }}/app/google-services.json | base64
 
