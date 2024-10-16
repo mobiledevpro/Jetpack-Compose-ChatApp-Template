@@ -8,3 +8,9 @@
   androidx.compose.ui since v1.7.0 alpha and navigation-compose 2.8.0 alpha.
 
 ## v0.1.0-build-3
+
+- Upgraded
+
+The source code is available on https://github.com/mobiledevpro/Jetpack-Compose-ChatApp-Template
+
+## v0.1.0-build-4
