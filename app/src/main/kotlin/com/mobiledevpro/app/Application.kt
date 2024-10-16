@@ -18,6 +18,9 @@
 package com.mobiledevpro.app
 
 import android.app.Application
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.mobiledevpro.apptemplate.compose.BuildConfig
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -35,5 +38,9 @@ class App : Application() {
             // Load common modules (feature modules will be loaded on demand)
            // modules(myAppModules)
         }
+
+        //Stop sending crashes and analytics in debug mode
+        FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = !BuildConfig.DEBUG
+        FirebaseAnalytics.getInstance(this).setAnalyticsCollectionEnabled(!BuildConfig.DEBUG)
     }
 }

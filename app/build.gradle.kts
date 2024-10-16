@@ -52,6 +52,10 @@ android {
     buildTypes {
         getByName("debug") {
             isDebuggable = true
+
+            firebaseCrashlytics {
+                mappingFileUploadEnabled = false
+            }
         }
 
         getByName("release") {
@@ -64,6 +68,10 @@ android {
             } catch (e: UnknownDomainObjectException) {
                 println("SigningConfig with not found. Skipping...")
                 null
+            }
+
+            firebaseCrashlytics {
+                mappingFileUploadEnabled = true
             }
         }
     }
@@ -96,6 +104,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     packaging {
