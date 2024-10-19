@@ -27,5 +27,5 @@ jobs:
     uses: ./.github/workflows/clean-up-artifacts.yml
     needs: run-tests
     # Run this job even if "needs" job is failed
-    if: ${{ always() && contains(needs.*.result, 'failure') }}
+    if: success() || failure()
     secrets: inherit
